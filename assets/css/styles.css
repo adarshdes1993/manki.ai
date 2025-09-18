@@ -2,7 +2,7 @@
   --bg:#ffffff;                 /* page background */
   --content:#0f172a;            /* main body text (dark slate) */
   --muted:#64748b;              /* secondary text */
-  --brand:#068bd8;              /* brand color (dark) */
+  --brand:#068bd8;              /* brand color (blue) */
   --accent:#f97316;             /* orange accent */
   --ok:#10b981;                 /* success green */
   --radius:16px;
@@ -42,7 +42,7 @@ a{color:var(--brand); text-decoration:none}
 .logo-mark{width:40px; height:40px}
 .logo-text{letter-spacing:.4px; font-size:1.25rem; color:var(--brand)}
 .menu{display:flex; gap:18px}
-.menu a{opacity:.9}
+.menu a{opacity:.9; font-weight:700; letter-spacing:.2px} /* bold menu */
 
 .btn{
   display:inline-block; padding:10px 16px; border-radius:999px;
@@ -95,7 +95,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 .mt-sm{margin-top:12px}
 .form-row{display:flex; gap:10px; align-items:center; margin-top:14px}
 
-/* Force black for specific menu items */
+/* Force black for specific menu items (base state) */
 :root { --black:#000; }
 .menu a[href*="#services"],
 .menu a[href*="#work"],
@@ -104,24 +104,16 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   color: var(--black) !important;
   opacity: 1;
 }
-.menu a[href*="#services"]:hover,
-.menu a[href*="#work"]:hover,
-.menu a[href*="#process"]:hover,
-.menu a[href*="#contact"]:hover{
-  color: var(--black) !important;
-  text-decoration: underline;
-}
 
-/* ── Green gradient headings for Services / Work / Process ───────────── */
+/* Green gradient headings for Services / Work / Process */
 :root{
-  --heading-green-start:#064e3b; /* deep teal/green */
-  --heading-green-end:#10b981;   /* matches --ok green */
+  --heading-green-start:#064e3b;
+  --heading-green-end:#10b981;
 }
-/* gradient text with fallback; overrides earlier black heading rule */
 #services .section-title,
 #work .section-title,
 #process .section-title{
-  color: transparent !important; /* ensure gradient visible across browsers */
+  color: transparent !important;
   background: linear-gradient(135deg, var(--heading-green-start), var(--heading-green-end));
   -webkit-background-clip: text;
   background-clip: text;
@@ -138,3 +130,33 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .menu{display:none}
   .steps{grid-template-columns:1fr}
 }
+
+/* Logo: make only the “ai” orange */
+.logo-text .logo-ai { color: var(--accent); }
+
+/* Hover/focus pill for Services / Work / Process / Contact */
+.menu a[href*="#services"],
+.menu a[href*="#work"],
+.menu a[href*="#process"],
+.menu a[href*="#contact"]{
+  padding: 6px 10px;
+  border-radius: 10px;
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease, text-decoration .2s;
+}
+.menu a[href*="#services"]:hover,
+.menu a[href*="#work"]:hover,
+.menu a[href*="#process"]:hover,
+.menu a[href*="#contact"]:hover,
+.menu a[href*="#services"]:focus-visible,
+.menu a[href*="#work"]:focus-visible,
+.menu a[href*="#process"]:focus-visible,
+.menu a[href*="#contact"]:focus-visible{
+  background: var(--brand);
+  color: var(--accent) !important;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(6,139,216,.25);
+  outline: none;
+}
+
+/* Hero heading: make only the “ai” orange */
+.t-ai{ color: var(--accent); }
