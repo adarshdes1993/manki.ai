@@ -9,32 +9,65 @@
   <!-- Favicon -->
   <link rel="icon" href="assets/img/manki-favicon-32.png" sizes="32x32" type="image/png">
 
-  <link rel="stylesheet" href="assets/css/styles.css?v=20250918-3">
+  <!-- Cache-busted CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css?v=20250919-0131">
 </head>
 <body>
   <!-- Navigation -->
   <nav class="nav">
     <div class="container row">
       <a class="logo" href="#top" aria-label="manki.ai Home">
-        <!-- Logo 64px on desktop, responsive via CSS -->
         <img
           class="logo-mark"
           src="assets/img/manki-logo-128.png"
           srcset="assets/img/manki-logo-128.png 128w, assets/img/manki-logo-256.png 256w"
-          sizes="(max-width: 560px) 40px, (max-width: 900px) 48px, 64px"
-          width="64" height="64"
+          sizes="(max-width: 560px) 44px, (max-width: 900px) 56px, 72px"
+          width="72" height="72"
           alt="Manki.ai logo"
         />
         <span class="logo-text">manki.<span class="logo-ai">ai</span></span>
       </a>
-      <div class="menu">
-        <a href="#services">Services</a>
-        <a href="#work">Work</a>
-        <a href="#process">Process</a>
-        <a href="#team">Team</a>
-        <a href="#contact">Contact</a>
+
+      <!-- Mobile toggle -->
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Primary menu (desktop & mobile) -->
+      <div class="menu" id="primary-menu" role="navigation" aria-label="Primary">
+        <!-- Services with dropdown -->
+        <div class="menu-item has-submenu">
+          <a class="menu-link" href="#services" aria-haspopup="true" aria-expanded="false">Services</a>
+          <div class="submenu" role="menu">
+            <div class="submenu-inner">
+              <a href="#services" class="submenu-item" role="menuitem">
+                <strong>Web Apps</strong><span>React, Next.js, Python</span>
+              </a>
+              <a href="#services" class="submenu-item" role="menuitem">
+                <strong>Mobile Apps</strong><span>Flutter / React Native</span>
+              </a>
+              <a href="#services" class="submenu-item" role="menuitem">
+                <strong>APIs &amp; Integrations</strong><span>REST, GraphQL, Auth, Payments</span>
+              </a>
+              <a href="#services" class="submenu-item" role="menuitem">
+                <strong>Data &amp; AI</strong><span>ETL, analytics, practical AI</span>
+              </a>
+              <a href="#services" class="submenu-item" role="menuitem">
+                <strong>DevOps</strong><span>CI/CD, containers, cloud</span>
+              </a>
+              <a href="#services" class="submenu-item" role="menuitem">
+                <strong>Consulting</strong><span>Architecture, SRE, roadmaps</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="#work" class="menu-link">Work</a>
+        <a href="#process" class="menu-link">Process</a>
+        <a href="#team" class="menu-link">Team</a>
+        <a href="#contact" class="menu-link">Contact</a>
+        <a class="btn btn-cta" href="#contact">Get a quote</a>
       </div>
-      <a class="btn" href="#contact">Get a quote</a>
     </div>
   </nav>
 
@@ -130,12 +163,12 @@
         <article class="team-card">
           <div class="team-inner">
             <div class="avatar">
-              <img src="assets/img/team/mignesh-patel.jpg?v=20250918-3" alt="Mignesh Patel" loading="lazy">
+              <img src="assets/img/team/mignesh-patel.jpg?v=20250919-0131" alt="Mignesh Patel" loading="lazy">
             </div>
             <div class="profile">
               <h3 class="person-name">Mignesh Patel</h3>
               <p class="role">Founder</p>
-              <p class="vision">“Ship small &amp; often. Measure everything. Keep code boring, make products delightful. </p>
+              <p class="vision">“Reliability is a feature—everything else stacks on top.”</p>
             </div>
           </div>
         </article>
@@ -144,12 +177,12 @@
         <article class="team-card">
           <div class="team-inner">
             <div class="avatar">
-              <img src="assets/img/team/adarsh-dessai.jpg?v=20250918-3" alt="Adarsh Dessai" loading="lazy">
+              <img src="assets/img/team/adarsh-dessai.jpg?v=20250919-0131" alt="Adarsh Dessai" loading="lazy">
             </div>
             <div class="profile">
               <h3 class="person-name">Adarsh Dessai</h3>
               <p class="role">Co-founder</p>
-              <p class="vision">“Software should feel invisible—fast, reliable, and quietly helpful.”</p>
+              <p class="vision">“Ship small, ship often, learn always.”</p>
             </div>
           </div>
         </article>
@@ -188,13 +221,12 @@
   <footer>
     <div class="container foot">
       <a class="logo" href="#top" aria-label="manki.ai Home">
-        <!-- Footer logo 64px on desktop -->
         <img
           class="logo-mark"
           src="assets/img/manki-logo-128.png"
           srcset="assets/img/manki-logo-128.png 128w, assets/img/manki-logo-256.png 256w"
-          sizes="(max-width: 560px) 40px, (max-width: 900px) 48px, 64px"
-          width="64" height="64"
+          sizes="(max-width: 560px) 44px, (max-width: 900px) 56px, 72px"
+          width="72" height="72"
           alt="Manki.ai logo"
         />
         <span class="logo-text">manki.<span class="logo-ai">ai</span></span>
@@ -203,6 +235,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <!-- Cache-busted JS -->
+  <script src="assets/js/main.js?v=20250919-0131"></script>
 </body>
 </html>
