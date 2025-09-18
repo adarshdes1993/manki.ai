@@ -10,6 +10,17 @@
   /* derived from brand for borders/shadows */
   --border: rgba(13,15,15,.22);
   --shadow: 0 8px 24px rgba(13,15,15,.15);
+
+  /* logo sizing */
+  --logo-size: 64px;    /* desktop */
+  --logo-size-md: 48px; /* tablet */
+  --logo-size-sm: 40px; /* mobile */
+
+  /* headings gradient */
+  --heading-green-start:#064e3b;
+  --heading-green-end:#10b981;
+
+  --black:#000;
 }
 
 *{box-sizing:border-box}
@@ -38,8 +49,17 @@ a{color:var(--brand); text-decoration:none}
   z-index:50;
 }
 .nav .row{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-.logo{display:flex; align-items:center; gap:10px; font-weight:700}
-.logo-mark{width:40px; height:40px}
+.logo{display:flex; align-items:center; gap:12px; font-weight:700}
+
+/* Logo image */
+.logo-mark{
+  width:var(--logo-size);
+  height:var(--logo-size);
+  object-fit:contain;
+  border-radius:8px;
+  display:block;
+}
+
 .logo-text{letter-spacing:.4px; font-size:1.25rem; color:var(--brand)}
 .menu{display:flex; gap:18px}
 .menu a{opacity:.9; font-weight:700; letter-spacing:.2px} /* bold menu */
@@ -96,7 +116,6 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 .form-row{display:flex; gap:10px; align-items:center; margin-top:14px}
 
 /* Force black for specific menu items (base state) */
-:root { --black:#000; }
 .menu a[href*="#services"],
 .menu a[href*="#work"],
 .menu a[href*="#process"],
@@ -106,10 +125,6 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 }
 
 /* Green gradient headings for Services / Work / Process */
-:root{
-  --heading-green-start:#064e3b;
-  --heading-green-end:#10b981;
-}
 #services .section-title,
 #work .section-title,
 #process .section-title{
@@ -120,19 +135,23 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   -webkit-text-fill-color: transparent;
 }
 
+/* Responsive tweaks (logo scales here too) */
 @media (max-width: 900px){
   .hero .wrap{grid-template-columns:1fr}
   .grid{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr 1fr}
   .grid2{grid-template-columns:1fr}
+  .logo-mark{ width:var(--logo-size-md); height:var(--logo-size-md); }
 }
 @media (max-width: 560px){
   .menu{display:none}
   .steps{grid-template-columns:1fr}
+  .logo-mark{ width:var(--logo-size-sm); height:var(--logo-size-sm); }
 }
 
-/* Logo: make only the “ai” orange */
+/* Logo/hero: make only the “ai” orange */
 .logo-text .logo-ai { color: var(--accent); }
+.t-ai{ color: var(--accent); }
 
 /* Hover/focus pill for Services / Work / Process / Contact */
 .menu a[href*="#services"],
@@ -157,6 +176,3 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   box-shadow: 0 2px 8px rgba(6,139,216,.25);
   outline: none;
 }
-
-/* Hero heading: make only the “ai” orange */
-.t-ai{ color: var(--accent); }
