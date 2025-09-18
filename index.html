@@ -10,7 +10,7 @@
   <link rel="icon" href="assets/img/manki-favicon-32.png" sizes="32x32" type="image/png">
 
   <!-- Cache-busted CSS -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=20250919-021248">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20250919-025629">
 </head>
 <body>
   <!-- Navigation -->
@@ -24,7 +24,7 @@
           sizes="(max-width: 560px) 44px, (max-width: 900px) 56px, 72px"
           width="72" height="72"
           alt="Manki.ai logo"
-          loading="eager"
+          loading="eager" decoding="async"
         />
         <span class="logo-text" aria-label="manki dot ai">manki.<span class="logo-ai">ai</span></span>
       </a>
@@ -164,7 +164,14 @@
         <article class="team-card">
           <div class="team-inner">
             <div class="avatar">
-              <img src="assets/img/team/mignesh-patel.jpg?v=20250919-0131" alt="Mignesh Patel" loading="lazy">
+              <img
+                class="lightboxable"
+                src="assets/img/team/mignesh-patel.jpg?v=20250919-0410"
+                data-full="assets/img/team/mignesh-patel.jpg"
+                data-caption="Mignesh Patel — Founder"
+                alt="Mignesh Patel"
+                loading="lazy" decoding="async"
+              >
             </div>
             <div class="profile">
               <h3 class="person-name">Mignesh Patel</h3>
@@ -178,7 +185,15 @@
         <article class="team-card">
           <div class="team-inner">
             <div class="avatar">
-              <img src="assets/img/team/adarsh-dessai.jpg?v=20250919-0131" alt="Adarsh Dessai" loading="lazy">
+              <img
+                class="lightboxable"
+                src="assets/img/team/adarsh-dessai.jpg?v=20250919-0410"
+                data-full="assets/img/team/adarsh-dessai.jpg"
+                data-caption="Adarsh Dessai — Co-founder"
+                data-says="Hey, welcome to manki.ai!"
+                alt="Adarsh Dessai"
+                loading="lazy" decoding="async"
+              >
             </div>
             <div class="profile">
               <h3 class="person-name">Adarsh Dessai</h3>
@@ -229,7 +244,7 @@
           sizes="(max-width: 560px) 44px, (max-width: 900px) 56px, 72px"
           width="72" height="72"
           alt="Manki.ai logo"
-          loading="lazy"
+          loading="lazy" decoding="async"
         />
         <span class="logo-text">manki.<span class="logo-ai">ai</span></span>
       </a>
@@ -237,7 +252,19 @@
     </div>
   </footer>
 
+  <!-- Fullscreen Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+    <button class="lightbox-close" aria-label="Close image">&times;</button>
+    <img class="lightbox-img" alt="" />
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+    <!-- Speech bubble for double-tap/dblclick -->
+    <div class="lightbox-speech" id="lightbox-speech" role="status" aria-live="polite">
+      <span class="dots"><i></i><i></i><i></i></span>
+      <span class="text"></span>
+    </div>
+  </div>
+
   <!-- Cache-busted JS -->
-  <script src="assets/js/main.js?v=20250919-021248"></script>
+  <script src="assets/js/main.js?v=20250919-025629"></script>
 </body>
 </html>

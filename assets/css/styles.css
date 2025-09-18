@@ -1,13 +1,11 @@
 :root{
-  --bg:#ffffff;                 /* page background */
-  --content:#0f172a;            /* main body text (dark slate) */
-  --muted:#64748b;              /* secondary text */
-  --brand:#068bd8;              /* brand color (blue) */
-  --accent:#f97316;             /* orange accent */
-  --ok:#10b981;                 /* success green */
+  --bg:#ffffff;
+  --content:#0f172a;
+  --muted:#64748b;
+  --brand:#068bd8;
+  --accent:#f97316;
+  --ok:#10b981;
   --radius:16px;
-
-  /* derived from brand for borders/shadows */
   --border: rgba(13,15,15,.22);
   --shadow: 0 8px 24px rgba(13,15,15,.15);
 
@@ -43,10 +41,10 @@ a{color:var(--brand); text-decoration:none}
 
 /* ────────── NAV ────────── */
 .nav{
-  position:sticky; top:0; z-index:1000; /* higher so mobile panel sits over page */
+  position:sticky; top:0; z-index:1000;
   backdrop-filter:saturate(1.2) blur(8px);
   background:rgba(255,255,255,.96);
-  border-bottom:2px solid rgba(13,15,15,.28); /* thicker divider */
+  border-bottom:2px solid rgba(13,15,15,.28); /* thicker */
 }
 .nav .row{
   display:flex; align-items:center; justify-content:space-between;
@@ -64,11 +62,11 @@ a{color:var(--brand); text-decoration:none}
 }
 .logo-text{
   letter-spacing:.4px;
-  font-size:1.6rem;            /* bigger brand name on desktop */
+  font-size:1.6rem; /* bigger brand name on desktop */
   line-height:1;
   color:var(--brand)
 }
-.logo-text .logo-ai { color: var(--accent); } /* only “ai” in orange */
+.logo-text .logo-ai { color: var(--accent); } /* “ai” in orange */
 
 /* Menu (desktop baseline) */
 .menu{display:flex; align-items:center; gap:18px}
@@ -84,7 +82,7 @@ a{color:var(--brand); text-decoration:none}
 }
 .btn-cta{ margin-left:6px; } /* header CTA */
 
-/* Force black for specific menu items (base state) */
+/* Force black for specific menu items */
 .menu a[href*="#services"],
 .menu a[href*="#work"],
 .menu a[href*="#process"],
@@ -94,7 +92,7 @@ a{color:var(--brand); text-decoration:none}
   opacity: 1;
 }
 
-/* Hover/focus pill (desktop & mobile) */
+/* Hover/focus pill */
 .menu a[href*="#services"],
 .menu a[href*="#work"],
 .menu a[href*="#process"],
@@ -161,7 +159,7 @@ a{color:var(--brand); text-decoration:none}
 /* Mobile toggle (hamburger) */
 .nav-toggle{
   display:none; position:relative; width:40px; height:36px;
-  border:0; background:transparent; padding:0; cursor:pointer; z-index:1200; /* above mobile panel */
+  border:0; background:transparent; padding:0; cursor:pointer; z-index:1200;
 }
 .nav-toggle span{
   position:absolute; left:8px; right:8px; height:2px; background:#111; border-radius:2px;
@@ -174,7 +172,7 @@ a{color:var(--brand); text-decoration:none}
 .hero{padding:72px 0 36px}
 .hero .wrap{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px}
 .hero h1{font-size: clamp(28px, 3.6vw, 44px); line-height:1.12; margin:10px 0 12px; color:var(--brand)}
-.t-ai{ color: var(--accent); } /* “ai” in the hero */
+.t-ai{ color: var(--accent); }
 .hero p{margin:0 0 22px; color:var(--content)}
 .hero-card{background:#ffffff; border:1px solid var(--border); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow)}
 .hero-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:10px}
@@ -215,7 +213,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 .mt-sm{margin-top:12px}
 .form-row{display:flex; gap:10px; align-items:center; margin-top:14px}
 
-/* Green gradient headings for Services / Work / Process */
+/* Green gradient headings */
 #services .section-title,
 #work .section-title,
 #process .section-title{
@@ -227,7 +225,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 }
 
 /* ─────────── TEAM / LEADERSHIP ─────────── */
-#team .section-title{ color: var(--brand); } /* Team uses plain brand blue */
+#team .section-title{ color: var(--brand); }
 
 .team-grid{
   display:grid;
@@ -255,7 +253,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   gap:16px;
   align-items:center;
 }
-/* Avatar ring: solid black (no red) */
+/* Avatar ring: solid black */
 .avatar{
   width:120px; height:120px;
   padding:2px; border-radius:50%;
@@ -281,7 +279,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   color: var(--brand);
 }
 .bio{ margin:8px 0 0; }
-/* Vision line: soft blue highlight, subtle border, italic */
+/* Vision line */
 .vision{
   margin:8px 0 0;
   padding:10px 12px;
@@ -292,12 +290,80 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   border-radius: 12px;
 }
 
+/* ─────────── LIGHTBOX (fullscreen image viewer) ─────────── */
+body.lb-open, body.menu-open{ overflow:hidden }
+
+.lightbox{
+  position:fixed; inset:0; display:none;
+  background: rgba(2,6,23,.86);
+  z-index:2000;
+}
+.lightbox.open{ display:block; }
+.lightbox img.lightbox-img{
+  position:absolute; max-width:min(92vw,1200px); max-height:80vh;
+  left:50%; top:50%; transform:translate(-50%,-50%);
+  border-radius:14px; box-shadow:0 20px 60px rgba(0,0,0,.5);
+  background:#0b1220; cursor:zoom-in;
+}
+.lightbox-caption{
+  position:absolute; left:50%; transform:translateX(-50%);
+  bottom:6vh; max-width:min(92vw,1000px);
+  color:#e5e7eb; text-align:center; font-weight:600;
+  text-shadow:0 1px 2px rgba(0,0,0,.4);
+}
+.lightbox-close{
+  position:absolute; right:18px; top:12px;
+  width:44px; height:44px; border-radius:999px;
+  background:rgba(255,255,255,.9); color:#111; border:0; cursor:pointer;
+  font-size:28px; line-height:1; box-shadow:0 4px 16px rgba(0,0,0,.25);
+}
+
+/* Speech bubble for “thinking” → message */
+.lightbox-speech{
+  position: absolute;
+  left: 50%;
+  bottom: 8vh;
+  transform: translateX(-50%);
+  display: none;
+  align-items: center;
+  gap: 10px;
+  max-width: min(92vw, 600px);
+  padding: 12px 14px;
+  background: #ffffff;
+  color: var(--content);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  font-weight: 600;
+}
+.lightbox-speech.show{ display:flex; }
+.lightbox-speech .text{ display:none; }
+.lightbox-speech.ready .dots{ display:none; }
+.lightbox-speech.ready .text{ display:inline; }
+.dots{ display:inline-flex; gap:4px; }
+.dots i{
+  width:6px; height:6px; border-radius:50%;
+  background:#cbd5e1; opacity:.7;
+  animation: lb-blink 1s infinite ease-in-out;
+}
+.dots i:nth-child(2){ animation-delay:.15s }
+.dots i:nth-child(3){ animation-delay:.3s }
+@keyframes lb-blink{
+  0%,80%,100%{ opacity:.3; transform:translateY(0) }
+  40%{ opacity:1; transform:translateY(-2px) }
+}
+
+@media (max-width: 560px){
+  .lightbox img.lightbox-img{ max-height:74vh; }
+  .lightbox-caption{ bottom: 10vh; padding: 0 10px; }
+  .lightbox-speech{ bottom: 6vh; padding: 10px 12px; }
+}
+
 /* ────────── RESPONSIVE ────────── */
 @media (max-width: 900px){
   /* Show burger; collapse menu */
   .nav-toggle{ display:block }
   .menu{
-    position:fixed; left:0; right:0; top:84px; /* below navbar */
+    position:fixed; left:0; right:0; top:84px;
     display:none; flex-direction:column; align-items:flex-start; gap:8px;
     background:#fff; padding:12px 16px 16px;
     border-bottom:2px solid rgba(13,15,15,.18);
@@ -306,9 +372,9 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   }
   .menu.open{ display:flex }
   .menu a, .menu .menu-link{ font-size:.98rem; padding:8px 10px }
-  .btn-cta{ align-self:flex-start; padding:8px 12px; font-size:.95rem } /* smaller CTA on mobile */
+  .btn-cta{ align-self:flex-start; padding:8px 12px; font-size:.95rem }
 
-  /* Mobile submenu: full-width block inside panel */
+  /* Mobile submenu: full-width block */
   .has-submenu .submenu{
     position:static; display:none; width:100%; margin-top:4px; border-radius:12px;
     box-shadow:none; border:1px solid var(--border);
@@ -317,27 +383,26 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .submenu-inner{ border-top-width:3px }
   .submenu-item{ padding:10px 10px }
 
-  /* general layout tweaks */
+  /* layout tweaks */
   .hero .wrap{grid-template-columns:1fr}
   .grid{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr 1fr}
   .grid2{grid-template-columns:1fr}
   .logo-mark{ width:var(--logo-size-md); height:var(--logo-size-md) }
-  .logo-text{ font-size:1.35rem }   /* strong on tablet */
+  .logo-text{ font-size:1.35rem }
   .team-grid{ grid-template-columns:1fr; }
   .team-inner{ grid-template-columns: 1fr; align-items:flex-start; }
   .avatar{ width:110px; height:110px; }
 }
 @media (max-width: 560px){
-  /* Menu controlled by .open; keep visible when toggled */
   .menu a, .menu .menu-link{ font-size:.95rem; padding:8px }
   .btn-cta{ padding:8px 12px; font-size:.92rem }
-  .menu{ top:72px; } /* slightly tighter on small phones */
+  .menu{ top:72px; }
 
   .logo-mark{ width:var(--logo-size-sm); height:var(--logo-size-sm); }
-  .logo-text{ font-size:1.2rem }    /* readable brand on phones */
+  .logo-text{ font-size:1.2rem }
 
-  /* Smaller hero headline on phones only (desktop unchanged) */
+  /* Smaller hero headline on phones only */
   .hero h1{ font-size: clamp(20px, 6.2vw, 32px); }
 
   .steps{grid-template-columns:1fr}
