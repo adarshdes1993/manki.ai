@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>manki.ai – Simple, reliable software</title>
   <meta name="description" content="Simple, fast, and reliable software development services." />
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/img/manki-favicon-32.png" sizes="32x32" type="image/png">
+
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -13,7 +16,15 @@
   <nav class="nav">
     <div class="container row">
       <a class="logo" href="#top" aria-label="manki.ai Home">
-        <img class="logo-mark" src="assets/img/logo.svg" alt="" aria-hidden="true" />
+        <!-- Logo 64px on desktop, responsive via CSS -->
+        <img
+          class="logo-mark"
+          src="assets/img/manki-logo-128.png"
+          srcset="assets/img/manki-logo-128.png 128w, assets/img/manki-logo-256.png 256w"
+          sizes="(max-width: 560px) 40px, (max-width: 900px) 48px, 64px"
+          width="64" height="64"
+          alt="Manki.ai logo"
+        />
         <span class="logo-text">manki.<span class="logo-ai">ai</span></span>
       </a>
       <div class="menu">
@@ -138,7 +149,15 @@
   <footer>
     <div class="container foot">
       <a class="logo" href="#top" aria-label="manki.ai Home">
-        <img class="logo-mark" src="assets/img/logo.svg" alt="" aria-hidden="true" />
+        <!-- Footer logo 64px on desktop -->
+        <img
+          class="logo-mark"
+          src="assets/img/manki-logo-128.png"
+          srcset="assets/img/manki-logo-128.png 128w, assets/img/manki-logo-256.png 256w"
+          sizes="(max-width: 560px) 40px, (max-width: 900px) 48px, 64px"
+          width="64" height="64"
+          alt="Manki.ai logo"
+        />
         <span class="logo-text">manki.<span class="logo-ai">ai</span></span>
       </a>
       <div>© <span id="year"></span> manki.ai • Built with care</div>
