@@ -10,7 +10,7 @@
   <link rel="icon" href="assets/img/manki-favicon-32.png" sizes="32x32" type="image/png">
 
   <!-- Cache-busted CSS -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=20250919-102722">
+  <link rel="stylesheet" href="assets/css/styles.css?v=">
 </head>
 <body>
   <!-- Fixed background logo (watermark) -->
@@ -22,10 +22,14 @@
       <a class="logo" href="#top" aria-label="manki.ai Home">
         <img
           class="logo-mark"
-          src="assets/img/manki-logo-128.png"
-          srcset="assets/img/manki-logo-128.png 128w, assets/img/manki-logo-256.png 256w"
-          sizes="(max-width: 560px) 44px, (max-width: 900px) 56px, 72px"
-          width="72" height="72"
+          src="assets/img/manki-logo-256.png"
+          srcset="
+            assets/img/manki-logo-128.png 128w,
+            assets/img/manki-logo-256.png 256w,
+            assets/img/manki-logo-512.png 512w
+          "
+          sizes="(max-width: 560px) 64px, (max-width: 900px) 96px, 128px"
+          width="128" height="128"
           alt="Manki.ai logo"
           loading="eager"
         />
@@ -167,12 +171,17 @@
         <article class="team-card">
           <div class="team-inner">
             <button class="avatar open-lightbox" data-person="mignesh" aria-label="View Mignesh Patel photo">
-              <img src="assets/img/team/mignesh-patel.jpg?v=20250919-102722" alt="Mignesh Patel" loading="lazy">
+              <img src="assets/img/team/mignesh-patel.jpg?v=20250919-wmBIG2" alt="Mignesh Patel" loading="lazy">
             </button>
             <div class="profile">
               <h3 class="person-name">Mignesh Patel</h3>
               <p class="role">Founder</p>
               <p class="vision">“Reliability is a feature—everything else stacks on top.”</p>
+              <ul class="achievements">
+                <li>Shipped 30+ production apps across fintech, health, and SaaS.</li>
+                <li>Scaled microservices to millions of requests/day with 99.99% uptime.</li>
+                <li>Security-first practices: SOC2-style processes, zero critical CVEs in 24 months.</li>
+              </ul>
             </div>
           </div>
         </article>
@@ -180,13 +189,22 @@
         <!-- Co-founder -->
         <article class="team-card">
           <div class="team-inner">
-            <button class="avatar open-lightbox" data-person="adarsh" aria-label="View Adarsh Dessai photo">
-              <img src="assets/img/team/adarsh-dessai.jpg?v=20250919-102722" alt="Adarsh Dessai" loading="lazy">
+            <button
+              class="avatar open-lightbox"
+              data-person="adarsh"
+              data-says="Hey, welcome to manki.ai!"
+              aria-label="View Adarsh Dessai photo">
+              <img src="assets/img/team/adarsh-dessai.jpg?v=20250919-wmBIG2" alt="Adarsh Dessai" loading="lazy">
             </button>
             <div class="profile">
               <h3 class="person-name">Adarsh Dessai</h3>
               <p class="role">Co-founder</p>
               <p class="vision">“Ship small, ship often, learn always.”</p>
+              <ul class="achievements">
+                <li>Led 10+ MVPs from idea → launch in under 8 weeks.</li>
+                <li>Designed accessible UX systems (AA+) with conversion-focused flows.</li>
+                <li>Practical AI: integrated LLM features users actually return for.</li>
+              </ul>
             </div>
           </div>
         </article>
@@ -194,7 +212,7 @@
     </div>
   </section>
 
-  <!-- Lightbox (re-usable) -->
+  <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lightbox-backdrop"></div>
     <figure class="lightbox-content" role="dialog" aria-modal="true" aria-label="Team photo">
@@ -237,10 +255,14 @@
       <a class="logo" href="#top" aria-label="manki.ai Home">
         <img
           class="logo-mark"
-          src="assets/img/manki-logo-128.png"
-          srcset="assets/img/manki-logo-128.png 128w, assets/img/manki-logo-256.png 256w"
-          sizes="(max-width: 560px) 44px, (max-width: 900px) 56px, 72px"
-          width="72" height="72"
+          src="assets/img/manki-logo-256.png"
+          srcset="
+            assets/img/manki-logo-128.png 128w,
+            assets/img/manki-logo-256.png 256w,
+            assets/img/manki-logo-512.png 512w
+          "
+          sizes="(max-width: 560px) 64px, (max-width: 900px) 96px, 128px"
+          width="128" height="128"
           alt="Manki.ai logo"
           loading="lazy"
         />
@@ -251,6 +273,6 @@
   </footer>
 
   <!-- Cache-busted JS -->
-  <script src="assets/js/main.js?v=20250919-102722"></script>
+  <script src="assets/js/main.js?v=20250919-wmBIG2"></script>
 </body>
 </html>
