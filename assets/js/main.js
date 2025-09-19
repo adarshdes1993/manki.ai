@@ -1,4 +1,4 @@
-// Menus + year + form + lightbox + playful double-tap on Adarsh
+// Enhanced, dependency-free JS (menus + lightbox + toast + year + form)
 (function () {
   /* ---------- Year ---------- */
   const y = document.getElementById('year');
@@ -40,9 +40,15 @@
     document.body.style.overflow = '';
     closeSubmenu(true);
   }
-  function toggleMenu() { menu && (menu.classList.contains('open') ? closeMenu() : openMenu()); }
+  function toggleMenu() {
+    if (!menu) return;
+    menu.classList.contains('open') ? closeMenu() : openMenu();
+  }
 
-  toggle && toggle.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+  toggle && toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
 
   // Close on outside click (mobile)
   document.addEventListener('click', (e) => {
@@ -55,7 +61,7 @@
     if (e.key === 'Escape' && isMobile()) closeMenu();
   });
 
-  // Close mobile menu when clicking any link inside (except the top Services toggle link)
+  // Close mobile menu on link click (except Services top link)
   menu && menu.addEventListener('click', (e) => {
     if (!isMobile()) return;
     const a = e.target.closest('a');
@@ -69,7 +75,7 @@
     if (!submenuParent || !submenu) return;
     submenuParent.classList.add('open');
     submenuLink && submenuLink.setAttribute('aria-expanded', 'true');
-    if (!isMobile()) submenu.style.display = 'block'; // hover bridge support
+    if (!isMobile()) submenu.style.display = 'block';
   }
   function closeSubmenu(force) {
     if (!submenuParent || !submenu) return;
@@ -80,30 +86,34 @@
     }
   }
 
-  // Mobile: tap “Services” toggles the submenu inline
+  // Mobile: tap Services toggles inline submenu
   submenuLink && submenuLink.addEventListener('click', (e) => {
-    if (!isMobile()) return;            // desktop: allow navigation
+    if (!isMobile()) return;
     e.preventDefault();
     e.stopPropagation();
     submenuParent.classList.contains('open') ? closeSubmenu(true) : openSubmenu();
   });
 
-  // Desktop: keep submenu open while hovering link or panel (with tiny delay)
+  // Desktop hover with tiny delay (prevents flicker)
   let hideTimer;
   if (submenuParent && submenu) {
     const enter = () => { if (!isMobile()) { clearTimeout(hideTimer); openSubmenu(); } };
-    const leave = () => { if (!isMobile()) hideTimer = setTimeout(() => closeSubmenu(false), 120); };
+    const leave = () => { if (!isMobile()) { hideTimer = setTimeout(() => closeSubmenu(false), 120); } };
     submenuParent.addEventListener('mouseenter', enter);
     submenuParent.addEventListener('mouseleave', leave);
     submenu.addEventListener('mouseenter', enter);
     submenu.addEventListener('mouseleave', leave);
 
-    // Keyboard focus support
-    menu && menu.addEventListener('focusin', (e) => { if (submenuParent.contains(e.target)) openSubmenu(); });
-    menu && menu.addEventListener('focusout', (e) => { if (!menu.contains(e.relatedTarget)) closeSubmenu(true); });
+    // Keyboard support
+    menu && menu.addEventListener('focusin', (e) => {
+      if (submenuParent.contains(e.target)) openSubmenu();
+    });
+    menu && menu.addEventListener('focusout', (e) => {
+      if (!menu.contains(e.relatedTarget)) closeSubmenu(true);
+    });
   }
 
-  // Safety: reset state when resizing to desktop
+  // Reset when resizing to desktop
   window.addEventListener('resize', () => {
     if (!isMobile()) {
       document.body.style.overflow = '';
@@ -113,78 +123,83 @@
   });
 
   /* ---------- Lightbox for team photos ---------- */
-  const grid = document.querySelector('.team-grid');
-  if (grid) {
-    // Build overlay once
-    const lb = document.createElement('div');
-    lb.className = 'lb';
-    lb.innerHTML = `
-      <div class="lb-inner" role="dialog" aria-modal="true" aria-label="Team photo viewer">
-        <button class="lb-close" type="button" aria-label="Close">Close ✕</button>
-        <div class="lb-img-wrap"><img alt=""></div>
-        <div class="lb-caption">
-          <div>
-            <div class="lb-title"></div>
-            <div class="lb-role"></div>
-          </div>
-        </div>
-        <div class="lb-toast" aria-live="polite">Hey, welcome to manki.ai 👋</div>
-      </div>`;
-    document.body.appendChild(lb);
-    const lbImg   = lb.querySelector('.lb-img-wrap img');
-    const lbClose = lb.querySelector('.lb-close');
-    const lbTitle = lb.querySelector('.lb-title');
-    const lbRole  = lb.querySelector('.lb-role');
-    const lbToast = lb.querySelector('.lb-toast');
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbCap = document.getElementById('lightbox-caption');
+  const lbClose = lb ? lb.querySelector('.lightbox-close') : null;
 
-    function openLB(src, title, role) {
-      lbImg.src = src;
-      lbTitle.textContent = title || '';
-      lbRole.textContent = role || '';
-      lb.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLB() {
-      lb.classList.remove('open');
-      document.body.style.overflow = '';
-      lbImg.src = '';
-      lbToast.classList.remove('show');
-    }
+  function openLightbox(src, alt, caption) {
+    if (!lb) return;
+    lbImg.src = src;
+    lbImg.alt = alt || '';
+    lbCap.textContent = caption || '';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    if (!lb) return;
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+    lbImg.alt = '';
+    lbCap.textContent = '';
+  }
 
-    // Click handlers
-    grid.addEventListener('click', (e) => {
-      const btn = e.target.closest('.lightbox-trigger');
-      if (!btn) return;
+  // open on avatar click
+  document.querySelectorAll('.open-lightbox').forEach(btn => {
+    btn.addEventListener('click', () => {
       const img = btn.querySelector('img');
+      if (!img) return;
+      // use full-size (strip cache-bust for safety)
+      const src = img.src.replace(/\?.*$/,'');
       const card = btn.closest('.team-card');
-      const name = card.querySelector('.person-name')?.textContent ?? '';
-      const role = card.querySelector('.role')?.textContent ?? '';
-      // Use the same src (already reasonably sized); could swap to a -full if you add one later
-      openLB(img.currentSrc || img.src, name, role);
+      const name = card ? card.querySelector('.person-name')?.textContent?.trim() : '';
+      const role = card ? card.querySelector('.role')?.textContent?.trim() : '';
+      openLightbox(src, name, [name, role].filter(Boolean).join(' • '));
     });
+  });
 
-    // Double-click (or double-tap) Easter egg on Adarsh
-    let lastTap = 0;
-    grid.addEventListener('dblclick', (e) => {
-      const btn = e.target.closest('.lightbox-trigger[data-member="adarsh"]');
-      if (!btn || !lb.classList.contains('open')) return;
-      lbToast.classList.add('show');
-      setTimeout(() => lbToast.classList.remove('show'), 1600);
-    });
-    grid.addEventListener('click', (e) => {
+  // close handlers
+  lb && lb.addEventListener('click', (e) => {
+    if (e.target.classList.contains('lightbox-backdrop') || e.target.classList.contains('lightbox-close')) {
+      closeLightbox();
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lb?.classList.contains('open')) closeLightbox();
+  });
+
+  /* ---------- Fun: double-tap Adarsh toast ---------- */
+  // shows a quick greeting when the co-founder photo is double-clicked/tapped
+  const adarshBtn = document.querySelector('.open-lightbox[data-person="adarsh"]');
+  if (adarshBtn) {
+    let tapTimer = null, lastTap = 0;
+    const showToast = (msg) => {
+      const t = document.createElement('div');
+      t.textContent = msg;
+      Object.assign(t.style, {
+        position: 'fixed', left: '50%', bottom: '28px', transform: 'translateX(-50%)',
+        background: '#111', color: '#fff', padding: '10px 14px', borderRadius: '12px',
+        boxShadow: '0 10px 24px rgba(0,0,0,.25)', zIndex: 1400, fontWeight: 700
+      });
+      document.body.appendChild(t);
+      setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity .3s'; }, 1400);
+      setTimeout(() => t.remove(), 1750);
+    };
+    const onDouble = () => showToast('Hey, welcome to manki.ai 👋');
+
+    adarshBtn.addEventListener('dblclick', onDouble);
+
+    adarshBtn.addEventListener('touchend', () => {
       const now = Date.now();
-      const btn = e.target.closest('.lightbox-trigger[data-member="adarsh"]');
-      if (!btn || !lb.classList.contains('open')) return;
       if (now - lastTap < 350) { // double tap
-        lbToast.classList.add('show');
-        setTimeout(() => lbToast.classList.remove('show'), 1600);
+        onDouble();
+        lastTap = 0;
+        clearTimeout(tapTimer);
+      } else {
+        lastTap = now;
+        tapTimer = setTimeout(() => { lastTap = 0; }, 380);
       }
-      lastTap = now;
-    });
-
-    // Close controls
-    lbClose.addEventListener('click', closeLB);
-    lb.addEventListener('click', (e) => { if (e.target === lb) closeLB(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('open')) closeLB(); });
+    }, { passive: true });
   }
 })();

@@ -10,18 +10,20 @@
   <link rel="icon" href="assets/img/manki-favicon-32.png" sizes="32x32" type="image/png">
 
   <!-- Cache-busted CSS -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=20250919-TEAMPRO">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20250919-102722">
 </head>
 <body>
+  <!-- Fixed background logo (watermark) -->
+  <div class="bg-logo" aria-hidden="true"></div>
+
   <!-- Navigation -->
   <nav class="nav">
     <div class="container row">
       <a class="logo" href="#top" aria-label="manki.ai Home">
         <img
           class="logo-mark"
-          src="assets/img/manki-logo-128.png?v=20250919-logo"
-          srcset="assets/img/manki-logo-128.png?v=20250919-logo 128w,
-                  assets/img/manki-logo-256.png?v=20250919-logo 256w"
+          src="assets/img/manki-logo-128.png"
+          srcset="assets/img/manki-logo-128.png 128w, assets/img/manki-logo-256.png 256w"
           sizes="(max-width: 560px) 44px, (max-width: 900px) 56px, 72px"
           width="72" height="72"
           alt="Manki.ai logo"
@@ -164,18 +166,13 @@
         <!-- Founder -->
         <article class="team-card">
           <div class="team-inner">
-            <button class="avatar lightbox-trigger" data-member="mignesh" aria-label="Open full photo of Mignesh Patel">
-              <img src="assets/img/team/mignesh-patel.jpg?v=20250919-TEAMPRO" alt="Mignesh Patel" loading="lazy">
+            <button class="avatar open-lightbox" data-person="mignesh" aria-label="View Mignesh Patel photo">
+              <img src="assets/img/team/mignesh-patel.jpg?v=20250919-102722" alt="Mignesh Patel" loading="lazy">
             </button>
             <div class="profile">
               <h3 class="person-name">Mignesh Patel</h3>
               <p class="role">Founder</p>
               <p class="vision">“Reliability is a feature—everything else stacks on top.”</p>
-              <ul class="achievements">
-                <li>Led delivery of 50+ client projects across web & mobile.</li>
-                <li>Scaled MVPs to production with clean, maintainable architectures.</li>
-                <li>Built teams & processes that ship on time, every time.</li>
-              </ul>
             </div>
           </div>
         </article>
@@ -183,24 +180,29 @@
         <!-- Co-founder -->
         <article class="team-card">
           <div class="team-inner">
-            <button class="avatar lightbox-trigger" data-member="adarsh" aria-label="Open full photo of Adarsh Dessai">
-              <img src="assets/img/team/adarsh-dessai.jpg?v=20250919-TEAMPRO" alt="Adarsh Dessai" loading="lazy">
+            <button class="avatar open-lightbox" data-person="adarsh" aria-label="View Adarsh Dessai photo">
+              <img src="assets/img/team/adarsh-dessai.jpg?v=20250919-102722" alt="Adarsh Dessai" loading="lazy">
             </button>
             <div class="profile">
               <h3 class="person-name">Adarsh Dessai</h3>
               <p class="role">Co-founder</p>
-              <p class="vision">“Software should feel invisible—fast, reliable, and quietly helpful.”</p>
-              <ul class="achievements">
-                <li>Shipped cross-platform mobile apps with smooth, native UX.</li>
-                <li>Designed resilient APIs & integrations customers depend on.</li>
-                <li>Automated CI/CD & observability for confident releases.</li>
-              </ul>
+              <p class="vision">“Ship small, ship often, learn always.”</p>
             </div>
           </div>
         </article>
       </div>
     </div>
   </section>
+
+  <!-- Lightbox (re-usable) -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop"></div>
+    <figure class="lightbox-content" role="dialog" aria-modal="true" aria-label="Team photo">
+      <img id="lightbox-img" alt="">
+      <figcaption id="lightbox-caption"></figcaption>
+      <button class="lightbox-close" aria-label="Close">&times;</button>
+    </figure>
+  </div>
 
   <!-- Contact -->
   <section id="contact">
@@ -235,9 +237,8 @@
       <a class="logo" href="#top" aria-label="manki.ai Home">
         <img
           class="logo-mark"
-          src="assets/img/manki-logo-128.png?v=20250919-logo"
-          srcset="assets/img/manki-logo-128.png?v=20250919-logo 128w,
-                  assets/img/manki-logo-256.png?v=20250919-logo 256w"
+          src="assets/img/manki-logo-128.png"
+          srcset="assets/img/manki-logo-128.png 128w, assets/img/manki-logo-256.png 256w"
           sizes="(max-width: 560px) 44px, (max-width: 900px) 56px, 72px"
           width="72" height="72"
           alt="Manki.ai logo"
@@ -250,6 +251,6 @@
   </footer>
 
   <!-- Cache-busted JS -->
-  <script src="assets/js/main.js?v=20250919-TEAMPRO"></script>
+  <script src="assets/js/main.js?v=20250919-102722"></script>
 </body>
 </html>
