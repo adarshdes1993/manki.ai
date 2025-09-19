@@ -6,10 +6,11 @@
   --accent:#f97316;
   --ok:#10b981;
   --radius:16px;
+
   --border: rgba(13,15,15,.22);
   --shadow: 0 8px 24px rgba(13,15,15,.15);
 
-  /* logo sizing (bigger + responsive) */
+  /* logo sizing */
   --logo-size: 72px;    /* desktop */
   --logo-size-md: 56px; /* tablet */
   --logo-size-sm: 44px; /* mobile */
@@ -44,11 +45,11 @@ a{color:var(--brand); text-decoration:none}
   position:sticky; top:0; z-index:1000;
   backdrop-filter:saturate(1.2) blur(8px);
   background:rgba(255,255,255,.96);
-  border-bottom:2px solid rgba(13,15,15,.28); /* thicker */
+  border-bottom:2px solid rgba(13,15,15,.28);
 }
 .nav .row{
   display:flex; align-items:center; justify-content:space-between;
-  padding:10px 0; position:relative; /* anchor for desktop submenu */
+  padding:10px 0; position:relative;
 }
 
 /* Logo */
@@ -62,11 +63,11 @@ a{color:var(--brand); text-decoration:none}
 }
 .logo-text{
   letter-spacing:.4px;
-  font-size:1.6rem; /* bigger brand name on desktop */
+  font-size:1.6rem;
   line-height:1;
   color:var(--brand)
 }
-.logo-text .logo-ai { color: var(--accent); } /* “ai” in orange */
+.logo-text .logo-ai { color: var(--accent); }
 
 /* Menu (desktop baseline) */
 .menu{display:flex; align-items:center; gap:18px}
@@ -80,7 +81,7 @@ a{color:var(--brand); text-decoration:none}
   background:linear-gradient(135deg, var(--brand), var(--accent));
   color:#ffffff; font-weight:700; box-shadow:var(--shadow); border:none;
 }
-.btn-cta{ margin-left:6px; } /* header CTA */
+.btn-cta{ margin-left:6px; }
 
 /* Force black for specific menu items */
 .menu a[href*="#services"],
@@ -117,24 +118,18 @@ a{color:var(--brand); text-decoration:none}
   outline: none;
 }
 
-/* ── Services dropdown (desktop hover, mobile tap via JS) ── */
+/* Dropdown */
 .menu-item{ position:relative }
-.has-submenu > .menu-link{
-  position:relative; padding-right:22px;
-}
+.has-submenu > .menu-link{ position:relative; padding-right:22px; }
 .has-submenu > .menu-link::after{
   content:""; position:absolute; right:6px; top:50%; width:6px; height:6px;
   border-right:2px solid currentColor; border-bottom:2px solid currentColor;
-  transform: translateY(-60%) rotate(45deg);
-  opacity:.8;
+  transform: translateY(-60%) rotate(45deg); opacity:.8;
 }
-
-/* Hover bridge to prevent flicker when moving into submenu */
+/* Hover bridge to prevent flicker */
 .has-submenu::before{
-  content:""; position:absolute; left:0; right:0; top:100%;
-  height:12px; /* fills the tiny gap so hover doesn't break */
+  content:""; position:absolute; left:0; right:0; top:100%; height:12px;
 }
-
 .has-submenu .submenu{
   position:absolute; top:calc(100% + 8px); left:0; display:none;
   background:#fff; border:1px solid var(--border); border-radius:14px;
@@ -142,8 +137,7 @@ a{color:var(--brand); text-decoration:none}
   min-width:280px; overflow:hidden; z-index:1100;
 }
 .has-submenu:hover .submenu,
-.has-submenu:focus-within .submenu{ display:block } /* desktop hover/focus */
-
+.has-submenu:focus-within .submenu{ display:block }
 .submenu-inner{ padding:10px; border-top:4px solid var(--brand) }
 .submenu-item{
   display:flex; flex-direction:column; gap:2px;
@@ -213,7 +207,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 .mt-sm{margin-top:12px}
 .form-row{display:flex; gap:10px; align-items:center; margin-top:14px}
 
-/* Green gradient headings */
+/* Green gradient headings for Services / Work / Process */
 #services .section-title,
 #work .section-title,
 #process .section-title{
@@ -253,12 +247,15 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   gap:16px;
   align-items:center;
 }
-/* Avatar ring: solid black */
+/* Avatar ring: solid black (no gradient/red) */
+/* Make it a button for accessibility/lightbox */
 .avatar{
   width:120px; height:120px;
   padding:2px; border-radius:50%;
   background:#000;
   box-shadow: 0 6px 18px rgba(13,15,15,.12);
+  display:inline-grid; place-items:center;
+  border:0; cursor:pointer;
 }
 .avatar img{
   width:100%; height:100%;
@@ -273,15 +270,13 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   color:var(--content);
 }
 .role{
-  margin:0 0 4px;
+  margin:0 0 8px;
   font-weight:700;
   letter-spacing:.2px;
   color: var(--brand);
 }
-.bio{ margin:8px 0 0; }
-/* Vision line */
 .vision{
-  margin:8px 0 0;
+  margin:6px 0 10px;
   padding:10px 12px;
   font-style: italic;
   color: var(--content);
@@ -289,78 +284,60 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   border:1px solid rgba(6,139,216,.18);
   border-radius: 12px;
 }
-
-/* ─────────── LIGHTBOX (fullscreen image viewer) ─────────── */
-body.lb-open, body.menu-open{ overflow:hidden }
-
-.lightbox{
-  position:fixed; inset:0; display:none;
-  background: rgba(2,6,23,.86);
-  z-index:2000;
+.achievements{
+  margin:0; padding:0; list-style:none;
+  display:grid; gap:6px;
 }
-.lightbox.open{ display:block; }
-.lightbox img.lightbox-img{
-  position:absolute; max-width:min(92vw,1200px); max-height:80vh;
-  left:50%; top:50%; transform:translate(-50%,-50%);
-  border-radius:14px; box-shadow:0 20px 60px rgba(0,0,0,.5);
-  background:#0b1220; cursor:zoom-in;
+.achievements li{
+  position:relative; padding-left:22px;
 }
-.lightbox-caption{
-  position:absolute; left:50%; transform:translateX(-50%);
-  bottom:6vh; max-width:min(92vw,1000px);
-  color:#e5e7eb; text-align:center; font-weight:600;
-  text-shadow:0 1px 2px rgba(0,0,0,.4);
-}
-.lightbox-close{
-  position:absolute; right:18px; top:12px;
-  width:44px; height:44px; border-radius:999px;
-  background:rgba(255,255,255,.9); color:#111; border:0; cursor:pointer;
-  font-size:28px; line-height:1; box-shadow:0 4px 16px rgba(0,0,0,.25);
+.achievements li::before{
+  content:"✓";
+  position:absolute; left:0; top:0; line-height:1;
+  color:var(--ok); font-weight:800;
 }
 
-/* Speech bubble for “thinking” → message */
-.lightbox-speech{
-  position: absolute;
-  left: 50%;
-  bottom: 8vh;
-  transform: translateX(-50%);
-  display: none;
-  align-items: center;
-  gap: 10px;
-  max-width: min(92vw, 600px);
-  padding: 12px 14px;
-  background: #ffffff;
-  color: var(--content);
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  font-weight: 600;
+/* Lightbox */
+.lb{
+  position:fixed; inset:0; z-index:1600;
+  display:none; align-items:center; justify-content:center;
+  background: rgba(0,0,0,.75);
+  padding:24px;
 }
-.lightbox-speech.show{ display:flex; }
-.lightbox-speech .text{ display:none; }
-.lightbox-speech.ready .dots{ display:none; }
-.lightbox-speech.ready .text{ display:inline; }
-.dots{ display:inline-flex; gap:4px; }
-.dots i{
-  width:6px; height:6px; border-radius:50%;
-  background:#cbd5e1; opacity:.7;
-  animation: lb-blink 1s infinite ease-in-out;
+.lb.open{ display:flex }
+.lb-inner{
+  position:relative; max-width:min(96vw, 980px); width:100%;
+  border-radius:18px; background:#0b1220;
+  box-shadow: 0 24px 64px rgba(0,0,0,.5);
+  overflow:hidden;
 }
-.dots i:nth-child(2){ animation-delay:.15s }
-.dots i:nth-child(3){ animation-delay:.3s }
-@keyframes lb-blink{
-  0%,80%,100%{ opacity:.3; transform:translateY(0) }
-  40%{ opacity:1; transform:translateY(-2px) }
+.lb-img-wrap{ position:relative; background:#000 }
+.lb-img-wrap img{ display:block; width:100%; height:auto }
+.lb-caption{
+  padding:14px 16px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; color:#dbeafe;
+  border-top:1px solid rgba(255,255,255,.08);
 }
-
-@media (max-width: 560px){
-  .lightbox img.lightbox-img{ max-height:74vh; }
-  .lightbox-caption{ bottom: 10vh; padding: 0 10px; }
-  .lightbox-speech{ bottom: 6vh; padding: 10px 12px; }
+.lb-title{ font-weight:700 }
+.lb-role{ color:#93c5fd; font-size:.95rem }
+.lb-close{
+  position:absolute; top:10px; right:10px;
+  border:0; border-radius:10px; padding:8px 10px; cursor:pointer;
+  font-weight:700; background:rgba(255,255,255,.1); color:#fff;
 }
+.lb-toast{
+  position:absolute; bottom:12px; left:50%; transform:translateX(-50%);
+  background:#111827; color:#fff; padding:8px 12px; border-radius:999px;
+  font-size:.95rem; border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 10px 24px rgba(0,0,0,.35);
+  opacity:0; transition:opacity .2s ease, transform .2s ease;
+}
+.lb-toast.show{ opacity:1; transform:translateX(-50%) translateY(-2px) }
 
 /* ────────── RESPONSIVE ────────── */
 @media (max-width: 900px){
-  /* Show burger; collapse menu */
+  /* Mobile menu panel */
   .nav-toggle{ display:block }
   .menu{
     position:fixed; left:0; right:0; top:84px;
@@ -374,7 +351,7 @@ body.lb-open, body.menu-open{ overflow:hidden }
   .menu a, .menu .menu-link{ font-size:.98rem; padding:8px 10px }
   .btn-cta{ align-self:flex-start; padding:8px 12px; font-size:.95rem }
 
-  /* Mobile submenu: full-width block */
+  /* Submenu inside mobile panel */
   .has-submenu .submenu{
     position:static; display:none; width:100%; margin-top:4px; border-radius:12px;
     box-shadow:none; border:1px solid var(--border);
@@ -383,7 +360,7 @@ body.lb-open, body.menu-open{ overflow:hidden }
   .submenu-inner{ border-top-width:3px }
   .submenu-item{ padding:10px 10px }
 
-  /* layout tweaks */
+  /* General layout tweaks */
   .hero .wrap{grid-template-columns:1fr}
   .grid{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr 1fr}
@@ -391,20 +368,20 @@ body.lb-open, body.menu-open{ overflow:hidden }
   .logo-mark{ width:var(--logo-size-md); height:var(--logo-size-md) }
   .logo-text{ font-size:1.35rem }
   .team-grid{ grid-template-columns:1fr; }
-  .team-inner{ grid-template-columns: 1fr; align-items:flex-start; }
-  .avatar{ width:110px; height:110px; }
+
+  /* Center team cards on mobile */
+  .team-inner{ grid-template-columns: 1fr; align-items:flex-start; text-align:center }
+  .avatar{ margin-inline:auto }
+  .profile{ text-align:center }
+  .achievements{ justify-items:center }
 }
 @media (max-width: 560px){
   .menu a, .menu .menu-link{ font-size:.95rem; padding:8px }
   .btn-cta{ padding:8px 12px; font-size:.92rem }
   .menu{ top:72px; }
-
   .logo-mark{ width:var(--logo-size-sm); height:var(--logo-size-sm); }
   .logo-text{ font-size:1.2rem }
-
-  /* Smaller hero headline on phones only */
   .hero h1{ font-size: clamp(20px, 6.2vw, 32px); }
-
   .steps{grid-template-columns:1fr}
   .avatar{ width:96px; height:96px; }
 }
