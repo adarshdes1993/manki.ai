@@ -300,15 +300,21 @@
   function initServiceTabDrag() {
     if (!serviceTabsWrap) return;
 
+    const getTabIndex = (tab) => serviceTabs.findIndex((t) => t === tab);
+
     let isDraggingTabs = false;
     let dragStartX = 0;
     let startScrollLeft = 0;
+    let dragTarget = null;
+    let dragIndex = 0;
 
     const pointerDown = (e) => {
       if (e.button !== 0) return;
       isDraggingTabs = true;
       dragStartX = e.clientX;
       startScrollLeft = serviceTabsWrap.scrollLeft;
+      dragTarget = e.target.closest('.service-tab');
+      dragIndex = dragTarget ? getTabIndex(dragTarget) : serviceTabs.findIndex((tab) => tab.dataset.service === currentService);
       serviceTabsWrap.classList.add('is-dragging');
       serviceTabsWrap.setPointerCapture(e.pointerId);
     };
@@ -324,6 +330,7 @@
       serviceTabsWrap.classList.remove('is-dragging');
       try { serviceTabsWrap.releasePointerCapture(e.pointerId); } catch (err) { /* noop if not captured */ }
 
+      const dx = e.clientX - dragStartX;
       if (Math.abs(e.clientX - dragStartX) > 8) {
         const blockClick = (evt) => {
           evt.preventDefault();
@@ -331,9 +338,24 @@
           serviceTabsWrap.removeEventListener('click', blockClick, true);
         };
         serviceTabsWrap.addEventListener('click', blockClick, true);
+
+        const threshold = 48;
+        if (Math.abs(dx) > threshold) {
+          const direction = dx > 0 ? -1 : 1;
+          const nextIndex = Math.min(Math.max(dragIndex + direction, 0), serviceTabs.length - 1);
+          const targetTab = serviceTabs[nextIndex];
+          if (targetTab) {
+            renderService(targetTab.dataset.service);
+            alignServiceTab(targetTab);
+          }
+        } else {
+          const currentTab = serviceTabs[dragIndex];
+          if (currentTab) alignServiceTab(currentTab);
+        }
       }
 
       isDraggingTabs = false;
+      dragTarget = null;
     };
 
     serviceTabsWrap.addEventListener('pointerdown', pointerDown);
