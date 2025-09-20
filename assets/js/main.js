@@ -314,7 +314,7 @@
     let dragIndex = 0;
 
     const pointerDown = (e) => {
-      if (e.button !== 0) return;
+      if (window.innerWidth > 900 || e.button !== 0) return;
       isDraggingTabs = true;
       dragStartX = e.clientX;
       startScrollLeft = serviceTabsWrap.scrollLeft;
