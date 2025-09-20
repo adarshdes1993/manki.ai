@@ -10,7 +10,7 @@
   <link rel="icon" href="assets/img/manki-favicon-32.png" sizes="32x32" type="image/png">
 
   <!-- Cache-busted CSS -->
-  <link rel="stylesheet" href="assets/css/styles.css?v=">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20250920-131643">
 </head>
 <body>
   <!-- Fixed background logo (watermark) -->
@@ -117,31 +117,54 @@
     </div>
   </header>
 
-  <!-- Services -->
-  <section id="services">
-    <div class="container">
-      <h2 class="section-title">Services</h2>
-      <p class="muted">End-to-end help, or we can slot into your existing team.</p>
-      <div class="grid mt">
-        <div class="card"><strong>Web Apps</strong><p class="muted">React, Next.js, Node, Python. Test-covered and documented.</p></div>
-        <div class="card"><strong>Mobile Apps</strong><p class="muted">Flutter/React Native. Fast, native-feel experiences.</p></div>
-        <div class="card"><strong>APIs &amp; Integrations</strong><p class="muted">GraphQL/REST, auth, payments, 3rd-party systems.</p></div>
-        <div class="card"><strong>Data &amp; AI</strong><p class="muted">ETL, analytics, and practical AI features customers love.</p></div>
-        <div class="card"><strong>DevOps</strong><p class="muted">Pipelines, monitoring, and blue-green deploys.</p></div>
-        <div class="card"><strong>Consulting</strong><p class="muted">Architecture reviews, SRE audits, roadmap planning.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Work -->
-  <section id="work">
+  <!-- Work (with slider) -->
+  <section id="work" class="work">
     <div class="container">
       <h2 class="section-title">Selected Work</h2>
       <p class="muted">A few recent deliveries.</p>
-      <div class="grid mt">
-        <div class="card"><strong>SaaS Dashboard</strong><p class="muted">Multi-tenant analytics app with role-based access.</p></div>
-        <div class="card"><strong>Fintech Mobile App</strong><p class="muted">KYC, payments, and realtime charts.</p></div>
-        <div class="card"><strong>Healthcare Portal</strong><p class="muted">HIPAA-aware workflows and audit trails.</p></div>
+
+      <div class="work-slider" aria-roledescription="carousel">
+        <button class="work-prev" aria-label="Previous project">‹</button>
+        <div class="work-track">
+          <!-- SaaS Dashboard -->
+          <figure class="work-slide" aria-label="SaaS Dashboard">
+            <img
+              src="assets/img/work/saas-dashboard-1.jpg"
+              alt="SaaS Dashboard—multi-tenant analytics with charts and tables"
+              loading="lazy"
+            />
+            <figcaption>
+              <strong>SaaS Dashboard</strong>
+              <span>Multi-tenant analytics app with role-based access.</span>
+            </figcaption>
+          </figure>
+          <!-- Fintech Mobile -->
+          <figure class="work-slide" aria-label="Fintech Mobile App">
+            <img
+              src="assets/img/work/fintech-mobile-1.jpg"
+              alt="Fintech mobile app—card view, KYC flow, and live charts"
+              loading="lazy"
+            />
+            <figcaption>
+              <strong>Fintech Mobile App</strong>
+              <span>KYC, payments, and realtime charts.</span>
+            </figcaption>
+          </figure>
+          <!-- Healthcare Portal -->
+          <figure class="work-slide" aria-label="Healthcare Portal">
+            <img
+              src="assets/img/work/health-portal-1.jpg"
+              alt="Healthcare provider portal—patient list and secure messaging"
+              loading="lazy"
+            />
+            <figcaption>
+              <strong>Healthcare Portal</strong>
+              <span>HIPAA-aware workflows and audit trails.</span>
+            </figcaption>
+          </figure>
+        </div>
+        <button class="work-next" aria-label="Next project">›</button>
+        <div class="work-dots" role="tablist" aria-label="Project slides"></div>
       </div>
     </div>
   </section>
@@ -171,7 +194,7 @@
         <article class="team-card">
           <div class="team-inner">
             <button class="avatar open-lightbox" data-person="mignesh" aria-label="View Mignesh Patel photo">
-              <img src="assets/img/team/mignesh-patel.jpg?v=20250919-wmBIG2" alt="Mignesh Patel" loading="lazy">
+              <img src="assets/img/team/mignesh-patel.jpg?v=20250920-131643" alt="Mignesh Patel" loading="lazy">
             </button>
             <div class="profile">
               <h3 class="person-name">Mignesh Patel</h3>
@@ -194,7 +217,7 @@
               data-person="adarsh"
               data-says="Hey, welcome to manki.ai!"
               aria-label="View Adarsh Dessai photo">
-              <img src="assets/img/team/adarsh-dessai.jpg?v=20250919-wmBIG2" alt="Adarsh Dessai" loading="lazy">
+              <img src="assets/img/team/adarsh-dessai.jpg?v=20250920-131643" alt="Adarsh Dessai" loading="lazy">
             </button>
             <div class="profile">
               <h3 class="person-name">Adarsh Dessai</h3>
@@ -212,7 +235,7 @@
     </div>
   </section>
 
-  <!-- Lightbox -->
+  <!-- Lightbox (re-usable) -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lightbox-backdrop"></div>
     <figure class="lightbox-content" role="dialog" aria-modal="true" aria-label="Team photo">
@@ -273,6 +296,6 @@
   </footer>
 
   <!-- Cache-busted JS -->
-  <script src="assets/js/main.js?v=20250919-wmBIG2"></script>
+  <script src="assets/js/main.js?v=20250920-131643"></script>
 </body>
 </html>
