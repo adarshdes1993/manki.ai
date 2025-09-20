@@ -1,5 +1,13 @@
 // Enhanced, dependency-free JS (menus + year + form + slider + lightbox + dynamic nav height)
 (function () {
+  /* ---------- Top-of-page on load ---------- */
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.addEventListener('load', () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  });
+
   /* ---------- Dynamic nav height -> --nav-h ---------- */
   function setNavHeightVar() {
     const nav = document.querySelector('.nav');
@@ -23,11 +31,22 @@
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (status) status.textContent = 'Sending…';
-      setTimeout(function () {
-        if (status) status.textContent = "Thanks! We'll get back within 1 business day.";
-        form.reset();
-      }, 700);
+
+      const name = (form.name?.value || '').trim();
+      const email = (form.email?.value || '').trim();
+      const project = (form.project?.value || '').trim();
+
+      const subject = name ? `New project from ${name}` : 'New project inquiry';
+      const lines = [
+        name ? `Name: ${name}` : '',
+        email ? `Email: ${email}` : '',
+        project ? '\nProject details:\n' + project : ''
+      ].filter(Boolean);
+      const body = encodeURIComponent(lines.join('\n'));
+      const mailto = `mailto:info@manki.ai?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+      if (status) status.textContent = 'Opening your email client…';
+      window.location.href = mailto;
     });
   }
 
@@ -272,6 +291,52 @@
     });
   }
 
+  function initServiceTabDrag() {
+    if (!serviceTabsWrap) return;
+
+    let isDraggingTabs = false;
+    let dragStartX = 0;
+    let startScrollLeft = 0;
+
+    const pointerDown = (e) => {
+      if (e.button !== 0) return;
+      isDraggingTabs = true;
+      dragStartX = e.clientX;
+      startScrollLeft = serviceTabsWrap.scrollLeft;
+      serviceTabsWrap.classList.add('is-dragging');
+      serviceTabsWrap.setPointerCapture(e.pointerId);
+    };
+
+    const pointerMove = (e) => {
+      if (!isDraggingTabs) return;
+      const dx = e.clientX - dragStartX;
+      serviceTabsWrap.scrollLeft = startScrollLeft - dx;
+    };
+
+    const pointerUp = (e) => {
+      if (!isDraggingTabs) return;
+      serviceTabsWrap.classList.remove('is-dragging');
+      try { serviceTabsWrap.releasePointerCapture(e.pointerId); } catch (err) { /* noop if not captured */ }
+
+      if (Math.abs(e.clientX - dragStartX) > 8) {
+        const blockClick = (evt) => {
+          evt.preventDefault();
+          evt.stopImmediatePropagation();
+          serviceTabsWrap.removeEventListener('click', blockClick, true);
+        };
+        serviceTabsWrap.addEventListener('click', blockClick, true);
+      }
+
+      isDraggingTabs = false;
+    };
+
+    serviceTabsWrap.addEventListener('pointerdown', pointerDown);
+    serviceTabsWrap.addEventListener('pointermove', pointerMove);
+    serviceTabsWrap.addEventListener('pointerup', pointerUp);
+    serviceTabsWrap.addEventListener('pointercancel', pointerUp);
+    serviceTabsWrap.addEventListener('pointerleave', pointerUp);
+  }
+
   function focusService(key, options) {
     renderService(key);
 
@@ -298,6 +363,7 @@
 
   if (serviceDetail) {
     renderService(currentService);
+    initServiceTabDrag();
 
     serviceTabs.forEach((tab) => {
       tab.addEventListener('click', () => {
