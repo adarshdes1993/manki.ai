@@ -215,6 +215,7 @@
   const serviceHighlights = document.getElementById('service-detail-highlights');
   const serviceStack = document.getElementById('service-detail-stack');
   const serviceOutcome = document.getElementById('service-detail-outcome');
+  const serviceTabsWrap = document.querySelector('.services-tabs');
   const serviceTabs = Array.from(document.querySelectorAll('.service-tab'));
   const serviceMenuItems = Array.from(document.querySelectorAll('.submenu-item[data-service]'));
   const servicesSection = document.getElementById('services');
@@ -253,10 +254,22 @@
       item.classList.toggle('active', item.dataset.service === key);
     });
 
-    if (activeTabEl) {
-      const behavior = window.innerWidth <= 900 ? 'smooth' : 'auto';
-      activeTabEl.scrollIntoView({ behavior, block: 'nearest', inline: 'center' });
+    if (activeTabEl && serviceTabsWrap) {
+      alignServiceTab(activeTabEl);
     }
+  }
+
+  function alignServiceTab(tab) {
+    if (!tab || !serviceTabsWrap) return;
+    if (window.innerWidth > 900) return;
+
+    requestAnimationFrame(() => {
+      const wrapWidth = serviceTabsWrap.clientWidth;
+      const tabCenter = tab.offsetLeft + tab.offsetWidth / 2;
+      const maxScroll = Math.max(0, serviceTabsWrap.scrollWidth - wrapWidth);
+      const targetScroll = Math.min(maxScroll, Math.max(0, tabCenter - wrapWidth / 2));
+      serviceTabsWrap.scrollTo({ left: targetScroll, behavior: 'smooth' });
+    });
   }
 
   function focusService(key, options) {
@@ -270,7 +283,8 @@
         const navVar = parseInt(
           getComputedStyle(document.documentElement).getPropertyValue('--nav-h')
         ) || 96;
-        const offset = rect.top + window.scrollY - navVar - 12;
+        const additionalOffset = window.innerWidth <= 560 ? 24 : 12;
+        const offset = rect.top + window.scrollY - navVar - additionalOffset;
         window.scrollTo({ top: Math.max(0, offset), behavior: scrollBehavior });
       };
 
