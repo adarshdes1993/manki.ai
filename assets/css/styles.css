@@ -517,7 +517,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 
   /* watermark: large and visible on phones */
   :root{
-    --bg-logo-size: clamp(680px, 160vw, 1400px);
+    --bg-logo-size: clamp(820px, 220vw, 1800px);
     --bg-logo-opacity: .16;
     --logo-size-sm: 84px;
     --brand-name-sm: 1.72rem;
