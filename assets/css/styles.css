@@ -576,9 +576,9 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
     border-radius:16px;
   }
 
-  .nav .row{ flex-direction:column; align-items:center; gap:10px; padding-top:10px; }
-  .logo{ flex-direction:column; align-items:center; text-align:center; gap:10px; }
-  .nav-toggle{ align-self:flex-end; margin-right:6px; }
+  .nav .row{ display:grid; grid-template-columns:1fr auto; align-items:center; gap:12px; padding-top:10px; }
+  .logo{ flex-direction:row; align-items:center; gap:12px; text-align:left; }
+  .nav-toggle{ margin-right:4px; }
   .logo-mark{ width:var(--logo-size-sm); height:var(--logo-size-sm); }
   .logo-text{ font-size: var(--brand-name-sm); }
   .hero h1{ font-size: clamp(20px, 6.2vw, 32px); }
@@ -620,7 +620,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   :root{
     --bg-logo-size: clamp(820px, 220vw, 1800px);
     --bg-logo-opacity: .16;
-    --logo-size-sm: 120px;
-    --brand-name-sm: 2.1rem;
+    --logo-size-sm: 140px;
+    --brand-name-sm: 2.4rem;
   }
 }
