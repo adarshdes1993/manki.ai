@@ -139,87 +139,127 @@
     setNavHeightVar();
   });
 
-  /* ---------- Work slider ---------- */
-  const track = document.querySelector('.work-track');
-  const slides = Array.from(document.querySelectorAll('.work-slide'));
-  const prevBtn = document.querySelector('.work-prev');
-  const nextBtn = document.querySelector('.work-next');
-  const dotsWrap = document.querySelector('.work-dots');
+  /* ---------- Sliders (work, testimonials) ---------- */
+  function initSlider({
+    root,
+    trackSelector,
+    slideSelector,
+    prevSelector,
+    nextSelector,
+    dotsSelector,
+    autoInterval = 0
+  }) {
+    if (!root) return;
 
-  let index = 0;
-  let autoTimer = null;
+    const track = root.querySelector(trackSelector);
+    const slides = Array.from(root.querySelectorAll(slideSelector));
+    const prevBtn = prevSelector ? root.querySelector(prevSelector) : null;
+    const nextBtn = nextSelector ? root.querySelector(nextSelector) : null;
+    const dotsWrap = dotsSelector ? root.querySelector(dotsSelector) : null;
 
-  function renderDots() {
-    if (!dotsWrap) return;
-    dotsWrap.innerHTML = '';
-    slides.forEach((_, i) => {
-      const b = document.createElement('button');
-      b.setAttribute('aria-label', `Go to slide ${i + 1}`);
-      if (i === index) b.classList.add('active');
-      b.addEventListener('click', () => goTo(i));
-      dotsWrap.appendChild(b);
-    });
-  }
-
-  function getSlideWidth() {
-    const first = slides[0];
-    return first ? first.getBoundingClientRect().width : 0;
-  }
-
-  function applyTrackTransform() {
-    if (!track) return;
-    const slideWidth = getSlideWidth();
-    track.style.transform = `translateX(${-(slideWidth * index)}px)`;
-  }
-
-  function goTo(i, opts) {
     if (!track || slides.length === 0) return;
-    index = (i + slides.length) % slides.length;
-    applyTrackTransform();
-    if (dotsWrap) {
-      dotsWrap.querySelectorAll('button').forEach((d, di) => {
-        d.classList.toggle('active', di === index);
+
+    let index = 0;
+    let autoTimer = null;
+
+    function renderDots() {
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = '';
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        if (i === index) b.classList.add('active');
+        b.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(b);
       });
     }
-    if (!opts || !opts.skipAuto) restartAuto();
-  }
 
-  function prev(){ goTo(index - 1); }
-  function next(){ goTo(index + 1); }
+    function getSlideWidth() {
+      const first = slides[0];
+      return first ? first.getBoundingClientRect().width : 0;
+    }
 
-  function startAuto() {
-    if (autoTimer || slides.length <= 1) return;
-    autoTimer = setInterval(next, 5000);
-  }
-  function stopAuto() {
-    clearInterval(autoTimer);
-    autoTimer = null;
-  }
-  function restartAuto() { stopAuto(); startAuto(); }
+    function applyTrackTransform() {
+      const slideWidth = getSlideWidth();
+      track.style.transform = `translateX(${-(slideWidth * index)}px)`;
+    }
 
-  if (track && slides.length > 0) {
+    function goTo(i, opts) {
+      index = (i + slides.length) % slides.length;
+      applyTrackTransform();
+      if (dotsWrap) {
+        dotsWrap.querySelectorAll('button').forEach((d, di) => {
+          d.classList.toggle('active', di === index);
+        });
+      }
+      if (autoInterval && (!opts || !opts.skipAuto)) restartAuto();
+    }
+
+    function prev(){ goTo(index - 1); }
+    function next(){ goTo(index + 1); }
+
+    function startAuto() {
+      if (!autoInterval || autoTimer || slides.length <= 1) return;
+      autoTimer = setInterval(next, autoInterval);
+    }
+    function stopAuto() {
+      if (!autoTimer) return;
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+    function restartAuto() { stopAuto(); startAuto(); }
+
     renderDots();
     goTo(0, { skipAuto: true });
     startAuto();
 
     prevBtn && prevBtn.addEventListener('click', prev);
     nextBtn && nextBtn.addEventListener('click', next);
-    track.addEventListener('mouseenter', stopAuto);
-    track.addEventListener('mouseleave', startAuto);
 
-    window.addEventListener('resize', () => {
-      applyTrackTransform();
-    });
+    if (autoInterval) {
+      root.addEventListener('mouseenter', stopAuto);
+      root.addEventListener('mouseleave', startAuto);
+      root.addEventListener('focusin', stopAuto);
+      root.addEventListener('focusout', (e) => {
+        if (!root.contains(e.relatedTarget)) startAuto();
+      });
+    }
+
+    window.addEventListener('resize', applyTrackTransform);
 
     // simple swipe
     let sx = 0, dx = 0;
-    track.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; dx = 0; }, {passive:true});
+    track.addEventListener('touchstart', (e) => {
+      sx = e.touches[0].clientX; dx = 0;
+      if (autoInterval) stopAuto();
+    }, {passive:true});
     track.addEventListener('touchmove', (e) => { dx = e.touches[0].clientX - sx; }, {passive:true});
     track.addEventListener('touchend', () => {
       if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); }
       dx = 0;
+      if (autoInterval) startAuto();
     });
   }
+
+  initSlider({
+    root: document.querySelector('.work-slider'),
+    trackSelector: '.work-track',
+    slideSelector: '.work-slide',
+    prevSelector: '.work-prev',
+    nextSelector: '.work-next',
+    dotsSelector: '.work-dots',
+    autoInterval: 5000
+  });
+
+  initSlider({
+    root: document.querySelector('.testimonials-slider'),
+    trackSelector: '.testimonials-track',
+    slideSelector: '.testimonial-slide',
+    prevSelector: '.testimonials-prev',
+    nextSelector: '.testimonials-next',
+    dotsSelector: '.testimonials-dots',
+    autoInterval: 7000
+  });
 
   /* ---------- Lightbox (click avatars) ---------- */
   const lightbox = document.getElementById('lightbox');
