@@ -27,6 +27,7 @@
   /* background logo (watermark) — centered & bigger */
   --bg-logo-size: clamp(720px, 95vw, 1800px);
   --bg-logo-opacity: .12; /* desktop base */
+  --bg-logo-offset: 50%;
 
   /* dynamic navbar height (JS updates) */
   --nav-h: 96px;
@@ -58,7 +59,7 @@ a{color:var(--brand); text-decoration:none}
   position:fixed; inset:0;
   background-image: url("../img/manki-logo-512.png");
   background-repeat: no-repeat;
-  background-position: center center;     /* centered on all viewports */
+  background-position: 50% var(--bg-logo-offset);     /* centered on all viewports */
   background-size: var(--bg-logo-size);
   opacity: var(--bg-logo-opacity);
   mix-blend-mode: multiply;               /* looks good on white */
@@ -581,7 +582,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .avatar{ width:110px; height:110px; }
 
   /* watermark: a bit brighter on tablets for visibility */
-  :root{ --bg-logo-opacity: .14; }
+  :root{ --bg-logo-opacity: .14; --bg-logo-offset: 50%; }
 
   .testimonials-slider{margin-top:24px;}
   .testimonial-slide{padding:24px;}
@@ -671,8 +672,9 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 
   /* watermark: large and visible on phones */
   :root{
-    --bg-logo-size: clamp(820px, 220vw, 1800px);
+    --bg-logo-size: clamp(680px, 160vw, 1600px);
     --bg-logo-opacity: .16;
+    --bg-logo-offset: 50%;
     --logo-size-sm: 140px;
     --brand-name-sm: 2.4rem;
   }
