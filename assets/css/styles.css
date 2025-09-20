@@ -580,7 +580,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 
   .nav .row{
     display:grid;
-    grid-template-columns:auto auto;
+    grid-template-columns:minmax(0, 1fr) auto;
     grid-template-areas:
       "logo-img logo-img"
       "logo-text nav-toggle"
@@ -598,7 +598,9 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   }
   .logo-text{
     grid-area:logo-text;
-    text-align:left;
+    text-align:center;
+    justify-self:center;
+    width:100%;
   }
   .nav-toggle{
     grid-area:nav-toggle;
