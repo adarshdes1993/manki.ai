@@ -241,15 +241,22 @@
     if (serviceStack) serviceStack.textContent = data.stack;
     if (serviceOutcome) serviceOutcome.textContent = data.outcome;
 
+    let activeTabEl = null;
     serviceTabs.forEach((tab) => {
       const isActive = tab.dataset.service === key;
       tab.classList.toggle('active', isActive);
       tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      if (isActive) activeTabEl = tab;
     });
 
     serviceMenuItems.forEach((item) => {
       item.classList.toggle('active', item.dataset.service === key);
     });
+
+    if (activeTabEl) {
+      const behavior = window.innerWidth <= 900 ? 'smooth' : 'auto';
+      activeTabEl.scrollIntoView({ behavior, block: 'nearest', inline: 'center' });
+    }
   }
 
   function focusService(key, options) {
