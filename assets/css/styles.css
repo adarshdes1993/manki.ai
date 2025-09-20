@@ -43,7 +43,7 @@ body{
   color:var(--content);
   background:var(--bg);
   line-height:1.55;
-  padding-top:var(--nav-h);
+  padding-top:calc(var(--nav-h) - 10px);
 }
 a{color:var(--brand); text-decoration:none}
 .container{width:min(1100px,92%); margin-inline:auto}
