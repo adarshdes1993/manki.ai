@@ -254,8 +254,24 @@
 
   function focusService(key, options) {
     renderService(key);
+
     if (options?.scroll && servicesSection) {
-      servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const scrollBehavior = options.behavior || 'smooth';
+      const delay = options.delay || 0;
+      const performScroll = () => {
+        const rect = servicesSection.getBoundingClientRect();
+        const navVar = parseInt(
+          getComputedStyle(document.documentElement).getPropertyValue('--nav-h')
+        ) || 96;
+        const offset = rect.top + window.scrollY - navVar - 12;
+        window.scrollTo({ top: Math.max(0, offset), behavior: scrollBehavior });
+      };
+
+      if (delay > 0) {
+        setTimeout(performScroll, delay);
+      } else {
+        performScroll();
+      }
     }
   }
 
@@ -264,7 +280,8 @@
 
     serviceTabs.forEach((tab) => {
       tab.addEventListener('click', () => {
-        focusService(tab.dataset.service, { scroll: true });
+        const shouldScroll = window.innerWidth <= 900;
+        focusService(tab.dataset.service, { scroll: shouldScroll });
       });
     });
 
@@ -272,8 +289,8 @@
       item.addEventListener('click', (e) => {
         e.preventDefault();
         const key = item.dataset.service;
-        focusService(key, { scroll: true });
         closeMenu();
+        focusService(key, { scroll: true, delay: 160 });
       });
     });
   }
