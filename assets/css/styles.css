@@ -579,19 +579,21 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   }
 
   .nav .row{
-    display:flex;
-    flex-direction:column;
+    display:grid;
+    grid-template-columns:1fr auto;
     align-items:center;
-    gap:10px;
-    padding:12px;
+    gap:8px;
+    padding:12px 12px 8px;
   }
   .logo{
     flex-direction:column;
-    align-items:center;
-    gap:8px;
-    text-align:center;
+    align-items:flex-start;
+    gap:6px;
+    text-align:left;
   }
-  .nav-toggle{ margin:0; align-self:center; }
+  .logo-text{ width:100%; }
+  .nav-toggle{ margin:0; justify-self:end; }
+  .nav .menu{ grid-column:1 / -1; }
   .logo-mark{ width:var(--logo-size-sm); height:var(--logo-size-sm); }
   .logo-text{ font-size: var(--brand-name-sm); }
   .hero h1{ font-size: clamp(20px, 6.2vw, 32px); }
