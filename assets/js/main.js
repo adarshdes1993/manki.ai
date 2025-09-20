@@ -139,6 +139,145 @@
     setNavHeightVar();
   });
 
+  /* ---------- Services detail panel ---------- */
+  const serviceContent = {
+    'web-apps': {
+      title: 'Web Apps',
+      description: 'Responsive, accessible web apps that stay fast as you scale to thousands of users.',
+      highlights: [
+        'Workshop requirements into well-defined user stories',
+        'Design systems and component libraries that match your brand',
+        'CI/CD pipelines with linting, tests, and preview deploys'
+      ],
+      stack: 'Stack: React, Next.js, TypeScript, Python, FastAPI',
+      outcome: 'Outcome: Launch-ready platform with analytics, auth, and payments built in.'
+    },
+    'mobile-apps': {
+      title: 'Mobile Apps',
+      description: 'Native-quality iOS & Android apps with smooth onboarding and offline support.',
+      highlights: [
+        'Product flows mapped from onboarding to retention',
+        'Pixel-perfect UI built with Flutter or React Native',
+        'App Store / Play Store launch support and telemetry setup'
+      ],
+      stack: 'Stack: Flutter, React Native, Swift, Kotlin, Firebase',
+      outcome: 'Outcome: Shippable mobile builds with crash-free releases and strong reviews.'
+    },
+    'apis': {
+      title: 'APIs & Integrations',
+      description: 'High-availability APIs that plug into the tooling your business already relies on.',
+      highlights: [
+        'Domain-driven API design with clear versioning strategy',
+        'Secure auth (OAuth2, JWT, SSO) and rate limiting baked in',
+        'Automated tests plus observability dashboards from day one'
+      ],
+      stack: 'Stack: Node.js, Python, Go, GraphQL, REST, Postgres',
+      outcome: 'Outcome: Reliable services partners can integrate without support tickets.'
+    },
+    'data-ai': {
+      title: 'Data & AI',
+      description: 'Practical analytics and AI features that help teams act on their data—not just collect it.',
+      highlights: [
+        'ETL pipelines with quality gates and schema observability',
+        'Dashboards and alerts tailored to stakeholder KPIs',
+        'LLM features scoped for safety, latency, and measurable ROI'
+      ],
+      stack: 'Stack: dbt, Snowflake, BigQuery, LangChain, OpenAI, Hugging Face',
+      outcome: 'Outcome: Trusted metrics and AI copilots your users return to daily.'
+    },
+    'devops': {
+      title: 'DevOps',
+      description: 'Infrastructure as code with automated delivery, monitoring, and sensible cloud costs.',
+      highlights: [
+        'CI/CD pipelines with preview environments and quality gates',
+        'Containerization, orchestration, and secrets management',
+        'Production monitoring, on-call playbooks, and cost dashboards'
+      ],
+      stack: 'Stack: AWS, GCP, Azure, Terraform, Docker, Kubernetes',
+      outcome: 'Outcome: Predictable releases with uptime SLAs you can share with customers.'
+    },
+    'consulting': {
+      title: 'Consulting',
+      description: 'Seasoned engineering leadership to align roadmap, architecture, and teams.',
+      highlights: [
+        'Architecture and codebase audits with prioritized fixes',
+        'Hiring plans, mentoring, and org design for in-house teams',
+        'Product roadmapping grounded in data and delivery constraints'
+      ],
+      stack: 'Scope: Fractional CTO, product strategy, technical due diligence',
+      outcome: 'Outcome: Clear execution plan with measurable milestones and risk mitigation.'
+    }
+  };
+
+  const serviceDetail = document.getElementById('service-detail');
+  const serviceTitle = document.getElementById('service-detail-title');
+  const serviceDescription = document.getElementById('service-detail-description');
+  const serviceHighlights = document.getElementById('service-detail-highlights');
+  const serviceStack = document.getElementById('service-detail-stack');
+  const serviceOutcome = document.getElementById('service-detail-outcome');
+  const serviceTabs = Array.from(document.querySelectorAll('.service-tab'));
+  const serviceMenuItems = Array.from(document.querySelectorAll('.submenu-item[data-service]'));
+  const servicesSection = document.getElementById('services');
+
+  let currentService = 'web-apps';
+
+  function renderService(key) {
+    const data = serviceContent[key] || serviceContent[currentService] || serviceContent['web-apps'];
+    if (!data || !serviceDetail) return;
+
+    currentService = key;
+    if (serviceTitle) serviceTitle.textContent = data.title;
+    if (serviceDescription) serviceDescription.textContent = data.description;
+
+    if (serviceHighlights) {
+      serviceHighlights.innerHTML = '';
+      data.highlights.forEach((point) => {
+        const li = document.createElement('li');
+        li.textContent = point;
+        serviceHighlights.appendChild(li);
+      });
+    }
+
+    if (serviceStack) serviceStack.textContent = data.stack;
+    if (serviceOutcome) serviceOutcome.textContent = data.outcome;
+
+    serviceTabs.forEach((tab) => {
+      const isActive = tab.dataset.service === key;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    serviceMenuItems.forEach((item) => {
+      item.classList.toggle('active', item.dataset.service === key);
+    });
+  }
+
+  function focusService(key, options) {
+    renderService(key);
+    if (options?.scroll && servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  if (serviceDetail) {
+    renderService(currentService);
+
+    serviceTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        focusService(tab.dataset.service, { scroll: true });
+      });
+    });
+
+    serviceMenuItems.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const key = item.dataset.service;
+        focusService(key, { scroll: true });
+        closeMenu();
+      });
+    });
+  }
+
   /* ---------- Sliders (work, testimonials) ---------- */
   function initSlider({
     root,
