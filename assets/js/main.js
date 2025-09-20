@@ -179,7 +179,8 @@
         'CI/CD pipelines with linting, tests, and preview deploys'
       ],
       stack: 'Stack: React, Next.js, TypeScript, Python, FastAPI',
-      outcome: 'Outcome: Launch-ready platform with analytics, auth, and payments built in.'
+      outcome: 'Outcome: Launch-ready platform with analytics, auth, and payments built in.',
+      url: 'services/web-apps.html'
     },
     'mobile-apps': {
       title: 'Mobile Apps',
@@ -190,7 +191,8 @@
         'App Store / Play Store launch support and telemetry setup'
       ],
       stack: 'Stack: Flutter, React Native, Swift, Kotlin, Firebase',
-      outcome: 'Outcome: Shippable mobile builds with crash-free releases and strong reviews.'
+      outcome: 'Outcome: Shippable mobile builds with crash-free releases and strong reviews.',
+      url: 'services/mobile-apps.html'
     },
     'apis': {
       title: 'APIs & Integrations',
@@ -201,7 +203,8 @@
         'Automated tests plus observability dashboards from day one'
       ],
       stack: 'Stack: Node.js, Python, Go, GraphQL, REST, Postgres',
-      outcome: 'Outcome: Reliable services partners can integrate without support tickets.'
+      outcome: 'Outcome: Reliable services partners can integrate without support tickets.',
+      url: 'services/apis.html'
     },
     'data-ai': {
       title: 'Data & AI',
@@ -212,7 +215,8 @@
         'LLM features scoped for safety, latency, and measurable ROI'
       ],
       stack: 'Stack: dbt, Snowflake, BigQuery, LangChain, OpenAI, Hugging Face',
-      outcome: 'Outcome: Trusted metrics and AI copilots your users return to daily.'
+      outcome: 'Outcome: Trusted metrics and AI copilots your users return to daily.',
+      url: 'services/data-ai.html'
     },
     'devops': {
       title: 'DevOps',
@@ -223,7 +227,8 @@
         'Production monitoring, on-call playbooks, and cost dashboards'
       ],
       stack: 'Stack: AWS, GCP, Azure, Terraform, Docker, Kubernetes',
-      outcome: 'Outcome: Predictable releases with uptime SLAs you can share with customers.'
+      outcome: 'Outcome: Predictable releases with uptime SLAs you can share with customers.',
+      url: 'services/devops.html'
     },
     'consulting': {
       title: 'Consulting',
@@ -234,7 +239,8 @@
         'Product roadmapping grounded in data and delivery constraints'
       ],
       stack: 'Scope: Fractional CTO, product strategy, technical due diligence',
-      outcome: 'Outcome: Clear execution plan with measurable milestones and risk mitigation.'
+      outcome: 'Outcome: Clear execution plan with measurable milestones and risk mitigation.',
+      url: 'services/consulting.html'
     }
   };
 
@@ -244,9 +250,9 @@
   const serviceHighlights = document.getElementById('service-detail-highlights');
   const serviceStack = document.getElementById('service-detail-stack');
   const serviceOutcome = document.getElementById('service-detail-outcome');
+  const serviceLink = document.getElementById('service-detail-link');
   const serviceTabsWrap = document.querySelector('.services-tabs');
   const serviceTabs = Array.from(document.querySelectorAll('.service-tab'));
-  const serviceMenuItems = Array.from(document.querySelectorAll('.submenu-item[data-service]'));
   const servicesSection = document.getElementById('services');
 
   let currentService = 'web-apps';
@@ -272,6 +278,9 @@
 
     if (serviceStack) serviceStack.textContent = data.stack;
     if (serviceOutcome) serviceOutcome.textContent = data.outcome;
+    if (serviceLink && data.url) {
+      serviceLink.href = data.url;
+    }
 
     let activeTabEl = null;
     serviceTabs.forEach((tab) => {
@@ -279,10 +288,6 @@
       tab.classList.toggle('active', isActive);
       tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
       if (isActive) activeTabEl = tab;
-    });
-
-    serviceMenuItems.forEach((item) => {
-      item.classList.toggle('active', item.dataset.service === key);
     });
 
     if (activeTabEl && serviceTabsWrap && !isInitialServiceRender) {
@@ -410,14 +415,6 @@
       });
     });
 
-    serviceMenuItems.forEach((item) => {
-      item.addEventListener('click', (e) => {
-        e.preventDefault();
-        const key = item.dataset.service;
-        closeMenu();
-        focusService(key, { scroll: true, delay: 160 });
-      });
-    });
   }
 
   /* ---------- Stat counters ---------- */

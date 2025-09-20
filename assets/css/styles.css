@@ -141,38 +141,20 @@ a{color:var(--brand); text-decoration:none}
   .nav .row{ align-items:center; }
 }
 
-/* Force black menu items */
-.menu a[href*="#services"],
-.menu a[href*="#work"],
-.menu a[href*="#process"],
-.menu a[href*="#contact"],
-.menu a[href*="#team"]{
-  color: var(--black) !important; opacity: 1;
-}
-
-/* Hover/focus pill */
-.menu a[href*="#services"],
-.menu a[href*="#work"],
-.menu a[href*="#process"],
-.menu a[href*="#contact"],
-.menu a[href*="#team"]{
+.menu a,
+.menu .menu-link{
+  color: var(--black);
   transition: background .2s ease, color .2s ease, box-shadow .2s ease, text-decoration .2s;
 }
-.menu a[href*="#services"]:hover,
-.menu a[href*="#work"]:hover,
-.menu a[href*="#process"]:hover,
-.menu a[href*="#contact"]:hover,
-.menu a[href*="#team"]:hover,
-.menu a[href*="#services"]:focus-visible,
-.menu a[href*="#work"]:focus-visible,
-.menu a[href*="#process"]:focus-visible,
-.menu a[href*="#contact"]:focus-visible,
-.menu a[href*="#team"]:focus-visible{
+.menu a:hover,
+.menu a:focus-visible,
+.menu .menu-link:hover,
+.menu .menu-link:focus-visible{
   background: var(--brand);
-  color: var(--accent) !important;
-  text-decoration: none;
-  box-shadow: 0 2px 8px rgba(6,139,216,.25);
-  outline: none;
+  color: var(--accent);
+  text-decoration:none;
+  box-shadow:0 2px 8px rgba(6,139,216,.25);
+  outline:none;
 }
 
 /* Services dropdown */
