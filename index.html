@@ -59,39 +59,37 @@
 
       <!-- Primary menu (desktop & mobile) -->
       <div class="menu" id="primary-menu" role="navigation" aria-label="Primary">
-        <!-- Services with dropdown -->
+        <a href="#top" class="menu-link">Home</a>
+        <a href="about.html" class="menu-link">About Us</a>
         <div class="menu-item has-submenu">
           <a class="menu-link" href="#services" aria-haspopup="true" aria-expanded="false">Services</a>
           <div class="submenu" role="menu">
-          <div class="submenu-inner">
-              <a href="#services" class="submenu-item" role="menuitem" data-service="web-apps">
+            <div class="submenu-inner">
+              <a href="services/web-apps.html" class="submenu-item" role="menuitem">
                 <strong>Web Apps</strong><span>React, Next.js, TypeScript</span>
               </a>
-              <a href="#services" class="submenu-item" role="menuitem" data-service="mobile-apps">
+              <a href="services/mobile-apps.html" class="submenu-item" role="menuitem">
                 <strong>Mobile Apps</strong><span>Flutter / React Native</span>
               </a>
-              <a href="#services" class="submenu-item" role="menuitem" data-service="apis">
+              <a href="services/apis.html" class="submenu-item" role="menuitem">
                 <strong>APIs &amp; Integrations</strong><span>REST, GraphQL, Auth, Payments</span>
               </a>
-              <a href="#services" class="submenu-item" role="menuitem" data-service="data-ai">
+              <a href="services/data-ai.html" class="submenu-item" role="menuitem">
                 <strong>Data &amp; AI</strong><span>ETL, analytics, practical AI</span>
               </a>
-              <a href="#services" class="submenu-item" role="menuitem" data-service="devops">
+              <a href="services/devops.html" class="submenu-item" role="menuitem">
                 <strong>DevOps</strong><span>CI/CD, containers, cloud</span>
               </a>
-              <a href="#services" class="submenu-item" role="menuitem" data-service="consulting">
+              <a href="services/consulting.html" class="submenu-item" role="menuitem">
                 <strong>Consulting</strong><span>Architecture, SRE, roadmaps</span>
               </a>
             </div>
           </div>
         </div>
-
-        <a href="#about" class="menu-link">About</a>
-        <a href="#work" class="menu-link">Work</a>
-        <a href="#process" class="menu-link">Process</a>
-        <a href="#team" class="menu-link">Team</a>
-        <a href="#contact" class="menu-link">Contact</a>
-        <a class="btn btn-cta" href="#contact">Get a quote</a>
+        <a href="#work" class="menu-link">Portfolio</a>
+        <a href="#blog" class="menu-link">Blog</a>
+        <a href="#team" class="menu-link">Career</a>
+        <a href="#contact" class="menu-link">Contact Us</a>
       </div>
     </div>
   </nav>
@@ -152,38 +150,7 @@
     </div>
   </header>
 
-  <!-- About -->
-  <section id="about" class="about">
-    <div class="container about-grid">
-      <div class="about-intro">
-        <h2 class="section-title">About us</h2>
-        <p class="muted">We’re a compact team of senior engineers, designers, and product leads building dependable software for funded startups and established companies.</p>
-        <p>Every project is run by partners who have shipped dozens of products. We scope clearly, design deliberately, and stay close to stakeholders so launches arrive on schedule with clean handovers.</p>
-        <div class="about-meta">
-          <span class="chip">Fully remote • UTC+5:30</span>
-          <span class="chip">Product • Engineering • DevOps</span>
-        </div>
-      </div>
-
-      <aside class="card about-card" aria-label="Why teams partner with manki.ai">
-        <h3>Why teams partner with us</h3>
-        <ul class="about-list">
-          <li>
-            <strong>Hands-on founders</strong>
-            <span class="muted">Direct access to the people who plan, code, review, and ship.</span>
-          </li>
-          <li>
-            <strong>Delivery discipline</strong>
-            <span class="muted">Weekly demos, visible backlog, and predictable sprints.</span>
-          </li>
-          <li>
-            <strong>Maintenance built-in</strong>
-            <span class="muted">Monitoring, documentation, and training so teams can scale.</span>
-          </li>
-        </ul>
-      </aside>
-    </div>
-  </section>
+  <!-- About moved to about.html -->
 
   <!-- Services detail -->
   <section id="services" class="services">
@@ -214,6 +181,7 @@
           <div class="service-foot">
             <strong id="service-detail-stack" class="service-stack">Stack: React, Next.js, TypeScript, Python</strong>
             <span id="service-detail-outcome" class="service-outcome">Outcome: Launch-ready web platform in weeks, not months.</span>
+            <a id="service-detail-link" class="btn btn-small" href="services/web-apps.html">Explore service</a>
           </div>
         </article>
       </div>
@@ -333,7 +301,7 @@
   </section>
 
   <!-- Testimonials -->
-  <section id="testimonials" class="testimonials">
+  <section id="blog" class="testimonials">
     <div class="container">
       <h2 class="section-title">Founder feedback</h2>
       <p class="muted">Real outcomes from the teams we build with.</p>
@@ -457,12 +425,12 @@
             </button>
             <div class="profile">
               <h3 class="person-name">Mignesh Patel</h3>
-              <p class="role">Founder</p>
-              <p class="vision">“Reliability is a feature—everything else stacks on top.”</p>
+              <p class="role">Founder &amp; CEO, manki.ai</p>
+              <p class="vision">MD &amp; CEO of Infinium Global LLC and Infinium Skin &amp; Hair Clinic—building world-class products from Dubai to Gujarat.</p>
               <ul class="achievements">
-                <li>Shipped 30+ production apps across fintech, health, and SaaS.</li>
-                <li>Scaled microservices to millions of requests/day with 99.99% uptime.</li>
-                <li>Security-first practices: SOC2-style processes, zero critical CVEs in 24 months.</li>
+                <li>Leads cross-border product strategy from the GCC with a Make in India mindset.</li>
+                <li>Scaled Infinium Global’s engineering org while launching consumer health ventures.</li>
+                <li>Founded manki.ai to bring reliability-first delivery to ambitious teams worldwide.</li>
               </ul>
             </div>
           </div>
@@ -480,12 +448,12 @@
             </button>
             <div class="profile">
               <h3 class="person-name">Adarsh Dessai</h3>
-              <p class="role">Co-founder</p>
-              <p class="vision">“Ship small, ship often, learn always.”</p>
+              <p class="role">Co-founder &amp; CTO, manki.ai</p>
+              <p class="vision">Cloud Architect &amp; CISO keeping every release fast, secure, and compliant.</p>
               <ul class="achievements">
-                <li>Led 10+ MVPs from idea → launch in under 8 weeks.</li>
-                <li>Designed accessible UX systems (AA+) with conversion-focused flows.</li>
-                <li>Practical AI: integrated LLM features users actually return for.</li>
+                <li>Designs multi-cloud architectures with zero-downtime rollout playbooks.</li>
+                <li>Built security programs covering SOC2-style controls and proactive threat modelling.</li>
+                <li>Leads AI and platform engineering squads delivering safe, high-impact features.</li>
               </ul>
             </div>
           </div>
