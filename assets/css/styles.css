@@ -11,9 +11,9 @@
   --shadow: 0 8px 24px rgba(13,15,15,.15);
 
   /* logo sizing (bigger + responsive) */
-  --logo-size: clamp(148px, 10vw, 220px);   /* desktop */
-  --logo-size-md: 96px; /* tablet */
-  --logo-size-sm: 64px; /* mobile */
+  --logo-size: clamp(220px, 14vw, 280px);   /* desktop */
+  --logo-size-md: 140px; /* tablet */
+  --logo-size-sm: 128px; /* mobile */
 
   /* wordmark sizing */
   --brand-name-desktop: 2.4rem;
@@ -43,7 +43,7 @@ body{
   color:var(--content);
   background:var(--bg);
   line-height:1.55;
-  padding-top:calc(var(--nav-h) - 10px);
+  padding-top:calc(var(--nav-h) - 48px);
 }
 a{color:var(--brand); text-decoration:none}
 .container{width:min(1100px,92%); margin-inline:auto}
@@ -72,21 +72,25 @@ a{color:var(--brand); text-decoration:none}
   position:fixed; top:0; left:0; right:0; z-index:1000;
   backdrop-filter:saturate(1.2) blur(8px);
   background:rgba(255,255,255,.96);
-  border-bottom:6px solid rgba(13,15,15,.32);
+  border-bottom:3px solid rgba(13,15,15,.22);
 }
 .nav .row{
   display:flex; align-items:center; justify-content:space-between;
-  padding:8px 0; position:relative;
+  padding:4px 0; position:relative;
 }
 
 /* Logo + wordmark */
-.logo{display:flex; align-items:center; gap:8px; font-weight:900}
+.logo{display:flex; align-items:center; gap:6px; font-weight:900}
 .logo-mark{
   width:var(--logo-size);
   height:var(--logo-size);
   object-fit:contain;
   border-radius:12px;
   display:block;
+}
+.nav .logo-mark{
+  width:clamp(168px, 12vw, 220px);
+  height:clamp(168px, 12vw, 220px);
 }
 .logo-text{
   letter-spacing:.5px;
@@ -95,14 +99,19 @@ a{color:var(--brand); text-decoration:none}
   line-height:1;
   color:var(--brand)
 }
+.nav .logo-text{
+  display:flex;
+  align-items:center;
+  font-size: clamp(2.4rem, 5vw, 3.2rem);
+}
 .logo-text .logo-ai { color: var(--accent); }
 
 /* Menu */
-.menu{display:flex; align-items:center; gap:12px}
+.menu{display:flex; align-items:center; gap:10px}
 .menu a,
 .menu .menu-link{
   opacity:.9; font-weight:700; letter-spacing:.2px;
-  padding:6px 10px; border-radius:10px
+  padding:6px 8px; border-radius:10px
 }
 .btn{
   display:inline-block; padding:10px 16px; border-radius:999px;
@@ -195,7 +204,7 @@ a{color:var(--brand); text-decoration:none}
 .nav-toggle span:nth-child(3){ top:27px }
 
 /* HERO & SECTIONS */
-.hero{padding:72px 0 36px}
+.hero{padding:40px 0 32px}
 .hero .wrap{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px}
 .hero h1{font-size: clamp(28px, 3.6vw, 44px); line-height:1.12; margin:10px 0 12px; color:var(--brand)}
 .t-ai{ color: var(--accent); }
@@ -366,8 +375,14 @@ section{padding:48px 0}
 
 /* Footer */
 footer{border-top:1px solid var(--border); padding:28px 0 54px; color:var(--brand)}
-.foot{display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between}
-.foot .logo{display:flex; align-items:center; gap:8px}
+.foot{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  text-align:center;
+}
 
 /* Forms */
 label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
@@ -540,7 +555,9 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .grid2{grid-template-columns:1fr}
 
   .logo-mark{ width:var(--logo-size-md); height:var(--logo-size-md) }
+  .nav .logo-mark{ width:var(--logo-size-md); height:var(--logo-size-md); }
   .logo-text{ font-size: var(--brand-name-md) }
+  .nav .logo-text{ font-size: var(--brand-name-md); }
 
   .services-panel{grid-template-columns:1fr; gap:20px;}
   .services-tabs{position:relative; top:auto; flex-direction:row; overflow-x:auto; padding:12px;}
@@ -598,12 +615,14 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
     width:var(--logo-size-sm);
     height:var(--logo-size-sm);
   }
+  .nav .logo-mark{ width:var(--logo-size-sm); height:var(--logo-size-sm); }
   .logo-text{
     grid-area:logo-text;
     text-align:center;
     justify-self:center;
     width:100%;
   }
+  .nav .logo-text{ font-size: var(--brand-name-sm); }
   .nav-toggle{
     grid-column:2;
     grid-row:2;
@@ -616,28 +635,6 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .hero h1{ font-size: clamp(20px, 6.2vw, 32px); }
   .steps{grid-template-columns:1fr}
   .avatar{ width:96px; height:96px; }
-
-  .foot{
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:12px;
-    text-align:center;
-  }
-  .foot .logo{
-    flex-direction:column;
-    align-items:center;
-    gap:4px;
-    text-align:center;
-    margin-inline:auto;
-  }
-  .foot .logo-text{
-    display:block;
-    text-align:center;
-  }
-  .foot > div{
-    text-align:center;
-  }
 
   .testimonials-prev,
   .testimonials-next{display:none;}
