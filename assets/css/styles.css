@@ -43,7 +43,7 @@ body{
   color:var(--content);
   background:var(--bg);
   line-height:1.55;
-  padding-top:calc(var(--nav-h) + 2cm);
+  padding-top:calc(var(--nav-h) + 24px);
 }
 a{color:var(--brand); text-decoration:none}
 .container{width:min(1100px,92%); margin-inline:auto}
@@ -72,11 +72,11 @@ a{color:var(--brand); text-decoration:none}
   position:fixed; top:0; left:0; right:0; z-index:1000;
   backdrop-filter:saturate(1.2) blur(8px);
   background:rgba(255,255,255,.96);
-  border-bottom:3px solid rgba(13,15,15,.22);
+  border-bottom:2px solid rgba(13,15,15,.18);
 }
 .nav .row{
   display:flex; align-items:center; justify-content:space-between;
-  padding:4px 0; position:relative;
+  padding:6px 0; position:relative;
 }
 
 /* Logo + wordmark */
