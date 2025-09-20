@@ -580,22 +580,32 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 
   .nav .row{
     display:grid;
-    grid-template-columns:1fr auto;
-    align-items:flex-end;
-    align-items:end;
-    gap:8px;
-    padding:12px 12px 8px;
+    grid-template-columns:auto auto;
+    grid-template-areas:
+      "logo-img logo-img"
+      "logo-text nav-toggle"
+      "menu menu";
+    align-items:center;
+    gap:8px 12px;
+    padding:12px;
   }
-  .logo{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:6px;
+  .logo{ display:contents; }
+  .logo-mark{
+    grid-area:logo-img;
+    justify-self:center;
+    width:var(--logo-size-sm);
+    height:var(--logo-size-sm);
+  }
+  .logo-text{
+    grid-area:logo-text;
     text-align:left;
   }
-  .logo-text{ width:100%; }
-  .nav-toggle{ margin:0; justify-self:end; align-self:flex-end; align-self:end; }
-  .nav .menu{ grid-column:1 / -1; }
-  .logo-mark{ width:var(--logo-size-sm); height:var(--logo-size-sm); }
+  .nav-toggle{
+    grid-area:nav-toggle;
+    margin:0;
+    justify-self:end;
+  }
+  .nav .menu{ grid-area:menu; }
   .logo-text{ font-size: var(--brand-name-sm); }
   .hero h1{ font-size: clamp(20px, 6.2vw, 32px); }
   .steps{grid-template-columns:1fr}
