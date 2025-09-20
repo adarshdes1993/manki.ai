@@ -222,7 +222,8 @@ section{padding:48px 0}
 /* Preloader */
 .preloader{
   position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-  background:#ffffff; z-index:2000; transition:opacity .4s ease, visibility .4s ease;
+  background:#ffffff; z-index:2000;
+  transition:opacity .45s ease, visibility .45s ease;
 }
 .preloader.preloader-hidden{opacity:0; visibility:hidden; pointer-events:none;}
 .preloader-inner{display:flex; flex-direction:column; gap:18px; align-items:center; text-align:center; padding:32px;}

@@ -9,7 +9,7 @@
   window.addEventListener('load', () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     if (preloader) {
-      setTimeout(() => preloader.classList.add('preloader-hidden'), 260);
+      setTimeout(() => preloader.classList.add('preloader-hidden'), 3000);
     }
   });
 
