@@ -241,6 +241,8 @@
 
   let currentService = 'web-apps';
 
+  let isInitialServiceRender = true;
+
   function renderService(key) {
     const data = serviceContent[key] || serviceContent[currentService] || serviceContent['web-apps'];
     if (!data || !serviceDetail) return;
@@ -273,8 +275,12 @@
       item.classList.toggle('active', item.dataset.service === key);
     });
 
-    if (activeTabEl && serviceTabsWrap) {
+    if (activeTabEl && serviceTabsWrap && !isInitialServiceRender) {
       alignServiceTab(activeTabEl);
+    }
+
+    if (isInitialServiceRender) {
+      isInitialServiceRender = false;
     }
   }
 
