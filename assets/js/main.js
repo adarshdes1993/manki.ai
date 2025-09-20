@@ -415,6 +415,61 @@
     });
   }
 
+  /* ---------- Stat counters ---------- */
+  const counters = Array.from(document.querySelectorAll('.stat-number[data-target]'));
+  if (counters.length) {
+    const formatValue = (value, decimals) => {
+      const formatter = new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      });
+      return formatter.format(value);
+    };
+
+    const updateText = (el, value) => {
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const formatted = formatValue(value, decimals);
+      el.textContent = `${prefix}${formatted}${suffix}`;
+    };
+
+    const animateCounter = (el) => {
+      const target = parseFloat(el.dataset.target || '0');
+      const start = parseFloat(el.dataset.start || '0');
+      const duration = parseInt(el.dataset.duration || '1400', 10);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const startTime = performance.now();
+
+      const step = (now) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = start + (target - start) * eased;
+        const rounded = progress === 1 ? target : parseFloat(current.toFixed(decimals));
+        updateText(el, rounded);
+        if (progress < 1) requestAnimationFrame(step);
+      };
+
+      requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    counters.forEach((el) => {
+      const startValue = parseFloat(el.dataset.start || '0');
+      updateText(el, startValue);
+      observer.observe(el);
+    });
+  }
+
   /* ---------- Sliders (work, testimonials) ---------- */
   function initSlider({
     root,
