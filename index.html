@@ -16,7 +16,15 @@
   <!-- Preloader -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader-inner">
-      <img src="assets/img/manki-logo-256.png" alt="Manki.ai logo" width="128" height="128" loading="eager" />
+      <img
+        src="assets/img/manki-logo-512.png"
+        srcset="assets/img/manki-logo-256.png 256w, assets/img/manki-logo-512.png 512w"
+        sizes="(max-width: 600px) 180px, (max-width: 1200px) 220px, 280px"
+        alt="Manki.ai logo"
+        width="256"
+        height="256"
+        loading="eager"
+      />
       <div class="preloader-bar" role="presentation"><span></span></div>
       <p class="preloader-text">Loading…</p>
     </div>
