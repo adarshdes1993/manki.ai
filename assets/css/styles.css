@@ -111,6 +111,10 @@ a{color:var(--brand); text-decoration:none}
 }
 .btn-cta{ margin-left:6px; }
 
+@media (min-width: 901px){
+  .nav .row{ align-items:baseline; }
+}
+
 /* Force black menu items */
 .menu a[href*="#services"],
 .menu a[href*="#work"],
