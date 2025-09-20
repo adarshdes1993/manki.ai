@@ -581,7 +581,8 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .nav .row{
     display:grid;
     grid-template-columns:1fr auto;
-    align-items:center;
+    align-items:flex-end;
+    align-items:end;
     gap:8px;
     padding:12px 12px 8px;
   }
@@ -592,7 +593,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
     text-align:left;
   }
   .logo-text{ width:100%; }
-  .nav-toggle{ margin:0; justify-self:end; }
+  .nav-toggle{ margin:0; justify-self:end; align-self:flex-end; align-self:end; }
   .nav .menu{ grid-column:1 / -1; }
   .logo-mark{ width:var(--logo-size-sm); height:var(--logo-size-sm); }
   .logo-text{ font-size: var(--brand-name-sm); }
