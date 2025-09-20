@@ -80,7 +80,7 @@ a{color:var(--brand); text-decoration:none}
 }
 
 /* Logo + wordmark */
-.logo{display:flex; align-items:center; gap:4px; font-weight:900}
+.logo{display:flex; align-items:center; gap:8px; font-weight:900}
 .logo-mark{
   width:var(--logo-size);
   height:var(--logo-size);
@@ -112,7 +112,7 @@ a{color:var(--brand); text-decoration:none}
 .btn-cta{ margin-left:6px; }
 
 @media (min-width: 901px){
-  .nav .row{ align-items:baseline; }
+  .nav .row{ align-items:center; }
 }
 
 /* Force black menu items */
@@ -366,27 +366,8 @@ section{padding:48px 0}
 
 /* Footer */
 footer{border-top:1px solid var(--border); padding:28px 0 54px; color:var(--brand)}
-.foot{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  text-align:center;
-}
-.foot .logo{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
-  text-align:center;
-  margin-inline:auto;
-}
-.foot .logo-text{
-  display:block;
-  text-align:center;
-}
+.foot{display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between}
+.foot .logo{display:flex; align-items:center; gap:8px}
 
 /* Forms */
 label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
@@ -635,6 +616,28 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .hero h1{ font-size: clamp(20px, 6.2vw, 32px); }
   .steps{grid-template-columns:1fr}
   .avatar{ width:96px; height:96px; }
+
+  .foot{
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    text-align:center;
+  }
+  .foot .logo{
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    text-align:center;
+    margin-inline:auto;
+  }
+  .foot .logo-text{
+    display:block;
+    text-align:center;
+  }
+  .foot > div{
+    text-align:center;
+  }
 
   .testimonials-prev,
   .testimonials-next{display:none;}
