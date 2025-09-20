@@ -43,7 +43,7 @@ body{
   color:var(--content);
   background:var(--bg);
   line-height:1.55;
-  padding-top:calc(var(--nav-h) - 48px);
+  padding-top:calc(var(--nav-h) + 2cm);
 }
 a{color:var(--brand); text-decoration:none}
 .container{width:min(1100px,92%); margin-inline:auto}
@@ -102,6 +102,8 @@ a{color:var(--brand); text-decoration:none}
 .nav .logo-text{
   display:flex;
   align-items:center;
+  justify-content:center;
+  text-align:center;
   font-size: clamp(2.4rem, 5vw, 3.2rem);
 }
 .logo-text .logo-ai { color: var(--accent); }
@@ -204,7 +206,7 @@ a{color:var(--brand); text-decoration:none}
 .nav-toggle span:nth-child(3){ top:27px }
 
 /* HERO & SECTIONS */
-.hero{padding:40px 0 32px}
+.hero{padding:0 0 32px}
 .hero .wrap{display:grid; grid-template-columns: 1.1fr .9fr; gap:28px}
 .hero h1{font-size: clamp(28px, 3.6vw, 44px); line-height:1.12; margin:10px 0 12px; color:var(--brand)}
 .t-ai{ color: var(--accent); }
