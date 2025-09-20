@@ -80,7 +80,7 @@ a{color:var(--brand); text-decoration:none}
 }
 
 /* Logo + wordmark */
-.logo{display:flex; align-items:center; gap:14px; font-weight:900}
+.logo{display:flex; align-items:center; gap:8px; font-weight:900}
 .logo-mark{
   width:var(--logo-size);
   height:var(--logo-size);
@@ -98,11 +98,11 @@ a{color:var(--brand); text-decoration:none}
 .logo-text .logo-ai { color: var(--accent); }
 
 /* Menu */
-.menu{display:flex; align-items:center; gap:18px}
+.menu{display:flex; align-items:center; gap:12px}
 .menu a,
 .menu .menu-link{
   opacity:.9; font-weight:700; letter-spacing:.2px;
-  padding:8px 12px; border-radius:10px
+  padding:6px 10px; border-radius:10px
 }
 .btn{
   display:inline-block; padding:10px 16px; border-radius:999px;
@@ -519,7 +519,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
     z-index:1050;
   }
   .menu.open{ display:flex }
-  .menu a, .menu .menu-link{ font-size:.98rem; padding:8px 10px }
+  .menu a, .menu .menu-link{ font-size:.98rem; padding:6px 10px }
   .btn-cta{ align-self:flex-start; padding:8px 12px; font-size:.95rem }
 
   .has-submenu .submenu{ position:static; display:none; width:100%; margin-top:4px; border-radius:12px; box-shadow:none; border:1px solid var(--border); }
@@ -564,7 +564,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .testimonial{padding:22px;}
 }
 @media (max-width: 560px){
-  .menu a, .menu .menu-link{ font-size:.95rem; padding:8px }
+  .menu a, .menu .menu-link{ font-size:.95rem; padding:6px }
   .btn-cta{ padding:8px 12px; font-size:.92rem }
   .menu{
     top:calc(var(--nav-h) + 6px);
@@ -584,7 +584,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .logo{
     flex-direction:row;
     align-items:center;
-    gap:6px;
+    gap:4px;
     text-align:left;
   }
   .nav-toggle{ margin-left:auto; margin-right:4px; }
