@@ -11,7 +11,7 @@
   --shadow: 0 8px 24px rgba(13,15,15,.15);
 
   /* logo sizing (bigger + responsive) */
-  --logo-size: 128px;   /* desktop */
+  --logo-size: clamp(148px, 10vw, 220px);   /* desktop */
   --logo-size-md: 96px; /* tablet */
   --logo-size-sm: 64px; /* mobile */
 
@@ -218,6 +218,26 @@ section{padding:48px 0}
 .grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
 .card{background:#ffffff; border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
 .chip{display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:600; letter-spacing:.2px; background:rgba(13,15,15,.10); border:1px solid rgba(13,15,15,.30); color:var(--brand)}
+
+/* Preloader */
+.preloader{
+  position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+  background:#ffffff; z-index:2000; transition:opacity .4s ease, visibility .4s ease;
+}
+.preloader.preloader-hidden{opacity:0; visibility:hidden; pointer-events:none;}
+.preloader-inner{display:flex; flex-direction:column; gap:18px; align-items:center; text-align:center; padding:32px;}
+.preloader-inner img{width:120px; height:120px; border-radius:20px; box-shadow:0 16px 32px rgba(15,23,42,.18);}
+.preloader-bar{width:140px; height:6px; border-radius:999px; background:rgba(15,23,42,.12); overflow:hidden; position:relative;}
+.preloader-bar span{
+  position:absolute; inset:0; width:40%; border-radius:999px;
+  background:linear-gradient(135deg, var(--brand), var(--accent));
+  animation: preloaderSlide 1.2s ease-in-out infinite;
+}
+.preloader-text{margin:0; font-weight:600; letter-spacing:.3px; color:var(--muted); text-transform:uppercase; font-size:.82rem;}
+
+@keyframes preloaderSlide{
+  0%{transform:translateX(-120%);} 50%{transform:translateX(40%);} 100%{transform:translateX(220%);}
+}
 
 /* Services section */
 .services{padding:60px 0 30px; position:relative;}

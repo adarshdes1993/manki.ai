@@ -1,11 +1,16 @@
 // Enhanced, dependency-free JS (menus + year + form + slider + lightbox + dynamic nav height)
 (function () {
   /* ---------- Top-of-page on load ---------- */
+  const preloader = document.getElementById('preloader');
+
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
   window.addEventListener('load', () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    if (preloader) {
+      setTimeout(() => preloader.classList.add('preloader-hidden'), 260);
+    }
   });
 
   /* ---------- Dynamic nav height -> --nav-h ---------- */
