@@ -583,10 +583,11 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
     grid-template-columns:minmax(0, 1fr) auto;
     grid-template-areas:
       "logo-img logo-img"
-      "logo-text nav-toggle"
+      "logo-text logo-text"
       "menu menu";
     align-items:center;
-    gap:8px 12px;
+    column-gap:6px;
+    row-gap:8px;
     padding:12px;
   }
   .logo{ display:contents; }
@@ -603,9 +604,11 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
     width:100%;
   }
   .nav-toggle{
-    grid-area:nav-toggle;
+    grid-column:2;
+    grid-row:2;
     margin:0;
     justify-self:end;
+    align-self:center;
   }
   .nav .menu{ grid-area:menu; }
   .logo-text{ font-size: var(--brand-name-sm); }
