@@ -25,7 +25,7 @@
   --heading-green-end:#10b981;
 
   /* background logo (watermark) — centered & bigger */
-  --bg-logo-size: clamp(720px, 95vw, 1800px);
+  --bg-logo-size: clamp(920px, 120vw, 2400px);
   --bg-logo-opacity: .12; /* desktop base */
 
   /* dynamic navbar height (JS updates) */
@@ -517,7 +517,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 
   /* watermark: large and visible on phones */
   :root{
-    --bg-logo-size: clamp(680px, 160vw, 1400px);
+    --bg-logo-size: clamp(840px, 200vw, 1680px);
     --bg-logo-opacity: .16;
     --logo-size-sm: 84px;
     --brand-name-sm: 1.72rem;
