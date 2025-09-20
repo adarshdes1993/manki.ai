@@ -161,23 +161,34 @@
     });
   }
 
-  function goTo(i) {
+  function getSlideWidth() {
+    const first = slides[0];
+    return first ? first.getBoundingClientRect().width : 0;
+  }
+
+  function applyTrackTransform() {
     if (!track) return;
+    const slideWidth = getSlideWidth();
+    track.style.transform = `translateX(${-(slideWidth * index)}px)`;
+  }
+
+  function goTo(i, opts) {
+    if (!track || slides.length === 0) return;
     index = (i + slides.length) % slides.length;
-    track.style.transform = `translateX(${index * -100}%)`;
+    applyTrackTransform();
     if (dotsWrap) {
       dotsWrap.querySelectorAll('button').forEach((d, di) => {
         d.classList.toggle('active', di === index);
       });
     }
-    restartAuto();
+    if (!opts || !opts.skipAuto) restartAuto();
   }
 
   function prev(){ goTo(index - 1); }
   function next(){ goTo(index + 1); }
 
   function startAuto() {
-    if (autoTimer) return;
+    if (autoTimer || slides.length <= 1) return;
     autoTimer = setInterval(next, 5000);
   }
   function stopAuto() {
@@ -188,13 +199,17 @@
 
   if (track && slides.length > 0) {
     renderDots();
-    goTo(0);
+    goTo(0, { skipAuto: true });
     startAuto();
 
     prevBtn && prevBtn.addEventListener('click', prev);
     nextBtn && nextBtn.addEventListener('click', next);
     track.addEventListener('mouseenter', stopAuto);
     track.addEventListener('mouseleave', startAuto);
+
+    window.addEventListener('resize', () => {
+      applyTrackTransform();
+    });
 
     // simple swipe
     let sx = 0, dx = 0;

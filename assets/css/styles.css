@@ -209,22 +209,35 @@ section{padding:48px 0}
 /* Work slider */
 .work{ position:relative }
 .work-slider{
-  position:relative; margin-top:16px;
+  position:relative; z-index:20; margin-top:16px;
   background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow);
   overflow:hidden;
 }
 .work-track{
-  display:flex; transition: transform .4s ease; will-change: transform;
+  display:flex; width:100%;
+  transition: transform .4s ease; will-change: transform;
 }
 .work-slide{
-  min-width:100%; position:relative; aspect-ratio: 16 / 9; background:#f3f4f6;
-  display:flex; align-items:flex-end; justify-content:flex-start;
+  /* Lock each slide to the viewport width while keeping screenshots uncropped */
+  flex: 0 0 100%;
+  min-width:100%; position:relative;
+  background:#ffffff;
+  padding:clamp(12px, 3vw, 24px);
+  display:flex; align-items:flex-end; justify-content:center;
+  box-sizing:border-box;
+  margin:0;
 }
 .work-slide img{
-  width:100%; height:100%; object-fit:cover; display:block;
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:100%;
 }
 .work-slide figcaption{
-  position:absolute; left:12px; bottom:12px; right:12px;
+  position:absolute;
+  left:clamp(16px, 3.4vw, 36px);
+  right:clamp(16px, 3.4vw, 36px);
+  bottom:clamp(16px, 3.4vw, 32px);
   background:rgba(17,24,39,.68); color:#fff; padding:10px 12px; border-radius:12px;
   display:flex; flex-direction:column; gap:2px;
 }
