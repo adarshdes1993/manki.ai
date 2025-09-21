@@ -302,7 +302,7 @@ section{padding:48px 0}
 }
 
 #services .section-title,
-#work .section-title,
+.work .section-title,
 #blog .section-title,
 #process .section-title,
 #team .section-title,
@@ -694,7 +694,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
       "menu menu";
     align-items:center;
     column-gap:6px;
-    row-gap:8px;
+    row-gap:2px;
     padding:12px;
   }
   .nav .logo{ display:contents; }

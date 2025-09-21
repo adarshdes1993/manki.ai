@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio – Selected Work by manki.ai</title>
+  <meta name="description" content="Explore selected web, mobile, and platform projects delivered by manki.ai." />
+  <link rel="icon" href="assets/img/manki-favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20250920-131643">
+</head>
+<body class="page-portfolio">
+  <div class="bg-logo" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="container row">
+      <a class="logo" href="index.html" aria-label="manki.ai Home">
+        <img
+          class="logo-mark"
+          src="assets/img/manki-logo-256.png"
+          srcset="assets/img/manki-logo-128.png 128w, assets/img/manki-logo-256.png 256w, assets/img/manki-logo-512.png 512w"
+          sizes="(max-width: 560px) 64px, (max-width: 900px) 96px, 128px"
+          width="128" height="128"
+          alt="Manki.ai logo"
+          loading="eager"
+        />
+        <span class="logo-text">manki.<span class="logo-ai">ai</span></span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="menu" id="primary-menu" role="navigation" aria-label="Primary">
+        <a href="index.html" class="menu-link">Home</a>
+        <a href="about.html" class="menu-link">About Us</a>
+        <div class="menu-item has-submenu">
+          <a class="menu-link" href="index.html#services" aria-haspopup="true" aria-expanded="false">Services</a>
+          <div class="submenu" role="menu">
+            <div class="submenu-inner">
+              <a href="services/web-apps.html" class="submenu-item" role="menuitem">
+                <strong>Web Apps</strong><span>React, Next.js, TypeScript</span>
+              </a>
+              <a href="services/mobile-apps.html" class="submenu-item" role="menuitem">
+                <strong>Mobile Apps</strong><span>Flutter / React Native</span>
+              </a>
+              <a href="services/apis.html" class="submenu-item" role="menuitem">
+                <strong>APIs &amp; Integrations</strong><span>REST, GraphQL, Auth, Payments</span>
+              </a>
+              <a href="services/data-ai.html" class="submenu-item" role="menuitem">
+                <strong>Data &amp; AI</strong><span>ETL, analytics, practical AI</span>
+              </a>
+              <a href="services/devops.html" class="submenu-item" role="menuitem">
+                <strong>DevOps</strong><span>CI/CD, containers, cloud</span>
+              </a>
+              <a href="services/consulting.html" class="submenu-item" role="menuitem">
+                <strong>Consulting</strong><span>Architecture, SRE, roadmaps</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="portfolio.html" class="menu-link" aria-current="page">Portfolio</a>
+        <a href="index.html#blog" class="menu-link">Blog</a>
+        <a href="about.html#team" class="menu-link">Career</a>
+        <a href="contact.html" class="menu-link">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="service-hero portfolio-hero">
+    <div class="container service-hero-inner">
+      <div class="service-hero-copy">
+        <span class="chip">Portfolio</span>
+        <h1>Selected work across web, mobile, and cloud platforms.</h1>
+        <p class="muted">A snapshot of recent deliveries—from fintech dashboards to healthcare portals—designed, engineered, and shipped by the manki.ai team.</p>
+      </div>
+      <figure class="service-hero-media">
+        <img src="assets/img/work/saas-dashboard-1.jpg" alt="Collage of product screens from recent projects" loading="lazy">
+      </figure>
+    </div>
+  </header>
+
+  <section class="work">
+    <div class="container">
+      <div class="work-slider" aria-roledescription="carousel">
+        <button class="work-prev" aria-label="Previous project">‹</button>
+        <div class="work-track">
+          <figure class="work-slide" aria-label="SaaS Dashboard">
+            <img src="assets/img/work/saas-dashboard-1.jpg" alt="SaaS Dashboard—multi-tenant analytics with charts and tables" loading="lazy" />
+            <figcaption>
+              <strong>SaaS Dashboard</strong>
+              <span>Multi-tenant analytics app with role-based access and KPI drilldowns.</span>
+              <div class="work-meta" aria-hidden="true">
+                <span class="badge">React + TypeScript</span>
+                <span class="badge badge-light">+32% activation</span>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="work-slide" aria-label="Fintech Mobile App">
+            <img src="assets/img/work/fintech-mobile-1.jpg" alt="Fintech mobile app—card view, KYC flow, and live charts" loading="lazy" />
+            <figcaption>
+              <strong>Fintech Mobile App</strong>
+              <span>KYC onboarding, payments, biometric login, and live portfolio charts.</span>
+              <div class="work-meta" aria-hidden="true">
+                <span class="badge">Flutter</span>
+                <span class="badge badge-light">PCI-ready launch</span>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="work-slide" aria-label="Healthcare Portal">
+            <img src="assets/img/work/health-portal-1.jpg" alt="Healthcare provider portal—patient list and secure messaging" loading="lazy" />
+            <figcaption>
+              <strong>Healthcare Portal</strong>
+              <span>HIPAA-aware workflows, secure messaging, and clinician dashboards.</span>
+              <div class="work-meta" aria-hidden="true">
+                <span class="badge">Next.js + AWS</span>
+                <span class="badge badge-light">SOC2 controls</span>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="work-slide" aria-label="eCommerce Platform">
+            <img src="assets/img/work/saas-dashboard-1.jpg" alt="eCommerce dashboard showing orders and revenue analytics" loading="lazy" />
+            <figcaption>
+              <strong>eCommerce Platform</strong>
+              <span>Multi-vendor catalog, headless checkout, realtime inventory.</span>
+              <div class="work-meta" aria-hidden="true">
+                <span class="badge">Next.js + Shopify</span>
+                <span class="badge badge-light">+45% GMV</span>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="work-slide" aria-label="Logistics Control Tower">
+            <img src="assets/img/work/fintech-mobile-1.jpg" alt="Logistics control tower mobile dashboard" loading="lazy" />
+            <figcaption>
+              <strong>Logistics Control Tower</strong>
+              <span>Carrier integrations, live ETA maps, SLA alerts, exception workflows.</span>
+              <div class="work-meta" aria-hidden="true">
+                <span class="badge">Flutter + GraphQL</span>
+                <span class="badge badge-light">30% faster routing</span>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="work-slide" aria-label="FinOps Cockpit">
+            <img src="assets/img/work/health-portal-1.jpg" alt="FinOps cockpit dashboard summarising cloud spend and savings" loading="lazy" />
+            <figcaption>
+              <strong>FinOps Cockpit</strong>
+              <span>Cost anomaly alerts, rightsizing insights, exec summaries.</span>
+              <div class="work-meta" aria-hidden="true">
+                <span class="badge">React + Snowflake</span>
+                <span class="badge badge-light">20% cloud savings</span>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+        <button class="work-next" aria-label="Next project">›</button>
+        <div class="work-dots" role="tablist" aria-label="Project slides"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-cta">
+    <div class="container about-cta-inner">
+      <div>
+        <h2>Need a deeper case study?</h2>
+        <p class="muted">Reach out and we’ll share detailed results, architectures, and lessons learned tailored to your industry.</p>
+      </div>
+      <a class="btn" href="contact.html">Start a project</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> manki.ai</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js?v=20250920-131643"></script>
+</body>
+</html>
