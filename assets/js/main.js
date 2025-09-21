@@ -12,7 +12,7 @@
       setTimeout(() => {
         preloader.classList.add('preloader-hidden');
         initCounters();
-      }, 3000);
+      }, 900);
     } else {
       initCounters();
     }

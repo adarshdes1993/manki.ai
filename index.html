@@ -89,7 +89,7 @@
         </div>
         <a href="portfolio.html" class="menu-link">Portfolio</a>
         <a href="#blog" class="menu-link">Blog</a>
-        <a href="about.html#team" class="menu-link">Career</a>
+        <a href="about.html#careers" class="menu-link">Career</a>
         <a href="contact.html" class="menu-link">Contact Us</a>
       </div>
     </div>
@@ -112,7 +112,7 @@
             <p>projects shipped</p>
           </div>
           <div class="stat">
-            <h3 class="stat-number" data-target="6" data-prefix="2–" data-suffix=" weeks" data-duration="1600">2–0</h3>
+            <h3 class="stat-number" data-target="6" data-start="6" data-prefix="2–" data-suffix=" weeks" data-duration="1600">2–6 weeks</h3>
             <p>typical delivery</p>
           </div>
           <div class="stat">
@@ -190,11 +190,12 @@
   </section>
 
   <!-- Testimonials -->
-  <section id="blog" class="testimonials">
+  <section id="testimonials" class="testimonials">
     <div class="container">
+      <span class="chip">Testimonials</span>
       <h2 class="section-title">Founder feedback</h2>
       <p class="muted">Real outcomes from the teams we build with.</p>
-      <div class="testimonials-slider" aria-roledescription="carousel">
+      <div class="testimonials-slider" role="region" aria-label="Founder testimonials carousel" aria-roledescription="carousel">
         <button class="testimonials-prev" aria-label="Previous testimonial">‹</button>
         <div class="testimonials-track">
           <article class="testimonial-slide">
@@ -281,6 +282,55 @@
         </div>
         <button class="testimonials-next" aria-label="Next testimonial">›</button>
         <div class="testimonials-dots" role="tablist" aria-label="Founder testimonials"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section id="blog" class="blog">
+    <div class="container">
+      <div class="blog-header">
+        <span class="chip">Insights</span>
+        <h2 class="section-title">Notes on shipping reliable products</h2>
+        <p class="muted">Playbooks, retros, and lessons learned from delivering 50+ launches for fintech, healthcare, and SaaS founders.</p>
+      </div>
+
+      <div class="blog-grid">
+        <article class="post-card">
+          <a class="post-cover" href="#" aria-label="Read Ship faster without breaking compliance">
+            <span class="post-tag">Playbook</span>
+            <h3>Ship faster without breaking compliance</h3>
+          </a>
+          <div class="post-body">
+            <p class="post-meta">Apr 14, 2024 · 7 min read</p>
+            <p class="muted">How we pair design sprints with SOC2-style controls so regulated teams can move quickly and stay audit-ready.</p>
+            <a class="post-link" href="#">Read story →</a>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <a class="post-cover" href="#" aria-label="Read Designing dashboards founders trust">
+            <span class="post-tag">Design</span>
+            <h3>Designing dashboards founders trust</h3>
+          </a>
+          <div class="post-body">
+            <p class="post-meta">Mar 29, 2024 · 5 min read</p>
+            <p class="muted">Patterns we use for decision-grade dashboards, from loading states to empty data stories.</p>
+            <a class="post-link" href="#">Read story →</a>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <a class="post-cover" href="#" aria-label="Read Our six-week rebuild checklist">
+            <span class="post-tag">Delivery</span>
+            <h3>Our six-week rebuild checklist</h3>
+          </a>
+          <div class="post-body">
+            <p class="post-meta">Mar 12, 2024 · 6 min read</p>
+            <p class="muted">The discovery-to-launch steps we apply when turning legacy systems into modern, measurable platforms.</p>
+            <a class="post-link" href="#">Read story →</a>
+          </div>
+        </article>
       </div>
     </div>
   </section>
