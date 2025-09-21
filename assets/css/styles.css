@@ -25,9 +25,9 @@
   --heading-green-end:#10b981;
 
   /* background logo (watermark) — centered & bigger */
-  --bg-logo-size: clamp(720px, 95vw, 1800px);
+  --bg-logo-size: clamp(880px, 115vw, 1680px);
   --bg-logo-opacity: .12; /* desktop base */
-  --bg-logo-offset: 60%;
+  --bg-logo-offset: 55%;
 
   /* dynamic navbar height (JS updates) */
   --nav-h: 96px;
@@ -80,13 +80,13 @@ a{color:var(--brand); text-decoration:none}
   display:grid;
   grid-template-columns:auto 1fr;
   align-items:center;
-  column-gap:32px;
-  padding:8px 20px;
+  column-gap:28px;
+  padding:10px 24px;
   position:relative;
 }
 
 /* Logo + wordmark */
-.logo{display:flex; align-items:center; gap:18px; font-weight:900; padding:0; margin:0;}
+.logo{display:flex; align-items:center; gap:16px; font-weight:900; padding:0; margin:0;}
 .logo-mark{
   width:var(--logo-size);
   height:var(--logo-size);
@@ -95,8 +95,8 @@ a{color:var(--brand); text-decoration:none}
   display:block;
 }
 .nav .logo-mark{
-  width:clamp(220px, 14vw, 280px);
-  height:clamp(220px, 14vw, 280px);
+  width:clamp(200px, 12vw, 260px);
+  height:clamp(200px, 12vw, 260px);
   box-shadow:none;
 }
 .logo-text{
@@ -116,11 +116,11 @@ a{color:var(--brand); text-decoration:none}
 .logo-text .logo-ai { color: var(--accent); }
 
 /* Menu */
-.menu{display:flex; align-items:center; gap:18px; justify-content:flex-end}
+.menu{display:flex; align-items:center; gap:16px; justify-content:flex-end}
 .menu a,
 .menu .menu-link{
-  opacity:.9; font-weight:600; letter-spacing:.18px;
-  padding:6px 10px; border-radius:8px;
+  opacity:.92; font-weight:600; letter-spacing:.18px;
+  padding:6px 12px; border-radius:8px;
   transition:color .2s ease, background .2s ease, box-shadow .2s ease;
 }
 .menu a:hover,
@@ -448,15 +448,9 @@ section{padding:48px 0}
 .step-num{width:34px; height:34px; border-radius:8px; display:grid; place-items:center; background:linear-gradient(135deg, var(--brand), var(--ok)); color:#ffffff; font-weight:800}
 
 /* Footer */
-footer{border-top:1px solid var(--border); padding:28px 0 54px; color:var(--brand)}
-.foot{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  text-align:center;
-}
+footer{border-top:1px solid rgba(15,23,42,.12); padding:24px 0 32px; color:var(--brand)}
+.foot{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; text-align:center;}
+.footer-note{color:var(--muted); font-size:.92rem; letter-spacing:.15px;}
 
 /* Forms */
 label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
