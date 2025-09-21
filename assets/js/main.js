@@ -63,6 +63,7 @@
   /* ---------- Navigation / Menus ---------- */
   const menu = document.getElementById('primary-menu');
   const toggle = document.querySelector('.nav-toggle');
+  const logoLink = document.querySelector('.logo');
   const submenuParent = document.querySelector('.has-submenu');
   const submenuLink = submenuParent ? submenuParent.querySelector('.menu-link') : null;
   const submenu = submenuParent ? submenuParent.querySelector('.submenu') : null;
@@ -91,6 +92,14 @@
     e.stopPropagation();
     toggleMenu();
   });
+
+  if (logoLink) {
+    logoLink.addEventListener('click', (e) => {
+      if (document.body.classList.contains('page-home')) {
+        e.preventDefault();
+      }
+    });
+  }
 
   // Close on outside click (mobile)
   document.addEventListener('click', (e) => {

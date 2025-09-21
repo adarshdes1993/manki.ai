@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog – Insights from manki.ai</title>
+  <meta name="description" content="Playbooks, retrospectives, and lessons learned from the manki.ai team." />
+  <link rel="icon" href="assets/img/manki-favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20250920-131643">
+</head>
+<body class="page-blog">
+  <div class="bg-logo" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="container row">
+      <a class="logo" href="index.html" aria-label="manki.ai Home">
+        <img
+          class="logo-mark"
+          src="assets/img/manki-logo-256.png"
+          srcset="
+            assets/img/manki-logo-128.png 128w,
+            assets/img/manki-logo-256.png 256w,
+            assets/img/manki-logo-512.png 512w
+          "
+          sizes="(max-width: 560px) 64px, (max-width: 900px) 96px, 128px"
+          width="128" height="128"
+          alt="Manki.ai logo"
+          loading="eager"
+        />
+        <span class="logo-text">manki.<span class="logo-ai">ai</span></span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="menu" id="primary-menu" role="navigation" aria-label="Primary">
+        <a href="index.html" class="menu-link">Home</a>
+        <a href="about.html" class="menu-link">About Us</a>
+        <div class="menu-item has-submenu">
+          <a class="menu-link" href="index.html#services" aria-haspopup="true" aria-expanded="false">Services</a>
+          <div class="submenu" role="menu">
+            <div class="submenu-inner">
+              <a href="services/web-apps.html" class="submenu-item" role="menuitem">
+                <strong>Web Apps</strong><span>React, Next.js, TypeScript</span>
+              </a>
+              <a href="services/mobile-apps.html" class="submenu-item" role="menuitem">
+                <strong>Mobile Apps</strong><span>Flutter / React Native</span>
+              </a>
+              <a href="services/apis.html" class="submenu-item" role="menuitem">
+                <strong>APIs &amp; Integrations</strong><span>REST, GraphQL, Auth, Payments</span>
+              </a>
+              <a href="services/data-ai.html" class="submenu-item" role="menuitem">
+                <strong>Data &amp; AI</strong><span>ETL, analytics, practical AI</span>
+              </a>
+              <a href="services/devops.html" class="submenu-item" role="menuitem">
+                <strong>DevOps</strong><span>CI/CD, containers, cloud</span>
+              </a>
+              <a href="services/consulting.html" class="submenu-item" role="menuitem">
+                <strong>Consulting</strong><span>Architecture, SRE, roadmaps</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="portfolio.html" class="menu-link">Portfolio</a>
+        <a href="blog.html" class="menu-link" aria-current="page">Blog</a>
+        <a href="career.html" class="menu-link">Career</a>
+        <a href="contact.html" class="menu-link">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="service-hero blog-hero">
+    <div class="container service-hero-inner">
+      <div class="service-hero-copy">
+        <span class="chip">Insights</span>
+        <h1>Notes on shipping reliable products.</h1>
+        <p class="muted">Playbooks, retrospectives, and lessons from launching 50+ products across fintech, healthcare, and SaaS.</p>
+      </div>
+      <figure class="service-hero-media">
+        <img src="assets/img/work/saas-dashboard-1.jpg" alt="Collage of product screens from manki.ai case studies" loading="lazy">
+      </figure>
+    </div>
+  </header>
+
+  <main>
+    <section id="blog" class="blog">
+      <div class="container">
+        <div class="blog-layout">
+          <div class="blog-grid">
+            <article class="post-card">
+              <a class="post-cover" href="#" aria-label="Read Ship faster without breaking compliance">
+                <span class="post-tag">Playbook</span>
+                <h3>Ship faster without breaking compliance</h3>
+              </a>
+              <div class="post-body">
+                <p class="post-meta">Apr 14, 2024 · 7 min read</p>
+                <p class="muted">How we pair design sprints with SOC2-style controls so regulated teams can move quickly and stay audit-ready.</p>
+                <a class="post-link" href="#">Read story →</a>
+              </div>
+            </article>
+
+            <article class="post-card">
+              <a class="post-cover" href="#" aria-label="Read Designing dashboards founders trust">
+                <span class="post-tag">Design</span>
+                <h3>Designing dashboards founders trust</h3>
+              </a>
+              <div class="post-body">
+                <p class="post-meta">Mar 29, 2024 · 5 min read</p>
+                <p class="muted">Patterns we use for decision-grade dashboards, from loading states to empty data stories.</p>
+                <a class="post-link" href="#">Read story →</a>
+              </div>
+            </article>
+
+            <article class="post-card">
+              <a class="post-cover" href="#" aria-label="Read Our six-week rebuild checklist">
+                <span class="post-tag">Delivery</span>
+                <h3>Our six-week rebuild checklist</h3>
+              </a>
+              <div class="post-body">
+                <p class="post-meta">Mar 12, 2024 · 6 min read</p>
+                <p class="muted">The discovery-to-launch steps we apply when turning legacy systems into modern, measurable platforms.</p>
+                <a class="post-link" href="#">Read story →</a>
+              </div>
+            </article>
+          </div>
+
+          <aside class="blog-testimonials">
+            <span class="chip">Founder feedback</span>
+            <h3 class="blog-testimonials-title">What our partners say</h3>
+            <p class="muted">Real outcomes directly from the teams we build with.</p>
+            <div class="testimonials-slider" role="region" aria-label="Founder testimonials carousel" aria-roledescription="carousel">
+              <button class="testimonials-prev" aria-label="Previous testimonial">‹</button>
+              <div class="testimonials-track">
+                <article class="testimonial-slide">
+                  <div class="testimonial">
+                    <p>“Manki.ai shipped our analytics dashboard in six weeks and handed over a CI pipeline we still use today.”</p>
+                    <footer>
+                      <strong>Priya Mehta</strong>
+                      <span>COO, Northstar Bank</span>
+                    </footer>
+                  </div>
+                </article>
+                <article class="testimonial-slide">
+                  <div class="testimonial">
+                    <p>“They turned a vague mobile concept into a polished Flutter app that passed a PCI review on the first try.”</p>
+                    <footer>
+                      <strong>Leo Ackerman</strong>
+                      <span>Founder, SwiftShip</span>
+                    </footer>
+                  </div>
+                </article>
+                <article class="testimonial-slide">
+                  <div class="testimonial">
+                    <p>“Our clinicians finally love the tool. The team listened, iterated weekly, and launched with zero production bugs.”</p>
+                    <footer>
+                      <strong>Dr. Maria Lopez</strong>
+                      <span>Medical Director, MediLoop</span>
+                    </footer>
+                  </div>
+                </article>
+                <article class="testimonial-slide">
+                  <div class="testimonial">
+                    <p>“Their team joined our sprint rituals, refactored legacy code, and cut onboarding time by 40%.”</p>
+                    <footer>
+                      <strong>Samir Bose</strong>
+                      <span>CTO, BeaconLedger</span>
+                    </footer>
+                  </div>
+                </article>
+                <article class="testimonial-slide">
+                  <div class="testimonial">
+                    <p>“We finally have a patient app clinicians recommend. Accessibility was treated as a must-have, not a checkbox.”</p>
+                    <footer>
+                      <strong>Hannah Wright</strong>
+                      <span>Product Lead, CareBridge</span>
+                    </footer>
+                  </div>
+                </article>
+                <article class="testimonial-slide">
+                  <div class="testimonial">
+                    <p>“They built our logistics control tower and trained our ops team—deployment to handover in under two months.”</p>
+                    <footer>
+                      <strong>Olivier Trent</strong>
+                      <span>CEO, HarborOps</span>
+                    </footer>
+                  </div>
+                </article>
+                <article class="testimonial-slide">
+                  <div class="testimonial">
+                    <p>“Manki.ai prototypes fast but never cuts corners. The result: a launch-ready AI co-pilot our users pay for.”</p>
+                    <footer>
+                      <strong>Neha Kulkarni</strong>
+                      <span>Founder, ByteBloom</span>
+                    </footer>
+                  </div>
+                </article>
+                <article class="testimonial-slide">
+                  <div class="testimonial">
+                    <p>“Their product, design, and DevOps leads worked as one squad. We hit our investor demo with weeks to spare.”</p>
+                    <footer>
+                      <strong>David Romero</strong>
+                      <span>COO, Pathway Logistics</span>
+                    </footer>
+                  </div>
+                </article>
+                <article class="testimonial-slide">
+                  <div class="testimonial">
+                    <p>“The portal they delivered handles HIPAA compliance and integrates with Epic without any drama. True partners.”</p>
+                    <footer>
+                      <strong>Elena Voronov</strong>
+                      <span>Head of Digital, Medisphere</span>
+                    </footer>
+                  </div>
+                </article>
+              </div>
+              <button class="testimonials-next" aria-label="Next testimonial">›</button>
+              <div class="testimonials-dots" role="tablist" aria-label="Founder testimonials"></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> manki.ai</div>
+      <div class="footer-note">Built with care by the manki.ai team</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js?v=20250920-131643"></script>
+</body>
+</html>
