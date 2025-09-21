@@ -160,10 +160,7 @@
       e.preventDefault();
       e.stopPropagation();
       openSubmenu();
-    } else {
-      closeMenu();
-      closeSubmenu(true);
-    }
+    } // second tap should follow the link
   });
 
   // Desktop: anti-flicker hover
