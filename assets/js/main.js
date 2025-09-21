@@ -101,6 +101,19 @@
     });
   }
 
+  const bgLogo = document.querySelector('.bg-logo');
+  if (bgLogo) {
+    const shift = () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      const maxLift = 200;
+      const offset = Math.min(scrollY, maxLift);
+      document.documentElement.style.setProperty('--bg-logo-translate', `${-offset}px`);
+    };
+    shift();
+    window.addEventListener('scroll', shift, { passive: true });
+    window.addEventListener('resize', shift);
+  }
+
   // Close on outside click (mobile)
   document.addEventListener('click', (e) => {
     if (!isMobile() || !menu || !menu.classList.contains('open')) return;

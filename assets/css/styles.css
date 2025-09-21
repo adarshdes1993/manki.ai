@@ -11,9 +11,9 @@
   --shadow: 0 8px 24px rgba(13,15,15,.15);
 
   /* logo sizing (bigger + responsive) */
-  --logo-size: clamp(200px, 15vw, 260px);   /* desktop */
-  --logo-size-md: 180px; /* tablet */
-  --logo-size-sm: 140px; /* mobile */
+  --logo-size: clamp(170px, 14vw, 220px);   /* desktop */
+  --logo-size-md: 150px; /* tablet */
+  --logo-size-sm: 120px; /* mobile */
 
   /* wordmark sizing */
   --brand-name-desktop: 2.4rem;
@@ -27,7 +27,8 @@
   /* background logo (watermark) — centered & bigger */
   --bg-logo-size: clamp(880px, 115vw, 1680px);
   --bg-logo-opacity: .08; /* desktop base */
-  --bg-logo-offset: 55%;
+  --bg-logo-base: -140px;
+  --bg-logo-scroll: 0px;
 
   /* dynamic navbar height (JS updates) */
   --nav-h: 96px;
@@ -44,7 +45,7 @@ body{
   color:var(--content);
   background:linear-gradient(180deg, rgba(6,139,216,.08) 0%, rgba(255,255,255,1) 28%, rgba(248,250,252,1) 82%);
   line-height:1.55;
-  padding-top:calc(var(--nav-h) + 24px);
+  padding-top:calc(var(--nav-h) + 4px);
 }
 a{color:var(--brand); text-decoration:none}
 .container{width:min(1100px,92%); margin-inline:auto}
@@ -59,12 +60,12 @@ a{color:var(--brand); text-decoration:none}
   position:fixed; inset:0;
   background-image: url("../img/manki-logo-512.png");
   background-repeat: no-repeat;
-  background-position: 50% var(--bg-logo-offset);     /* centered on all viewports */
+  background-position: 50% 0;
   background-size: var(--bg-logo-size);
   opacity: var(--bg-logo-opacity);
   mix-blend-mode: multiply;               /* looks good on white */
   pointer-events:none;
-  transform: translateZ(0);               /* paint perf hint */
+  transform: translate3d(0, calc(var(--bg-logo-base, -140px) + var(--bg-logo-scroll, 0px)), 0);
   z-index:10;                             /* above content, below nav */
 }
 
@@ -80,8 +81,8 @@ a{color:var(--brand); text-decoration:none}
   display:grid;
   grid-template-columns:auto 1fr;
   align-items:center;
-  column-gap:28px;
-  padding:10px 24px;
+  column-gap:20px;
+  padding:6px 20px;
   position:relative;
 }
 
@@ -95,8 +96,8 @@ a{color:var(--brand); text-decoration:none}
   display:block;
 }
 .nav .logo-mark{
-  width:clamp(120px, 9vw, 160px);
-  height:clamp(120px, 9vw, 160px);
+  width:clamp(88px, 6.4vw, 120px);
+  height:clamp(88px, 6.4vw, 120px);
   box-shadow:none;
 }
 .logo-text{
@@ -111,7 +112,7 @@ a{color:var(--brand); text-decoration:none}
   align-items:center;
   justify-content:center;
   text-align:center;
-  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
 }
 .logo-text .logo-ai { color: var(--accent); }
 
@@ -122,6 +123,7 @@ a{color:var(--brand); text-decoration:none}
   display:inline-flex;
   align-items:center;
   white-space:nowrap;
+  font-size:1.05rem;
   opacity:.92; font-weight:600; letter-spacing:.18px;
   padding:6px 12px; border-radius:8px;
   transition:color .2s ease, background .2s ease, box-shadow .2s ease;
@@ -215,7 +217,7 @@ a{color:var(--brand); text-decoration:none}
 .nav-toggle span:nth-child(3){ top:27px }
 
 /* HERO & SECTIONS */
-.hero{padding:24px 0 48px; position:relative; overflow:hidden;}
+.hero{padding:16px 0 44px; position:relative; overflow:hidden;}
 .hero::before{content:""; position:absolute; inset:0; background:radial-gradient(circle at -10% -10%, rgba(6,139,216,.25) 0%, rgba(6,139,216,0) 55%), radial-gradient(circle at 80% 20%, rgba(249,115,22,.18) 0%, rgba(249,115,22,0) 52%); opacity:.65; pointer-events:none;}
 .hero .wrap{position:relative; display:grid; grid-template-columns: 1.05fr .95fr; gap:34px; align-items:center;}
 .hero .wrap > div:first-child{backdrop-filter:blur(0px);}
@@ -233,7 +235,7 @@ a{color:var(--brand); text-decoration:none}
 
 /* About page */
 .page-about{background:linear-gradient(180deg, rgba(6,139,216,.04) 0%, rgba(255,255,255,0) 55%);} 
-.about-hero{padding:calc(var(--nav-h) + 56px) 0 48px;}
+.about-hero{padding:calc(var(--nav-h) + 16px) 0 44px;}
 .about-hero-inner{display:grid; grid-template-columns:minmax(0, 1.05fr) minmax(0, .95fr); gap:40px; align-items:center;}
 .about-hero-copy h1{margin:16px 0; font-size:clamp(26px, 3vw, 40px); color:var(--brand);}
 .about-hero-copy p{margin:14px 0; max-width:64ch;}
@@ -310,7 +312,7 @@ a{color:var(--brand); text-decoration:none}
 
 /* Service pages */
 .page-service{background:linear-gradient(180deg, rgba(6,139,216,.035) 0%, rgba(255,255,255,0) 60%);} 
-.service-hero{padding:calc(var(--nav-h) + 60px) 0 48px;}
+.service-hero{padding:calc(var(--nav-h) + 24px) 0 44px;}
 .service-hero-inner{display:grid; grid-template-columns:minmax(0, 1.05fr) minmax(0, .95fr); gap:40px; align-items:center;}
 .service-hero-copy h1{margin:16px 0; font-size:clamp(26px, 3vw, 38px); color:var(--brand);}
 .service-hero-copy p{margin:12px 0; max-width:62ch;}
@@ -361,7 +363,26 @@ section{padding:48px 0}
 .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
 .grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
 .card{background:#ffffff; border:1px solid var(--border); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
-.chip{display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:600; letter-spacing:.2px; background:rgba(13,15,15,.10); border:1px solid rgba(13,15,15,.30); color:var(--brand)}
+.chip{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.2px;
+  background:rgba(13,15,15,.10);
+  border:1px solid rgba(13,15,15,.30);
+  color:var(--brand);
+}
+
+.chip-hero{
+  padding:12px 20px;
+  font-size:18px;
+  font-weight:700;
+  letter-spacing:.24px;
+  background:rgba(13,15,15,.08);
+  border:1px solid rgba(13,15,15,.26);
+}
 
 /* Preloader */
 .preloader{
@@ -715,7 +736,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .logo-text{ font-size: var(--brand-name-md) }
   .nav .logo-text{ font-size: var(--brand-name-md); }
 
-  .about-hero{padding:calc(var(--nav-h) + 40px) 0 44px;}
+  .about-hero{padding:calc(var(--nav-h) + 16px) 0 32px;}
   .about-hero-inner{grid-template-columns:1fr; gap:28px; text-align:left;}
   .about-hero-media{justify-content:center;}
   .about-hero-media img{max-width:420px;}
@@ -733,7 +754,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .blog-testimonials{padding:22px;}
   .post-cover{padding:28px 24px 72px;}
 
-  .service-hero{padding:calc(var(--nav-h) + 48px) 0 44px;}
+  .service-hero{padding:calc(var(--nav-h) + 24px) 0 38px;}
   .service-hero-inner{grid-template-columns:1fr; gap:28px;}
   .service-hero-media{justify-content:center;}
   .service-hero-media img{max-width:420px;}
@@ -761,7 +782,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .avatar{ width:110px; height:110px; }
 
   /* watermark: a bit brighter on tablets for visibility */
-  :root{ --bg-logo-opacity: .1; --bg-logo-offset: 50%; }
+  :root{ --bg-logo-opacity: .1; --bg-logo-base: -110px; }
 
   .testimonials-slider{margin-top:24px;}
   .testimonial-slide{padding:24px;}
@@ -818,7 +839,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .steps{grid-template-columns:1fr}
   .avatar{ width:96px; height:96px; }
 
-  .about-hero{padding:calc(var(--nav-h) + 32px) 0 38px;}
+  .about-hero{padding:calc(var(--nav-h) + 12px) 0 28px;}
   .about-hero-inner{gap:24px;}
   .about-hero-media img{max-width:100%; height:220px;}
   .about-stats-grid{grid-template-columns:1fr;}
@@ -833,7 +854,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .post-cover{padding:26px 22px 64px;}
   .blog-testimonials{padding:20px;}
 
-  .service-hero{padding:calc(var(--nav-h) + 32px) 0 32px;}
+  .service-hero{padding:calc(var(--nav-h) + 18px) 0 30px;}
   .service-hero-inner{gap:24px;}
   .service-hero-media img{max-width:100%; height:210px;}
   .case img{height:200px;}
@@ -873,7 +894,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   :root{
     --bg-logo-size: clamp(720px, 180vw, 1600px);
     --bg-logo-opacity: .12;
-    --bg-logo-offset: 52%;
+    --bg-logo-base: -90px;
     --logo-size-sm: 140px;
     --brand-name-sm: 2.4rem;
   }
