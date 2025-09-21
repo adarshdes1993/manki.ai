@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services – How manki.ai delivers reliable software</title>
+  <meta name="description" content="Explore manki.ai services across product engineering, mobile apps, APIs, data, DevOps, and consulting." />
+  <link rel="icon" href="assets/img/manki-favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20250920-131643">
+</head>
+<body class="page-services">
+  <div class="bg-logo" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="container row">
+      <a class="logo" href="index.html" aria-label="manki.ai Home">
+        <img
+          class="logo-mark"
+          src="assets/img/manki-logo-256.png"
+          srcset="
+            assets/img/manki-logo-128.png 128w,
+            assets/img/manki-logo-256.png 256w,
+            assets/img/manki-logo-512.png 512w
+          "
+          sizes="(max-width: 560px) 64px, (max-width: 900px) 96px, 128px"
+          width="128" height="128"
+          alt="Manki.ai logo"
+          loading="eager"
+        />
+        <span class="logo-text">manki.<span class="logo-ai">ai</span></span>
+      </a>
+
+      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-menu" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="menu" id="primary-menu" role="navigation" aria-label="Primary">
+        <a href="index.html" class="menu-link">Home</a>
+        <a href="about.html" class="menu-link">About Us</a>
+        <div class="menu-item has-submenu">
+          <a class="menu-link" href="services.html" aria-haspopup="true" aria-expanded="true" aria-current="page">Services</a>
+          <div class="submenu" role="menu">
+            <div class="submenu-inner">
+              <a href="services/web-apps.html" class="submenu-item" role="menuitem">
+                <strong>Web Apps</strong><span>React, Next.js, TypeScript</span>
+              </a>
+              <a href="services/mobile-apps.html" class="submenu-item" role="menuitem">
+                <strong>Mobile Apps</strong><span>Flutter / React Native</span>
+              </a>
+              <a href="services/apis.html" class="submenu-item" role="menuitem">
+                <strong>APIs &amp; Integrations</strong><span>REST, GraphQL, Auth, Payments</span>
+              </a>
+              <a href="services/data-ai.html" class="submenu-item" role="menuitem">
+                <strong>Data &amp; AI</strong><span>ETL, analytics, practical AI</span>
+              </a>
+              <a href="services/devops.html" class="submenu-item" role="menuitem">
+                <strong>DevOps</strong><span>CI/CD, containers, cloud</span>
+              </a>
+              <a href="services/consulting.html" class="submenu-item" role="menuitem">
+                <strong>Consulting</strong><span>Architecture, SRE, roadmaps</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="portfolio.html" class="menu-link">Portfolio</a>
+        <a href="blog.html" class="menu-link">Blog</a>
+        <a href="career.html" class="menu-link">Career</a>
+        <a href="contact.html" class="menu-link">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="service-hero services-page-hero">
+    <div class="container service-hero-inner">
+      <div class="service-hero-copy">
+        <span class="chip">Our Services</span>
+        <h1>Product, design, and engineering delivered as one team.</h1>
+        <p class="muted">Pick a capability to see how we scope, build, and launch reliable software. Every engagement ships with clear ownership, observability, and a path to scale.</p>
+      </div>
+      <figure class="service-hero-media">
+        <img src="assets/img/work/saas-dashboard-1.jpg" alt="Product screens that represent manki.ai services" loading="lazy">
+      </figure>
+    </div>
+  </header>
+
+  <main>
+    <section id="services" class="services">
+      <div class="container">
+        <div class="services-header">
+          <h2 class="section-title">Services</h2>
+          <p class="muted">Tap a capability to see what delivery looks like.</p>
+        </div>
+        <div class="services-panel">
+          <div class="services-tabs" role="tablist" aria-label="Service categories">
+            <button class="service-tab active" type="button" data-service="web-apps" role="tab" aria-selected="true">Web Apps</button>
+            <button class="service-tab" type="button" data-service="mobile-apps" role="tab" aria-selected="false">Mobile Apps</button>
+            <button class="service-tab" type="button" data-service="apis" role="tab" aria-selected="false">APIs &amp; Integrations</button>
+            <button class="service-tab" type="button" data-service="data-ai" role="tab" aria-selected="false">Data &amp; AI</button>
+            <button class="service-tab" type="button" data-service="devops" role="tab" aria-selected="false">DevOps</button>
+            <button class="service-tab" type="button" data-service="consulting" role="tab" aria-selected="false">Consulting</button>
+          </div>
+          <article class="service-detail card" id="service-detail" aria-live="polite">
+            <header>
+              <h3 id="service-detail-title">Web Apps</h3>
+              <p id="service-detail-description" class="muted">Responsive, accessible web apps that ship fast and scale without drama.</p>
+            </header>
+            <ul id="service-detail-highlights" class="service-highlights">
+              <li>Architecture plans aligned with product goals</li>
+              <li>Design systems and component libraries</li>
+              <li>Performance budgets &amp; a11y baked in</li>
+            </ul>
+            <div class="service-foot">
+              <strong id="service-detail-stack" class="service-stack">Stack: React, Next.js, TypeScript, Python</strong>
+              <span id="service-detail-outcome" class="service-outcome">Outcome: Launch-ready web platform in weeks, not months.</span>
+              <a id="service-detail-link" class="btn btn-small" href="services/web-apps.html">Explore service</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="about-cta">
+    <div class="container about-cta-inner">
+      <div>
+        <h2>Ready to ship with us?</h2>
+        <p class="muted">Let’s map out the scope, team, and roadmap you need to launch quickly and reliably.</p>
+      </div>
+      <a class="btn" href="contact.html">Start a project</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> manki.ai</div>
+      <div class="footer-note">Built with care by the manki.ai team</div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js?v=20250920-131643"></script>
+</body>
+</html>
