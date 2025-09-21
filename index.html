@@ -98,7 +98,7 @@
   <!-- Hero -->
   <header id="top" class="hero">
     <div class="container wrap">
-      <div>
+      <div class="hero-copy">
         <span class="chip chip-hero">Simple • Reliable • On-time</span>
         <h1>manki.<span class="t-ai">ai</span> builds clean, fast software for web &amp; mobile.</h1>
         <p>Simple words. Clear plans. Clean code. We keep it focused and on time.</p>
@@ -106,6 +106,11 @@
           <a class="btn" href="contact.html">Start a project</a>
           <a class="btn btn-ghost" href="portfolio.html">See our work</a>
         </div>
+        <ul class="hero-points" aria-label="Key strengths">
+          <li>Delivery in 2–6 weeks with weekly demos</li>
+          <li>Senior-only squads embedded with your team</li>
+          <li>Transparent tooling, docs, and handover</li>
+        </ul>
         <div class="hero-grid">
           <div class="stat">
             <h3 class="stat-number" data-target="50" data-suffix="+" data-duration="1400">0</h3>
@@ -120,49 +125,152 @@
             <p>in-house team</p>
           </div>
         </div>
-        <div class="hero-trust">
-          <span class="trust-label">Trusted by teams at</span>
-          <ul class="trust-logos" aria-label="Selected client logos">
+        <div class="hero-proof" aria-label="Selected clients">
+          <span>Trusted by product teams at</span>
+          <ul>
             <li>Northstar Bank</li>
             <li>MediLoop</li>
-            <li>Bluegrid SaaS</li>
+            <li>BeaconLedger</li>
             <li>SwiftShip</li>
           </ul>
         </div>
       </div>
-      <div class="hero-card">
-        <h3>What we do</h3>
-        <p class="muted">Core services at a glance</p>
-        <div class="grid">
-          <div class="card">
-            <strong>Product Engineering</strong>
-            <p class="muted">From MVPs to scale-ready apps. Clean architecture, maintainable code.</p>
-          </div>
-          <div class="card">
-            <strong>UI/UX Design</strong>
-            <p class="muted">Low-friction interfaces with accessible, modern patterns.</p>
-          </div>
-          <div class="card">
-            <strong>Cloud &amp; DevOps</strong>
-            <p class="muted">CI/CD, containers, and cost-aware infra on AWS/GCP/Azure.</p>
-          </div>
-        </div>
-      </div>
+      <figure class="hero-visual">
+        <img src="assets/img/work/saas-dashboard-1.jpg" alt="Screenshot of analytics dashboard showing positive growth" loading="lazy">
+        <figcaption>
+          <strong>“They shipped our analytics suite in six weeks and handed over zero-bug releases.”</strong>
+          <span>Priya Mehta — COO, Northstar Bank</span>
+        </figcaption>
+      </figure>
     </div>
   </header>
 
-  <!-- About moved to about.html -->
+  <section class="home-capabilities">
+    <div class="container">
+      <h2 class="section-title">What we deliver</h2>
+      <p class="muted">A senior, multidisciplinary crew that handles the product journey end to end.</p>
+      <div class="capability-grid">
+        <article class="capability-card">
+          <div class="capability-icon" aria-hidden="true">🧑‍💻</div>
+          <h3>Product Engineering</h3>
+          <p class="muted">Full-stack squads shipping React, Next.js, and Flutter apps with automated testing.</p>
+        </article>
+        <article class="capability-card">
+          <div class="capability-icon" aria-hidden="true">🎨</div>
+          <h3>Design Systems</h3>
+          <p class="muted">Accessible UI kits, UX flows, and design tokens synced with your brand.</p>
+        </article>
+        <article class="capability-card">
+          <div class="capability-icon" aria-hidden="true">📊</div>
+          <h3>Data &amp; AI</h3>
+          <p class="muted">Analytics pipelines, dashboards, and practical copilots with guardrails.</p>
+        </article>
+        <article class="capability-card">
+          <div class="capability-icon" aria-hidden="true">🔁</div>
+          <h3>DevOps &amp; SRE</h3>
+          <p class="muted">CI/CD, observability, and compliant infrastructure on AWS, GCP, and Azure.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-case">
+    <div class="container case-wrap">
+      <figure>
+        <img src="assets/img/work/fintech-mobile-1.jpg" alt="Mobile fintech dashboard" loading="lazy">
+      </figure>
+      <div class="case-copy">
+        <span class="chip">Featured project</span>
+        <h2>Fintech web suite rebuilt in six weeks.</h2>
+        <ul>
+          <li><strong>+32% activation</strong> after launch with frictionless onboarding.</li>
+          <li><strong>PCI-ready</strong> audit completed on the first attempt.</li>
+          <li><strong>Zero P1 bugs</strong> in production thanks to automated QA.</li>
+        </ul>
+        <a class="btn btn-small" href="portfolio.html">View the case study</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-testimonials">
+    <div class="container">
+      <h2 class="section-title">Founders stay with us</h2>
+      <div class="testimonials-preview">
+        <article>
+          <p>“Their squad plugged into our rituals, refactored the legacy code, and we shipped the investor release ahead of schedule.”</p>
+          <span>Samir Bose — CTO, BeaconLedger</span>
+        </article>
+        <article>
+          <p>“We finally have a product our clinicians love. Accessibility, security, and delivery were handled like clockwork.”</p>
+          <span>Dr. Maria Lopez — Medical Director, MediLoop</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-insights">
+    <div class="container insights-grid">
+      <div>
+        <span class="chip">From the playbook</span>
+        <h2 class="section-title">Notes on shipping reliable software</h2>
+        <p class="muted">Short reads on delivery, architecture, and go-to-market experiments from recent launches.</p>
+      </div>
+      <div class="insight-cards">
+        <article class="insight-card">
+          <small>Playbook</small>
+          <h3>Ship faster without breaking compliance</h3>
+          <p class="muted">How we pair SOC2 controls with rapid design sprints for regulated fintech teams.</p>
+          <a href="blog.html" class="post-link">Read story →</a>
+        </article>
+        <article class="insight-card">
+          <small>Delivery</small>
+          <h3>The six-week rebuild checklist</h3>
+          <p class="muted">Discovery-to-launch steps we use when modernising legacy platforms.</p>
+          <a href="blog.html" class="post-link">Explore checklist →</a>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <!-- Process -->
-  <section id="process">
+  <section id="process" class="process">
     <div class="container">
       <h2 class="section-title">Process</h2>
-      <p class="muted">Simple, transparent, and built for speed.</p>
-      <div class="steps mt">
-        <div class="step"><div class="step-num">1</div><h3>Scope</h3><p class="muted">We clarify goals, constraints, and success metrics.</p></div>
-        <div class="step"><div class="step-num">2</div><h3>Design</h3><p class="muted">Flows, wireframes, and an execution plan.</p></div>
-        <div class="step"><div class="step-num">3</div><h3>Build</h3><p class="muted">Short sprints, weekly demos, zero surprises.</p></div>
-        <div class="step"><div class="step-num">4</div><h3>Launch</h3><p class="muted">Monitoring, docs, and a smooth handover.</p></div>
+      <p class="muted">Same cadence on every engagement—no surprises.</p>
+      <div class="process-steps">
+        <article>
+          <div class="step-icon" aria-hidden="true">🧭</div>
+          <h3>Scope</h3>
+          <p class="muted">Align goals, constraints, and success metrics in a week of discovery workshops.</p>
+        </article>
+        <article>
+          <div class="step-icon" aria-hidden="true">✏️</div>
+          <h3>Design</h3>
+          <p class="muted">Ship Figma flows, clickable prototypes, and a delivery plan your team can rally behind.</p>
+        </article>
+        <article>
+          <div class="step-icon" aria-hidden="true">⚙️</div>
+          <h3>Build</h3>
+          <p class="muted">Senior engineers deliver in two-week sprints with weekly demos and written updates.</p>
+        </article>
+        <article>
+          <div class="step-icon" aria-hidden="true">🚀</div>
+          <h3>Launch</h3>
+          <p class="muted">Observability, playbooks, and handover sessions that keep your team confident post-launch.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-cta">
+    <div class="container cta-inner">
+      <div>
+        <h2>Ready to ship your next release?</h2>
+        <p class="muted">Share a few details and we’ll return with a delivery approach and quote in one business day.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn" href="contact.html">Start a project</a>
+        <a class="btn btn-ghost" href="mailto:info@manki.ai">Book a call</a>
       </div>
     </div>
   </section>
