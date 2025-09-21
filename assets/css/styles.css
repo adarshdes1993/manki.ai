@@ -759,6 +759,10 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
     border-radius:14px;
     padding:12px 16px;
   }
+  .has-submenu > .menu-link{padding-right:40px;}
+  .has-submenu > .menu-link::after{
+    right:16px;
+  }
   .has-submenu > .menu-link::after{ right:-10px; }
   .submenu-inner{ border-top-width:3px }
   .submenu-item{ padding:10px 10px }
