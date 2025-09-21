@@ -156,9 +156,14 @@
   // Mobile: tap “Services” toggles the submenu inline
   submenuLink && submenuLink.addEventListener('click', (e) => {
     if (!isMobile()) return; // desktop: allow normal nav
-    e.preventDefault();
-    e.stopPropagation();
-    submenuParent.classList.contains('open') ? closeSubmenu(true) : openSubmenu();
+    if (!submenuParent.classList.contains('open')) {
+      e.preventDefault();
+      e.stopPropagation();
+      openSubmenu();
+    } else {
+      closeMenu();
+      closeSubmenu(true);
+    }
   });
 
   // Desktop: anti-flicker hover
