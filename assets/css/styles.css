@@ -719,8 +719,23 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .menu a, .menu .menu-link{ font-size:.98rem; padding:6px 10px }
   .btn-cta{ align-self:flex-start; padding:8px 12px; font-size:.95rem }
 
-  .has-submenu .submenu{ position:static; display:none; width:100%; margin-top:4px; border-radius:12px; box-shadow:none; border:1px solid var(--border); }
+  .has-submenu .submenu{
+    position:static;
+    display:none;
+    width:100%;
+    margin-top:8px;
+    border-radius:12px;
+    box-shadow:none;
+    border:1px solid var(--border);
+    background:#fff;
+  }
   .has-submenu.open .submenu{ display:block }
+  .has-submenu.open .submenu .submenu-inner{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+  }
+  .has-submenu.open .submenu .submenu-item{ width:100%; }
   .submenu-inner{ border-top-width:3px }
   .submenu-item{ padding:10px 10px }
 
