@@ -119,6 +119,9 @@ a{color:var(--brand); text-decoration:none}
 .menu{display:flex; align-items:center; gap:16px; justify-content:flex-end}
 .menu a,
 .menu .menu-link{
+  display:inline-flex;
+  align-items:center;
+  white-space:nowrap;
   opacity:.92; font-weight:600; letter-spacing:.18px;
   padding:6px 12px; border-radius:8px;
   transition:color .2s ease, background .2s ease, box-shadow .2s ease;
