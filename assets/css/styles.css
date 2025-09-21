@@ -448,8 +448,8 @@ section{padding:48px 0}
 .step-num{width:34px; height:34px; border-radius:8px; display:grid; place-items:center; background:linear-gradient(135deg, var(--brand), var(--ok)); color:#ffffff; font-weight:800}
 
 /* Footer */
-footer{border-top:1px solid rgba(15,23,42,.12); padding:24px 0 32px; color:var(--brand)}
-.foot{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; text-align:center;}
+footer{border-top:1px solid rgba(15,23,42,.12); padding:18px 0 24px; color:var(--brand)}
+.foot{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; text-align:center;}
 .footer-note{color:var(--muted); font-size:.92rem; letter-spacing:.15px;}
 
 /* Forms */
@@ -770,10 +770,14 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 
   /* watermark: large and visible on phones */
   :root{
-    --bg-logo-size: clamp(680px, 160vw, 1600px);
+    --bg-logo-size: clamp(720px, 180vw, 1600px);
     --bg-logo-opacity: .16;
-    --bg-logo-offset: 50%;
+    --bg-logo-offset: 52%;
     --logo-size-sm: 140px;
     --brand-name-sm: 2.4rem;
   }
+
+  footer{padding:14px 0 16px;}
+  .foot{gap:4px;}
+  .footer-note{font-size:.84rem;}
 }
