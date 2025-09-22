@@ -863,8 +863,16 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .submenu-inner{ border-top-width:3px }
   .submenu-item{ padding:10px 10px }
 
-  .hero .wrap{grid-template-columns:1fr}
-  .hero-visual{order:-1; max-width:520px; justify-self:center;}
+  .hero .wrap{ grid-template-columns: 1fr; }
+
+  /* move visual *below* the copy on mobile */
+  .hero-visual{
+    order: 2;
+    max-width: 520px;
+    justify-self: center;
+    margin-top: 16px; /* breathing room under the copy */
+  }
+}
   .hero-proof{flex-direction:column; align-items:flex-start; gap:12px;}
   .hero-proof ul{gap:10px;}
   .hero-trust{flex-direction:column; align-items:flex-start; gap:10px;}
