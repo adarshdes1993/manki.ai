@@ -764,3 +764,65 @@
     });
   });
 })();
+
+// ===== Mobile nav: robust toggle (no scroll lock) =====
+(function () {
+  if (window.__mankiNavInit2) return;
+  window.__mankiNavInit2 = true;
+
+  function $(s, r){ return (r||document).querySelector(s); }
+  function $$(s, r){ return Array.from((r||document).querySelectorAll(s)); }
+
+  var toggle = $('.nav-toggle');
+  var menu   = $('#primary-menu');
+  if (!toggle || !menu) return;
+
+  // Ensure starting state is closed on mobile
+  toggle.setAttribute('aria-expanded', 'false');
+  menu.classList.remove('open');
+
+  function isOpen(){ return menu.classList.contains('open'); }
+  function openMenu(){
+    menu.classList.add('open');
+    toggle.setAttribute('aria-expanded','true');
+  }
+  function closeMenu(){
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded','false');
+  }
+
+  toggle.addEventListener('click', function(e){
+    e.preventDefault();
+    isOpen() ? closeMenu() : openMenu();
+  });
+
+  // Close when tapping any link inside the menu
+  $$('.menu a, .menu .menu-link', menu).forEach(function(a){
+    a.addEventListener('click', function(){ if (isOpen()) closeMenu(); });
+  });
+
+  // Close on ESC
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && isOpen()) closeMenu();
+  });
+
+  // Close on outside click (only if open)
+  document.addEventListener('click', function(e){
+    if (!isOpen()) return;
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) closeMenu();
+  });
+
+  // Mobile-only “Services” submenu tap to expand
+  var mq = window.matchMedia('(max-width: 900px)');
+  $$('.menu-item.has-submenu').forEach(function(item){
+    var link = $('.menu-link', item);
+    if (!link) return;
+    link.addEventListener('click', function(e){
+      if (mq.matches){
+        e.preventDefault();
+        var opened = item.classList.toggle('open');
+        link.setAttribute('aria-expanded', opened ? 'true' : 'false');
+      }
+    });
+  });
+})();
