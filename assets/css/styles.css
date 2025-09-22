@@ -1088,3 +1088,13 @@ body.page-blog .blog-layout,
 
 /* Ensure watermark always behind */
 .bg-logo{ z-index:0 !important; pointer-events:none !important; }
+
+/* Hide "Blog" in mobile menu — safety net */
+@media (max-width: 900px){
+  .menu a[href="blog.html"],
+  .menu .menu-link[href="blog.html"],
+  .menu a[href$="/blog.html"],
+  .menu .menu-link[href$="/blog.html"]{
+    display: none !important;
+  }
+}
