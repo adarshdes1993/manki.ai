@@ -94,6 +94,11 @@
     // start closed
     toggle.setAttribute('aria-expanded', 'false');
     menu.classList.remove('open');
+    if (submenuParent) {
+      submenuParent.classList.remove('open');
+      submenuLink && submenuLink.setAttribute('aria-expanded', 'false');
+      submenu && (submenu.style.display = '');
+    }
 
     const isOpen  = () => menu.classList.contains('open');
     const openMenu = () => {
@@ -103,11 +108,10 @@
     const closeMenu = () => {
       menu.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
-      // also close submenu
       if (submenuParent) {
         submenuParent.classList.remove('open');
-        if (submenuLink) submenuLink.setAttribute('aria-expanded', 'false');
-        if (submenu) submenu.style.display = '';
+        submenuLink && submenuLink.setAttribute('aria-expanded', 'false');
+        submenu && (submenu.style.display = '');
       }
     };
 
@@ -128,20 +132,35 @@
       if (e.key === 'Escape' && isOpen()) closeMenu();
     });
 
-    // close after clicking any link inside (good mobile UX)
-    $$('.menu a, .menu .menu-link', menu).forEach((a) => {
-      a.addEventListener('click', () => { if (isOpen()) closeMenu(); });
-    });
-
-    // mobile: tap “Services” expands/collapses
+    // mobile: tap “Services” expands/collapses (first tap expand; second tap navigates)
     if (submenuParent && submenuLink) {
       submenuLink.addEventListener('click', (e) => {
         if (!isMobile()) return; // desktop: let it navigate
-        e.preventDefault();
-        const nowOpen = submenuParent.classList.toggle('open');
-        submenuLink.setAttribute('aria-expanded', nowOpen ? 'true' : 'false');
+        if (!submenuParent.classList.contains('open')) {
+          e.preventDefault();
+          e.stopPropagation(); // don't bubble to menu click handler
+          submenuParent.classList.add('open');
+          submenuLink.setAttribute('aria-expanded', 'true');
+        }
+        // if already open, allow navigation
       });
     }
+
+    // Link clicks inside menu:
+    // - Do NOT close on the top-level Services label
+    // - Do NOT close when clicking inside the submenu (navigation will load page anyway)
+    // - Close for normal top-level links
+    menu.addEventListener('click', (e) => {
+      if (!isMobile() || !isOpen()) return;
+      const a = e.target.closest('a,button');
+      if (!a) return;
+
+      if (submenuLink && a === submenuLink) return;         // ignore Services trigger
+      if (a.closest('.submenu')) return;                    // ignore submenu items (page will navigate)
+
+      // close for all other links/buttons
+      closeMenu();
+    });
 
     // resize safety: reset to closed on desktop
     window.addEventListener('resize', () => {
