@@ -688,3 +688,47 @@
   lbClose && lbClose.addEventListener('click', closeLightbox);
   lbBackdrop && lbBackdrop.addEventListener('click', closeLightbox);
 })();
+
+// Founder lightbox
+(() => {
+  const dialog = document.getElementById('lightbox');
+  if (!dialog) return;
+
+  const imgEl = document.getElementById('lightbox-img');
+  const captionEl = document.getElementById('lightbox-caption');
+  const closeBtn = dialog.querySelector('.lb-close');
+
+  const selectors = ['img.founder-thumb', 'a:has(img.founder-thumb)'];
+  document.querySelectorAll(selectors.join(',')).forEach(el => {
+    el.addEventListener('click', e => {
+      // If it's an <a>, prevent navigation
+      if (el.tagName === 'A' || el.closest('a')) e.preventDefault();
+
+      let img = el.matches('img') ? el : el.querySelector('img');
+      if (!img) return;
+
+      const fullSrc = img.getAttribute('data-full') || el.getAttribute('href') || img.src;
+      const alt = img.getAttribute('alt') || 'Full-size photo';
+
+      imgEl.src = fullSrc;
+      imgEl.alt = alt;
+      captionEl.textContent = alt;
+
+      if (typeof dialog.showModal === 'function') dialog.showModal();
+      else dialog.setAttribute('open', '');
+    });
+  });
+
+  // Close actions
+  closeBtn?.addEventListener('click', () => dialog.close?.() || dialog.removeAttribute('open'));
+  dialog.addEventListener('click', (e) => {
+    const r = imgEl.getBoundingClientRect();
+    const outside = e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+    if (outside) dialog.close?.() || dialog.removeAttribute('open');
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && (dialog.open || dialog.hasAttribute('open'))) {
+      dialog.close?.() || dialog.removeAttribute('open');
+    }
+  });
+})();
