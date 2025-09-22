@@ -701,3 +701,66 @@
   var els = document.querySelectorAll(killers.join(','));
   els.forEach(function(el){ el.parentElement ? el.parentElement.removeChild(el) : el.remove(); });
 })();
+
+// --- Mobile nav toggle (idempotent, safe to include once) ---
+(function () {
+  if (window.__mankiNavInit) return; // prevent double init on hot reloads
+  window.__mankiNavInit = true;
+
+  function $ (sel, root) { return (root || document).querySelector(sel); }
+  function $$ (sel, root) { return Array.from((root || document).querySelectorAll(sel)); }
+
+  var toggle = $('.nav-toggle');
+  var menu   = $('#primary-menu');
+  if (!toggle || !menu) return;
+
+  // ensure a11y states are sane
+  toggle.setAttribute('aria-expanded', 'false');
+
+  function openMenu() {
+    menu.classList.add('open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.documentElement.classList.add('nav-open'); // optional body lock
+  }
+  function closeMenu() {
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.documentElement.classList.remove('nav-open');
+  }
+  function isOpen() { return menu.classList.contains('open'); }
+
+  toggle.addEventListener('click', function (e) {
+    e.preventDefault();
+    isOpen() ? closeMenu() : openMenu();
+  });
+
+  // Close when clicking outside the menu (on mobile)
+  document.addEventListener('click', function (e) {
+    var withinMenu = menu.contains(e.target) || toggle.contains(e.target);
+    if (!withinMenu && isOpen()) closeMenu();
+  });
+
+  // Close on ESC
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && isOpen()) closeMenu();
+  });
+
+  // Close after clicking any link inside menu (good mobile UX)
+  $$('.menu a, .menu .menu-link', menu).forEach(function (a) {
+    a.addEventListener('click', function () { if (isOpen()) closeMenu(); });
+  });
+
+  // Mobile: expand/collapse "Services" submenu (tap on label)
+  var mqMobile = window.matchMedia('(max-width: 900px)');
+  $$('.menu-item.has-submenu').forEach(function (item) {
+    var link = $('.menu-link', item);
+    if (!link) return;
+    link.addEventListener('click', function (e) {
+      if (mqMobile.matches) {
+        e.preventDefault();
+        var nowOpen = item.classList.toggle('open');
+        link.setAttribute('aria-expanded', nowOpen ? 'true' : 'false');
+      }
+    });
+  });
+})();
