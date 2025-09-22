@@ -1153,3 +1153,25 @@ body.page-blog .blog-layout,
   font-weight: 800;
   letter-spacing: 0.01em;
 }
+
+/* === Orbitron brand @ 45px everywhere (all pages, all breakpoints) === */
+:root { --brand-name-all: 45px; }
+
+.logo-text,
+.nav .logo-text,
+.footer-brand,
+.brand-name {
+  font-family: "Orbitron", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
+  font-size: var(--brand-name-all) !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* Make sure no earlier responsive rules shrink it */
+@media (max-width: 900px), (max-width: 560px) {
+  .logo-text,
+  .nav .logo-text,
+  .footer-brand,
+  .brand-name { font-size: var(--brand-name-all) !important; }
+}
