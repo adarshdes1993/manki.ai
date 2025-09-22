@@ -702,6 +702,8 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 .achievements{ margin:10px 0 0; padding-left:18px; color:var(--content); }
 .achievements li{ margin:4px 0 }
 
+avatar = ""
+
 .avatar{
   width:120px; height:120px; padding:2px; border-radius:50%;
   background:#000; box-shadow: 0 6px 18px rgba(13,15,15,.12);
@@ -1065,3 +1067,26 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .foot{gap:4px;}
   .footer-note{font-size:.84rem;}
 }
+
+
+/* === LAST-RESORT BLOG MOBILE OVERRIDES (keep at end) === */
+body.page-blog .blog-layout,
+.page-blog .blog-layout { position:relative; z-index:1; } /* above watermark */
+
+@media (max-width: 900px){
+  body.page-blog .blog-layout{ grid-template-columns:1fr !important; gap:28px !important; }
+  body.page-blog .blog-grid{ grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+}
+
+@media (max-width: 560px){
+  body.page-blog .blog-grid{ grid-template-columns:1fr !important; }
+  body.page-blog .post-cover{
+    aspect-ratio:16/9 !important;
+    padding:26px 22px 64px !important;
+  }
+  body.page-blog .post-body{ padding:16px !important; }
+}
+
+/* Watermark must be behind content everywhere */
+.bg-logo{ z-index:0 !important; pointer-events:none !important; }
+
