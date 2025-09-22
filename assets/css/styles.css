@@ -36,6 +36,32 @@
   --black:#000;
 }
 
+/* Orbitron for brand wordmark */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800;900&display=swap');
+
+:root{
+  --brand-font: "Orbitron", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Apply Orbitron to every brand wordmark we use */
+.brandname,
+.logo-text,
+.preloader-brand,
+.logo-text .logo-ai,
+.nav .logo-text {
+  font-family: var(--brand-font) !important;
+  font-weight: 900;
+  letter-spacing: .02em;
+}
+
+/* Keep the colored “ai” part as-is, just inherit the Orbitron face */
+.logo-text .logo-ai,
+.brandname .logo-ai {
+  font-family: inherit !important;
+  font-weight: inherit;
+}
+
+
 /* Base */
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -1088,4 +1114,27 @@ body.page-blog .blog-layout,
   .menu.open{
     display: flex !important;
   }
+}
+
+/* Orbitron on tablet & mobile */
+@media (max-width: 900px){
+  body,
+  h1, h2, h3, h4, h5, h6,
+  .logo-text,
+  .menu .menu-link,
+  .btn,
+  .chip,
+  .badge,
+  .role-type,
+  .timeline-year,
+  .trust-logos,
+  .cta-proof {
+    font-family: 'Orbitron', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: .02em; /* Orbitron reads nicer with a tiny track */
+  }
+}
+
+/* Phone-specific tighten-up (optional) */
+@media (max-width: 560px){
+  body { letter-spacing: .01em; }
 }
