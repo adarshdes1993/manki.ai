@@ -689,3 +689,15 @@
   lbClose && lbClose.addEventListener('click', closeLightbox);
   lbBackdrop && lbBackdrop.addEventListener('click', closeLightbox);
 })();
+
+// Remove any "Blog" link from mobile menu at runtime
+(function () {
+  var killers = [
+    '.menu a[href="blog.html"]',
+    '.menu .menu-link[href="blog.html"]',
+    '.menu a[href$="/blog.html"]',
+    '.menu .menu-link[href$="/blog.html"]'
+  ];
+  var els = document.querySelectorAll(killers.join(','));
+  els.forEach(function(el){ el.parentElement ? el.parentElement.removeChild(el) : el.remove(); });
+})();
