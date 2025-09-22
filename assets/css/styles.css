@@ -977,6 +977,11 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .careers-grid{gap:18px;}
   .role-card{padding:22px;}
   .blog-grid{grid-template-columns:1fr;}
+  .home-insights{padding:48px 0;}
+  .insights-grid{gap:24px;}
+  .insight-cards{grid-template-columns:1fr; gap:16px;}
+  .insight-card{padding:20px;}
+  .insight-card h3{font-size:1.05rem;}
   .post-cover{padding:26px 22px 64px;}
   .blog-testimonials{padding:20px;}
 
