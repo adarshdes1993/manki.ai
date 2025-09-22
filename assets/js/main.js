@@ -75,7 +75,7 @@
   }
 
   /* ======================================================================
-     NAVIGATION — single authoritative module (no body scroll-lock)
+     NAVIGATION — mobile-safe (ghost-click guarded, submenu tap-to-open)
      ====================================================================== */
   (function () {
     const $  = (s, r) => (r || document).querySelector(s);
@@ -83,83 +83,93 @@
 
     const toggle = $('.nav-toggle');
     const menu   = $('#primary-menu');
+    if (!toggle || !menu) return;
+
     const submenuParent = $('.menu-item.has-submenu', menu);
     const submenuLink   = submenuParent ? $('.menu-link', submenuParent) : null;
     const submenu       = submenuParent ? $('.submenu', submenuParent) : null;
+
     const mqMobile = window.matchMedia('(max-width: 900px)');
     const isMobile = () => mqMobile.matches;
 
-    if (!toggle || !menu) return;
-
-    // start closed
+    // start closed + clean state
     toggle.setAttribute('aria-expanded', 'false');
     menu.classList.remove('open');
     if (submenuParent) {
       submenuParent.classList.remove('open');
       submenuLink && submenuLink.setAttribute('aria-expanded', 'false');
-      submenu && (submenu.style.display = '');
+      if (submenu) submenu.style.display = '';
     }
 
-    const isOpen  = () => menu.classList.contains('open');
-    const openMenu = () => {
-      menu.classList.add('open');
-      toggle.setAttribute('aria-expanded', 'true');
-    };
+    const isOpen = () => menu.classList.contains('open');
+    const openMenu = () => { menu.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); };
     const closeMenu = () => {
       menu.classList.remove('open');
       toggle.setAttribute('aria-expanded', 'false');
       if (submenuParent) {
         submenuParent.classList.remove('open');
         submenuLink && submenuLink.setAttribute('aria-expanded', 'false');
-        submenu && (submenu.style.display = '');
+        if (submenu) submenu.style.display = '';
       }
     };
 
-    // toggle button
+    // Toggle button
     toggle.addEventListener('click', (e) => {
       e.preventDefault();
       isOpen() ? closeMenu() : openMenu();
     });
 
-    // close when clicking outside
+    // --- iOS/Android ghost-click guard ---
+    let suppressDocClicksUntil = 0;
+    const armDocClickGuard = (ms = 450) => { suppressDocClicksUntil = Date.now() + ms; };
+
+    // Close when clicking outside (mobile) — respect the guard
     document.addEventListener('click', (e) => {
       if (!isMobile() || !isOpen()) return;
+      if (Date.now() < suppressDocClicksUntil) return; // ignore ghost click
       if (!menu.contains(e.target) && !toggle.contains(e.target)) closeMenu();
     });
 
-    // close on ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && isOpen()) closeMenu();
-    });
-
-    // mobile: tap “Services” expands/collapses (first tap expands; second tap navigates)
-    if (submenuParent && submenuLink) {
-      submenuLink.addEventListener('click', (e) => {
-        if (!isMobile()) return; // desktop: let it navigate
-        if (!submenuParent.classList.contains('open')) {
-          e.preventDefault();
-          e.stopPropagation();
-          submenuParent.classList.add('open');
-          submenuLink.setAttribute('aria-expanded', 'true');
-        }
-        // if already open, allow navigation
-      });
-    }
-
-    // Link clicks inside menu:
-    // - Ignore top-level Services label on mobile (just toggles)
-    // - Ignore clicks inside submenu (let navigation happen; menu will naturally go away on page load)
-    // - Close for other links
+    // Link handling inside the menu
     menu.addEventListener('click', (e) => {
       if (!isMobile() || !isOpen()) return;
       const a = e.target.closest('a,button');
       if (!a) return;
+
+      // If you tap the top-level Services label, let the dedicated handler decide.
       if (submenuLink && a === submenuLink) return;
+
+      // Taps inside the submenu should navigate normally; don't force-close here.
       if (a.closest('.submenu')) return;
+
+      // Any other top-level link closes the menu
       closeMenu();
     });
 
-    // resize safety: reset to closed on desktop
+    // Mobile: first tap on "Services" opens submenu; second tap navigates.
+    if (submenuParent && submenuLink) {
+      const openSubmenu = (evt) => {
+        if (!isMobile()) return; // desktop: do nothing here
+        if (!submenuParent.classList.contains('open')) {
+          // First tap: open submenu, don’t navigate
+          evt.preventDefault();
+          evt.stopPropagation();
+          if (evt.stopImmediatePropagation) evt.stopImmediatePropagation();
+          submenuParent.classList.add('open');
+          submenuLink.setAttribute('aria-expanded', 'true');
+          // Arm ghost-click guard so synthetic click doesn’t close the menu
+          armDocClickGuard();
+        }
+        // If already open, allow normal navigation on second tap.
+      };
+
+      // Prefer pointer events; fall back to click/touch for older browsers
+      submenuLink.addEventListener('pointerdown', (e) => { if (isMobile()) openSubmenu(e); });
+      submenuLink.addEventListener('click',       (e) => { if (isMobile()) openSubmenu(e); });
+      submenuLink.addEventListener('touchend',    (e) => { if (isMobile()) openSubmenu(e); }, { passive: false });
+    }
+
+    // Safety on resize
     window.addEventListener('resize', () => {
       if (!isMobile()) closeMenu();
       setNavHeightVar();
