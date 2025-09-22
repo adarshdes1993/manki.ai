@@ -153,15 +153,14 @@
     }
   }
 
-  // Mobile: tap “Services” toggles the submenu inline
+  // Mobile: tap “Services” goes directly to the first service
   submenuLink && submenuLink.addEventListener('click', (e) => {
     if (!isMobile()) return; // desktop: allow normal nav
-    if (!submenuParent.classList.contains('open')) {
-      e.preventDefault();
-      e.stopPropagation();
-      openSubmenu();
-    } // second tap should follow the link
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.href = 'services/web-apps.html'; // first service
   });
+
 
   // Desktop: anti-flicker hover
   let hideTimer;

@@ -2,15 +2,24 @@
 <html lang="en">
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Blog – Insights from manki.ai</title>
   <meta name="description" content="Playbooks, retrospectives, and lessons learned from the manki.ai team." />
   <link rel="icon" href="assets/img/manki-favicon-32.png" sizes="32x32" type="image/png">
-  <link rel="stylesheet" href="assets/css/styles.css?v=20250922-1">
+  <link rel="stylesheet" href="assets/css/styles.css?v=20250922-2">
+  <style>
+  /* TEMP: force real mobile layout */
+  @media (max-width: 900px){
+    body.page-blog .service-hero-inner{grid-template-columns:1fr !important; gap:24px !important;}
+    body.page-blog .blog-layout{grid-template-columns:1fr !important; gap:22px !important;}
+    body.page-blog .blog-grid{grid-template-columns:1fr !important; gap:16px !important;}
+  }
+  </style>
+
 
 </head>
 <body class="page-blog">

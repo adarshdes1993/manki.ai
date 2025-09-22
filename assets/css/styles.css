@@ -1247,3 +1247,92 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .about{ padding:40px 24px 60px; }
   .about h3{ font-size:22px; }
 }
+
+/* MOBILE: bring the Services chevron in and center it */
+@media (max-width: 900px){
+  .has-submenu > .menu-link{
+    position: relative;
+    padding-right: 40px;     /* room for icon */
+    min-height: 44px;
+  }
+  .has-submenu > .menu-link::after{
+    right: 12px;             /* was ~16–18px; bring it inward */
+    top: 50%;
+    width: 8px; height: 8px; /* a bit smaller so it doesn’t feel cramped */
+    transform: translateY(-50%) rotate(45deg);
+  }
+}
+
+/* phones: nudge a bit more */
+@media (max-width: 560px){
+  .has-submenu > .menu-link{ padding-right: 36px; }
+  .has-submenu > .menu-link::after{ right: 10px; width: 7px; height: 7px; }
+}
+
+/* --- BLOG: force a true mobile layout --- */
+@media (max-width: 900px){
+  /* Stack hero (image below copy) */
+  body.page-blog .service-hero-inner{
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+  body.page-blog .service-hero-media{ justify-content: center !important; }
+  body.page-blog .service-hero-media img{
+    max-width: 100% !important;
+    height: 220px !important;
+    object-fit: cover !important;
+    border-radius: 20px !important;
+  }
+
+  /* Blog list: one column */
+  body.page-blog .blog-layout{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+    align-items: start !important;
+  }
+  body.page-blog .blog-grid{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Keep container feeling mobile */
+  body.page-blog .blog .container{
+    width: 94% !important;
+    max-width: 680px !important;
+  }
+}
+
+@media (max-width: 560px){
+  /* Even tighter on phones */
+  body.page-blog .blog-layout{ gap: 18px !important; }
+  body.page-blog .blog-grid{ gap: 14px !important; }
+
+  body.page-blog .post-cover{
+    aspect-ratio: 16/9 !important;
+    padding: 18px 14px 50px !important;
+  }
+  body.page-blog .post-card{ border-radius: 16px !important; }
+  body.page-blog .post-body{ padding: 14px !important; }
+}
+
+/* --- NAV hover: keep only light blue on hover/focus --- */
+.menu a,
+.menu .menu-link{
+  color: var(--black);
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease, text-decoration .2s;
+}
+
+/* Force the light-blue style and suppress the dark-blue override */
+.menu a:hover,
+.menu a:focus-visible,
+.menu .menu-link:hover,
+.menu .menu-link:focus-visible{
+  background: rgba(6,139,216,.12) !important;  /* light blue wash */
+  color: var(--brand) !important;               /* brand blue text */
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(6,139,216,.25);
+  outline: none;
+}
+
