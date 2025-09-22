@@ -132,13 +132,13 @@
       if (e.key === 'Escape' && isOpen()) closeMenu();
     });
 
-    // mobile: tap “Services” expands/collapses (first tap expand; second tap navigates)
+    // mobile: tap “Services” expands/collapses (first tap expands; second tap navigates)
     if (submenuParent && submenuLink) {
       submenuLink.addEventListener('click', (e) => {
         if (!isMobile()) return; // desktop: let it navigate
         if (!submenuParent.classList.contains('open')) {
           e.preventDefault();
-          e.stopPropagation(); // don't bubble to menu click handler
+          e.stopPropagation();
           submenuParent.classList.add('open');
           submenuLink.setAttribute('aria-expanded', 'true');
         }
@@ -147,18 +147,15 @@
     }
 
     // Link clicks inside menu:
-    // - Do NOT close on the top-level Services label
-    // - Do NOT close when clicking inside the submenu (navigation will load page anyway)
-    // - Close for normal top-level links
+    // - Ignore top-level Services label on mobile (just toggles)
+    // - Ignore clicks inside submenu (let navigation happen; menu will naturally go away on page load)
+    // - Close for other links
     menu.addEventListener('click', (e) => {
       if (!isMobile() || !isOpen()) return;
       const a = e.target.closest('a,button');
       if (!a) return;
-
-      if (submenuLink && a === submenuLink) return;         // ignore Services trigger
-      if (a.closest('.submenu')) return;                    // ignore submenu items (page will navigate)
-
-      // close for all other links/buttons
+      if (submenuLink && a === submenuLink) return;
+      if (a.closest('.submenu')) return;
       closeMenu();
     });
 
