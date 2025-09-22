@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,6 +15,27 @@
 
   <!-- Cache-busted CSS -->
   <link rel="stylesheet" href="assets/css/styles.css?v=20250920-131643">
+
+  <!-- Home hero: ONLY the “manki.ai” chunk uses Orbitron -->
+  <style>
+    /* Force the hero headline back to the regular site font */
+    .page-home .hero h1{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    /* Keep just the brand chunk in Orbitron */
+    .page-home .hero h1 .brandword{
+      font-family: "Orbitron", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif !important;
+      font-weight: 800;
+      letter-spacing: .01em;
+      display: inline-block;
+    }
+    /* Ensure the nested “ai” inherits Orbitron from the brandword */
+    .page-home .hero h1 .brandword .t-ai{
+      font-family: inherit !important;
+    }
+  </style>
 </head>
 <body class="page-home">
   <!-- Preloader -->
@@ -34,6 +55,7 @@
       <p class="preloader-text">Loading…</p>
     </div>
   </div>
+
   <!-- Fixed background logo (watermark) -->
   <div class="bg-logo" aria-hidden="true"></div>
 
@@ -104,12 +126,15 @@
     <div class="container wrap">
       <div class="hero-copy">
         <span class="chip chip-hero">Simple • Reliable • On-time</span>
-        <h1>manki.<span class="t-ai">ai</span> builds clean, fast software for web &amp; mobile.</h1>
+        <h1>
+          <span class="brandword">manki.<span class="t-ai">ai</span></span>
+          <span class="herotext-rest">builds clean, fast software for web &amp; mobile.</span>
+        </h1>
         <p>Simple words. Clear plans. Clean code. We keep it focused and on time.</p>
         <div class="cta-row">
           <a class="btn" href="contact.html">Start a project</a>
           <a class="btn btn-ghost" href="portfolio.html">See our work</a>
-          <a class="hero-link" href="mailto:info@manki.ai">Book a 20‑minute intro →</a>
+          <a class="hero-link" href="mailto:info@manki.ai">Book a 20-minute intro →</a>
         </div>
         <ul class="hero-points" aria-label="Key strengths">
           <li>Delivery in 2–6 weeks with weekly demos</li>
