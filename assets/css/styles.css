@@ -217,6 +217,7 @@ a{color:var(--brand); text-decoration:none}
 .nav-toggle span:nth-child(3){ top:27px }
 
 /* HERO & SECTIONS */
+
 .hero{padding:24px 0 40px; position:relative; overflow:hidden;}
 .hero::before{content:""; position:absolute; inset:0; background:radial-gradient(circle at -10% -10%, rgba(6,139,216,.25) 0%, rgba(6,139,216,0) 55%), radial-gradient(circle at 80% 20%, rgba(249,115,22,.18) 0%, rgba(249,115,22,0) 52%); opacity:.65; pointer-events:none;}
 .hero .wrap{position:relative; display:grid; grid-template-columns: 1.05fr .95fr; gap:34px; align-items:center;}
@@ -1100,47 +1101,149 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .hero-visual{ order: 2 !important; }
 }
 
-/* === BLOG: force mobile layout under 900px & 560px === */
+/* --- BLOG: force a true mobile layout --- */
 @media (max-width: 900px){
-  /* stack the two-column layout */
-  .blog-layout,
-  body.page-blog .blog-layout{
-    display: grid;
+  /* Stack hero on blog (image below copy) */
+  body.page-blog .service-hero-inner{
     grid-template-columns: 1fr !important;
     gap: 24px !important;
   }
-
-  /* cards list in one column on tablets, too */
-  .blog-grid,
-  body.page-blog .blog-grid{
-    grid-template-columns: 1fr !important;
-    gap: 18px !important;
+  body.page-blog .service-hero-media{ justify-content: center !important; }
+  body.page-blog .service-hero-media img{
+    max-width: 100% !important;
+    height: 220px !important;
+    object-fit: cover !important;
+    border-radius: 20px !important;
   }
 
-  /* keep the container from feeling “desktop wide” */
-  .blog .container{ width: min(1024px, 94%) !important; }
+  /* Blog list: one column */
+  body.page-blog .blog-layout{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+    align-items: start !important;
+  }
+  body.page-blog .blog-grid{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
 
-  /* tighten paddings so it reads like mobile */
-  .post-card{ border-radius: 18px; }
-  .post-cover{ padding: 24px 20px 60px !important; }
-  .post-body{ padding: 18px 18px 22px !important; }
+  /* Keep container feeling mobile */
+  body.page-blog .blog .container{
+    width: 94% !important;
+    max-width: 680px !important; /* prevents “desktop wide” feel */
+  }
+
+  /* Card paddings a bit tighter on small screens */
+  body.page-blog .post-card{ border-radius: 18px !important; }
+  body.page-blog .post-cover{ padding: 22px 18px 56px !important; }
+  body.page-blog .post-body{ padding: 16px 16px 20px !important; }
 }
 
 @media (max-width: 560px){
-  /* single-column and tighter spacing on phones */
-  .blog-layout,
-  body.page-blog .blog-layout{ gap: 20px !important; }
+  /* Even tighter on phones */
+  body.page-blog .blog-layout{ gap: 18px !important; }
+  body.page-blog .blog-grid{ gap: 14px !important; }
 
-  .blog-grid,
-  body.page-blog .blog-grid{
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
-  }
-
-  .post-cover{
+  body.page-blog .post-cover{
     aspect-ratio: 16/9 !important;
-    padding: 20px 16px 52px !important;
+    padding: 18px 14px 50px !important;
   }
-  .post-card{ border-radius: 16px; }
-  .post-body{ padding: 16px !important; }
+  body.page-blog .post-card{ border-radius: 16px !important; }
+  body.page-blog .post-body{ padding: 14px !important; }
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  min-height:86vh;                 /* tall on mobile */
+  display:grid;
+  place-items:center;
+  padding:16px;
+  color:var(--white);
+  background-image:
+    url("/assets/hero-bg.jpg");    /* <- replace with your image path */
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+/* subtle dark-to-transparent wash so text stays readable */
+.hero__overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
+}
+
+/* floating card */
+.hero__card{
+  position:relative; z-index:1;
+  width:100%;
+  max-width:560px;
+  padding:18px 18px 16px;
+  border-radius:18px;
+  background:rgba(255,255,255,.86);
+  color:#0a0a0a;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow:0 10px 24px rgba(2,6,23,.2);
+}
+
+.hero__eyebrow{
+  margin:0 0 8px 0;
+  font:800 18px/1.2 "Orbitron", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  letter-spacing:.4px;
+  color:#0b2a3d;
+}
+
+.hero__copy{
+  margin:0 0 14px 0;
+  font:500 14.5px/1.55 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.hero__cta{
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--brand-orange);
+  color:var(--white);
+  text-decoration:none;
+  font:700 14px/1 "Inter", system-ui;
+  padding:12px 16px;
+  border-radius:999px;
+  box-shadow:0 6px 16px rgba(249,115,22,.35);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.hero__cta:active{ transform:translateY(1px); }
+.hero__cta:hover{ box-shadow:0 8px 20px rgba(249,115,22,.42); }
+
+/* ABOUT block */
+.about{
+  padding:28px 16px 44px;
+  background:#fff;
+  color:var(--text);
+}
+.about h3{
+  font:800 18px/1.2 "Orbitron", system-ui;
+  letter-spacing:.4px;
+  margin:0 0 8px;
+  color:#0b2a3d;
+  position:relative;
+}
+.about h3::before,
+.about h3::after{
+  content:""; display:inline-block; width:14px; height:2px;
+  background:var(--brand-orange); vertical-align:middle; margin:0 10px 5px 0;
+}
+.about h3::after{
+  background:var(--brand-blue); margin:0 0 5px 10px;
+}
+.about p{ margin:0; font:500 14.5px/1.7 "Inter", system-ui; }
+
+/* Tablet & up tweaks */
+@media (min-width:768px){
+  .hero{ min-height:78vh; padding:32px; }
+  .hero__card{ padding:22px 22px 18px; }
+  .hero__eyebrow{ font-size:22px; }
+  .hero__copy{ font-size:16px; }
+  .about{ padding:40px 24px 60px; }
+  .about h3{ font-size:22px; }
 }
