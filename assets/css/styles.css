@@ -1138,3 +1138,18 @@ body.page-blog .blog-layout,
 @media (max-width: 560px){
   body { letter-spacing: .01em; }
 }
+
+/* === Force brand name text to 45px on all pages & all breakpoints === */
+:root { --brand-name-all: 45px; }
+
+.brand-name,
+.logo-text,
+.logo-text .logo-ai,
+.nav .logo-text,
+.footer-brand {
+  font-size: var(--brand-name-all) !important;
+  line-height: 1 !important;     /* crisp baseline */
+  font-family: var(--brand-font, "Orbitron", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif) !important;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
