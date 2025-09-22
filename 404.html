@@ -1,149 +1,143 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>manki.ai – Simple, reliable software</title>
-  <meta name="description" content="Simple, fast, and reliable software development services." />
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="assets/css/styles.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>manki.ai – Simple, reliable software</title>
+<meta content="Simple, fast, and reliable software development services." name="description"/>
+<link href="assets/img/favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="assets/css/styles.css" rel="stylesheet"/>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="container row">
-      <a class="logo" href="#top" aria-label="manki.ai Home">
-        <img class="logo-mark" src="assets/img/logo.svg" alt="" aria-hidden="true" />
-        <span class="logo-text">manki.ai</span>
-      </a>
-      <div class="menu">
-        <a href="services.html">Services</a>
-        <a href="portfolio.html">Portfolio</a>
-        <a href="#process">Process</a>
-        <a href="contact.html">Contact</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <header id="top" class="hero">
-    <div class="container wrap">
-      <div>
-        <span class="chip">Simple • Reliable • On‑time</span>
-        <h1>manki.ai builds clean, fast software for web &amp; mobile.</h1>
-        <p>Simple words. Clear plans. Clean code. We keep it focused and on time.</p>
-        <div class="cta-row">
-          <a class="btn" href="contact.html">Start a project</a>
-          <a class="btn btn-ghost" href="portfolio.html">See our work</a>
-        </div>
-        <div class="hero-grid">
-          <div class="stat"><h3>50+</h3><p>projects shipped</p></div>
-          <div class="stat"><h3>2–6 wks</h3><p>typical delivery</p></div>
-          <div class="stat"><h3>100%</h3><p>in‑house team</p></div>
-        </div>
-      </div>
-      <div class="hero-card">
-        <h3>What we do</h3>
-        <p class="muted">Core services at a glance</p>
-        <div class="grid">
-          <div class="card">
-            <strong>Product Engineering</strong>
-            <p class="muted">From MVPs to scale‑ready apps. Clean architecture, maintainable code.</p>
-          </div>
-          <div class="card">
-            <strong>UI/UX Design</strong>
-            <p class="muted">Low‑friction interfaces with accessible, modern patterns.</p>
-          </div>
-          <div class="card">
-            <strong>Cloud &amp; DevOps</strong>
-            <p class="muted">CI/CD, containers, and cost‑aware infra on AWS/GCP/Azure.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Services -->
-  <section id="services">
-    <div class="container">
-      <h2 class="section-title">Services</h2>
-      <p class="muted">End‑to‑end help, or we can slot into your existing team.</p>
-      <div class="grid mt">
-        <div class="card"><strong>Web Apps</strong><p class="muted">React, Next.js, Node, Python. Test‑covered and documented.</p></div>
-        <div class="card"><strong>Mobile Apps</strong><p class="muted">Flutter/React Native. Fast, native‑feel experiences.</p></div>
-        <div class="card"><strong>APIs &amp; Integrations</strong><p class="muted">GraphQL/REST, auth, payments, 3rd‑party systems.</p></div>
-        <div class="card"><strong>Data &amp; AI</strong><p class="muted">ETL, analytics, and practical AI features customers love.</p></div>
-        <div class="card"><strong>DevOps</strong><p class="muted">Pipelines, monitoring, and blue‑green deploys.</p></div>
-        <div class="card"><strong>Consulting</strong><p class="muted">Architecture reviews, SRE audits, roadmap planning.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Work -->
-  <section id="work">
-    <div class="container">
-      <h2 class="section-title">Selected Work</h2>
-      <p class="muted">A few recent deliveries.</p>
-      <div class="grid mt">
-        <div class="card"><strong>SaaS Dashboard</strong><p class="muted">Multi‑tenant analytics app with role‑based access.</p></div>
-        <div class="card"><strong>Fintech Mobile App</strong><p class="muted">KYC, payments, and realtime charts.</p></div>
-        <div class="card"><strong>Healthcare Portal</strong><p class="muted">HIPAA‑aware workflows and audit trails.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Process -->
-  <section id="process">
-    <div class="container">
-      <h2 class="section-title">Process</h2>
-      <p class="muted">Simple, transparent, and built for speed.</p>
-      <div class="steps mt">
-        <div class="step"><div class="step-num">1</div><h3>Scope</h3><p class="muted">We clarify goals, constraints, and success metrics.</p></div>
-        <div class="step"><div class="step-num">2</div><h3>Design</h3><p class="muted">Flows, wireframes, and an execution plan.</p></div>
-        <div class="step"><div class="step-num">3</div><h3>Build</h3><p class="muted">Short sprints, weekly demos, zero surprises.</p></div>
-        <div class="step"><div class="step-num">4</div><h3>Launch</h3><p class="muted">Monitoring, docs, and a smooth handover.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact">
-    <div class="container">
-      <h2 class="section-title">Get in touch</h2>
-      <p class="muted">Tell us about your project and we'll reply with a plan.</p>
-      <form class="card" id="contact-form">
-        <div class="grid2">
-          <div>
-            <label for="name">Name</label>
-            <input required id="name" name="name" class="input" placeholder="Your name" />
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input required type="email" id="email" name="email" class="input" placeholder="you@company.com" />
-          </div>
-        </div>
-        <div class="mt-sm">
-          <label for="project">Project</label>
-          <textarea required id="project" name="project" class="input" rows="4" placeholder="What are you building?"></textarea>
-        </div>
-        <div class="form-row">
-          <button class="btn" type="submit">Send message</button>
-          <span class="muted" id="form-status" aria-live="polite"></span>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container foot">
-      <a class="logo" href="#top" aria-label="manki.ai Home">
-        <img class="logo-mark" src="assets/img/logo.svg" alt="" aria-hidden="true" />
-        <span class="logo-text">manki.ai</span>
-      </a>
-      <div>© <span id="year"></span> manki.ai • Built with care</div>
-    </div>
-  </footer>
-
-  <script src="assets/js/main.js"></script>
+<!-- Navigation -->
+<nav class="nav">
+<div class="container row">
+<a aria-label="manki.ai Home" class="logo" href="#top">
+<img alt="" aria-hidden="true" class="logo-mark" src="assets/img/logo.svg"/>
+<span class="logo-text">manki.ai</span>
+</a><button aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle menu" class="nav-toggle"><span></span><span></span><span></span></button>
+<div class="menu" id="primary-menu">
+<a href="services.html">Services</a>
+<a href="portfolio.html">Portfolio</a>
+<a href="#process">Process</a>
+<a href="contact.html">Contact</a>
+</div>
+</div>
+</nav>
+<!-- Hero -->
+<header class="hero" id="top">
+<div class="container wrap">
+<div>
+<span class="chip">Simple • Reliable • On‑time</span>
+<h1>manki.ai builds clean, fast software for web &amp; mobile.</h1>
+<p>Simple words. Clear plans. Clean code. We keep it focused and on time.</p>
+<div class="cta-row">
+<a class="btn" href="contact.html">Start a project</a>
+<a class="btn btn-ghost" href="portfolio.html">See our work</a>
+</div>
+<div class="hero-grid">
+<div class="stat"><h3>50+</h3><p>projects shipped</p></div>
+<div class="stat"><h3>2–6 wks</h3><p>typical delivery</p></div>
+<div class="stat"><h3>100%</h3><p>in‑house team</p></div>
+</div>
+</div>
+<div class="hero-card">
+<h3>What we do</h3>
+<p class="muted">Core services at a glance</p>
+<div class="grid">
+<div class="card">
+<strong>Product Engineering</strong>
+<p class="muted">From MVPs to scale‑ready apps. Clean architecture, maintainable code.</p>
+</div>
+<div class="card">
+<strong>UI/UX Design</strong>
+<p class="muted">Low‑friction interfaces with accessible, modern patterns.</p>
+</div>
+<div class="card">
+<strong>Cloud &amp; DevOps</strong>
+<p class="muted">CI/CD, containers, and cost‑aware infra on AWS/GCP/Azure.</p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Services -->
+<section id="services">
+<div class="container">
+<h2 class="section-title">Services</h2>
+<p class="muted">End‑to‑end help, or we can slot into your existing team.</p>
+<div class="grid mt">
+<div class="card"><strong>Web Apps</strong><p class="muted">React, Next.js, Node, Python. Test‑covered and documented.</p></div>
+<div class="card"><strong>Mobile Apps</strong><p class="muted">Flutter/React Native. Fast, native‑feel experiences.</p></div>
+<div class="card"><strong>APIs &amp; Integrations</strong><p class="muted">GraphQL/REST, auth, payments, 3rd‑party systems.</p></div>
+<div class="card"><strong>Data &amp; AI</strong><p class="muted">ETL, analytics, and practical AI features customers love.</p></div>
+<div class="card"><strong>DevOps</strong><p class="muted">Pipelines, monitoring, and blue‑green deploys.</p></div>
+<div class="card"><strong>Consulting</strong><p class="muted">Architecture reviews, SRE audits, roadmap planning.</p></div>
+</div>
+</div>
+</section>
+<!-- Work -->
+<section id="work">
+<div class="container">
+<h2 class="section-title">Selected Work</h2>
+<p class="muted">A few recent deliveries.</p>
+<div class="grid mt">
+<div class="card"><strong>SaaS Dashboard</strong><p class="muted">Multi‑tenant analytics app with role‑based access.</p></div>
+<div class="card"><strong>Fintech Mobile App</strong><p class="muted">KYC, payments, and realtime charts.</p></div>
+<div class="card"><strong>Healthcare Portal</strong><p class="muted">HIPAA‑aware workflows and audit trails.</p></div>
+</div>
+</div>
+</section>
+<!-- Process -->
+<section id="process">
+<div class="container">
+<h2 class="section-title">Process</h2>
+<p class="muted">Simple, transparent, and built for speed.</p>
+<div class="steps mt">
+<div class="step"><div class="step-num">1</div><h3>Scope</h3><p class="muted">We clarify goals, constraints, and success metrics.</p></div>
+<div class="step"><div class="step-num">2</div><h3>Design</h3><p class="muted">Flows, wireframes, and an execution plan.</p></div>
+<div class="step"><div class="step-num">3</div><h3>Build</h3><p class="muted">Short sprints, weekly demos, zero surprises.</p></div>
+<div class="step"><div class="step-num">4</div><h3>Launch</h3><p class="muted">Monitoring, docs, and a smooth handover.</p></div>
+</div>
+</div>
+</section>
+<!-- Contact -->
+<section id="contact">
+<div class="container">
+<h2 class="section-title">Get in touch</h2>
+<p class="muted">Tell us about your project and we'll reply with a plan.</p>
+<form class="card" id="contact-form">
+<div class="grid2">
+<div>
+<label for="name">Name</label>
+<input class="input" id="name" name="name" placeholder="Your name" required=""/>
+</div>
+<div>
+<label for="email">Email</label>
+<input class="input" id="email" name="email" placeholder="you@company.com" required="" type="email"/>
+</div>
+</div>
+<div class="mt-sm">
+<label for="project">Project</label>
+<textarea class="input" id="project" name="project" placeholder="What are you building?" required="" rows="4"></textarea>
+</div>
+<div class="form-row">
+<button class="btn" type="submit">Send message</button>
+<span aria-live="polite" class="muted" id="form-status"></span>
+</div>
+</form>
+</div>
+</section>
+<footer>
+<div class="container foot">
+<a aria-label="manki.ai Home" class="logo" href="#top">
+<img alt="" aria-hidden="true" class="logo-mark" src="assets/img/logo.svg"/>
+<span class="logo-text">manki.ai</span>
+</a>
+<div>© <span id="year"></span> manki.ai • Built with care</div>
+</div>
+</footer>
+<script src="assets/js/main.js"></script>
 </body>
 </html>

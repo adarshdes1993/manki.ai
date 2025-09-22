@@ -60,7 +60,47 @@
     });
   }
 
-  /* ---------- Background logo slight parallax ---------- */
+  /* ---------- Navigation / Menus ---------- */
+  const menu = document.getElementById('primary-menu');
+  const toggle = document.querySelector('.nav-toggle');
+  const logoLink = document.querySelector('.logo');
+  const submenuParent = document.querySelector('.has-submenu');
+  const submenuLink = submenuParent ? submenuParent.querySelector('.menu-link') : null;
+  const submenu = submenuParent ? submenuParent.querySelector('.submenu') : null;
+  const mqMobile = window.matchMedia('(max-width: 900px)');
+  const isMobile = () => mqMobile.matches;
+
+  function openMenu() {
+    if (!menu) return;
+    menu.classList.add('open');
+    toggle && toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    if (!menu) return;
+    menu.classList.remove('open');
+    toggle && toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    closeSubmenu(true);
+  }
+  function toggleMenu() {
+    if (!menu) return;
+    menu.classList.contains('open') ? closeMenu() : openMenu();
+  }
+
+  toggle && toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
+  if (logoLink) {
+    logoLink.addEventListener('click', (e) => {
+      if (document.body.classList.contains('page-home')) {
+        e.preventDefault();
+      }
+    });
+  }
+
   const bgLogo = document.querySelector('.bg-logo');
   if (bgLogo) {
     const shift = () => {
@@ -74,107 +114,83 @@
     window.addEventListener('resize', shift);
   }
 
-  /* ======================================================================
-     NAVIGATION — mobile-safe (ghost-click guarded, submenu tap-to-open)
-     ====================================================================== */
-  (function () {
-    const $  = (s, r) => (r || document).querySelector(s);
-    const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+  // Close on outside click (mobile)
+  document.addEventListener('click', (e) => {
+    if (!isMobile() || !menu || !menu.classList.contains('open')) return;
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) closeMenu();
+  });
 
-    const toggle = $('.nav-toggle');
-    const menu   = $('#primary-menu');
-    if (!toggle || !menu) return;
-
-    const submenuParent = $('.menu-item.has-submenu', menu);
-    const submenuLink   = submenuParent ? $('.menu-link', submenuParent) : null;
-    const submenu       = submenuParent ? $('.submenu', submenuParent) : null;
-
-    const mqMobile = window.matchMedia('(max-width: 900px)');
-    const isMobile = () => mqMobile.matches;
-
-    // start closed + clean state
-    toggle.setAttribute('aria-expanded', 'false');
-    menu.classList.remove('open');
-    if (submenuParent) {
-      submenuParent.classList.remove('open');
-      submenuLink && submenuLink.setAttribute('aria-expanded', 'false');
-      if (submenu) submenu.style.display = '';
+  // Close on Esc (mobile) + lightbox
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (isMobile()) closeMenu();
+      closeLightbox();
     }
+  });
 
-    const isOpen = () => menu.classList.contains('open');
-    const openMenu = () => { menu.classList.add('open'); toggle.setAttribute('aria-expanded', 'true'); };
-    const closeMenu = () => {
-      menu.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      if (submenuParent) {
-        submenuParent.classList.remove('open');
-        submenuLink && submenuLink.setAttribute('aria-expanded', 'false');
-        if (submenu) submenu.style.display = '';
-      }
-    };
+  // Close mobile menu when clicking any link inside (except the top Services toggle link)
+  menu && menu.addEventListener('click', (e) => {
+    if (!isMobile()) return;
+    const a = e.target.closest('a,button');
+    if (!a) return;
+    const isTopServicesLink = submenuParent && a === submenuLink;
+    if (!isTopServicesLink) closeMenu();
+  });
 
-    // Toggle button
-    toggle.addEventListener('click', (e) => {
+  // Submenu controls
+  function openSubmenu() {
+    if (!submenuParent || !submenu) return;
+    submenuParent.classList.add('open');
+    submenuLink && submenuLink.setAttribute('aria-expanded', 'true');
+    if (!isMobile()) submenu.style.display = 'block'; // reinforce desktop hover
+  }
+  function closeSubmenu(force) {
+    if (!submenuParent || !submenu) return;
+    submenuParent.classList.remove('open');
+    submenuLink && submenuLink.setAttribute('aria-expanded', 'false');
+    if (force || (!submenuParent.matches(':hover') && !submenu.matches(':hover'))) {
+      submenu.style.display = '';
+    }
+  }
+
+  // Mobile: tap “Services” toggles the submenu inline
+  submenuLink && submenuLink.addEventListener('click', (e) => {
+    if (!isMobile()) return; // desktop: allow normal nav
+    if (!submenuParent.classList.contains('open')) {
       e.preventDefault();
-      isOpen() ? closeMenu() : openMenu();
+      e.stopPropagation();
+      openSubmenu();
+    } // second tap should follow the link
+  });
+
+  // Desktop: anti-flicker hover
+  let hideTimer;
+  if (submenuParent && submenu) {
+    const enter = () => { if (!isMobile()) { clearTimeout(hideTimer); openSubmenu(); } };
+    const leave = () => { if (!isMobile()) { hideTimer = setTimeout(() => closeSubmenu(false), 120); } };
+    submenuParent.addEventListener('mouseenter', enter);
+    submenuParent.addEventListener('mouseleave', leave);
+    submenu.addEventListener('mouseenter', enter);
+    submenu.addEventListener('mouseleave', leave);
+
+    // Keyboard focus support
+    menu && menu.addEventListener('focusin', (e) => {
+      if (submenuParent.contains(e.target)) openSubmenu();
     });
-
-    // --- iOS/Android ghost-click guard ---
-    let suppressDocClicksUntil = 0;
-    const armDocClickGuard = (ms = 450) => { suppressDocClicksUntil = Date.now() + ms; };
-
-    // Close when clicking outside (mobile) — respect the guard
-    document.addEventListener('click', (e) => {
-      if (!isMobile() || !isOpen()) return;
-      if (Date.now() < suppressDocClicksUntil) return; // ignore ghost click
-      if (!menu.contains(e.target) && !toggle.contains(e.target)) closeMenu();
+    menu && menu.addEventListener('focusout', (e) => {
+      if (!menu.contains(e.relatedTarget)) closeSubmenu(true);
     });
+  }
 
-    // Link handling inside the menu
-    menu.addEventListener('click', (e) => {
-      if (!isMobile() || !isOpen()) return;
-      const a = e.target.closest('a,button');
-      if (!a) return;
-
-      // If you tap the top-level Services label, let the dedicated handler decide.
-      if (submenuLink && a === submenuLink) return;
-
-      // Taps inside the submenu should navigate normally; don't force-close here.
-      if (a.closest('.submenu')) return;
-
-      // Any other top-level link closes the menu
+  // Safety: reset state when resizing to desktop and recalc nav height
+  window.addEventListener('resize', () => {
+    if (!isMobile()) {
+      document.body.style.overflow = '';
       closeMenu();
-    });
-
-    // Mobile: first tap on "Services" opens submenu; second tap navigates.
-    if (submenuParent && submenuLink) {
-      const openSubmenu = (evt) => {
-        if (!isMobile()) return; // desktop: do nothing here
-        if (!submenuParent.classList.contains('open')) {
-          // First tap: open submenu, don’t navigate
-          evt.preventDefault();
-          evt.stopPropagation();
-          if (evt.stopImmediatePropagation) evt.stopImmediatePropagation();
-          submenuParent.classList.add('open');
-          submenuLink.setAttribute('aria-expanded', 'true');
-          // Arm ghost-click guard so synthetic click doesn’t close the menu
-          armDocClickGuard();
-        }
-        // If already open, allow normal navigation on second tap.
-      };
-
-      // Prefer pointer events; fall back to click/touch for older browsers
-      submenuLink.addEventListener('pointerdown', (e) => { if (isMobile()) openSubmenu(e); });
-      submenuLink.addEventListener('click',       (e) => { if (isMobile()) openSubmenu(e); });
-      submenuLink.addEventListener('touchend',    (e) => { if (isMobile()) openSubmenu(e); }, { passive: false });
+      closeSubmenu(true);
     }
-
-    // Safety on resize
-    window.addEventListener('resize', () => {
-      if (!isMobile()) closeMenu();
-      setNavHeightVar();
-    });
-  })();
+    setNavHeightVar();
+  });
 
   /* ---------- Services detail panel ---------- */
   const serviceContent = {
@@ -264,6 +280,7 @@
   const servicesSection = document.getElementById('services');
 
   let currentService = 'web-apps';
+
   let isInitialServiceRender = true;
 
   function renderService(key) {
@@ -285,7 +302,9 @@
 
     if (serviceStack) serviceStack.textContent = data.stack;
     if (serviceOutcome) serviceOutcome.textContent = data.outcome;
-    if (serviceLink && data.url) serviceLink.href = data.url;
+    if (serviceLink && data.url) {
+      serviceLink.href = data.url;
+    }
 
     let activeTabEl = null;
     serviceTabs.forEach((tab) => {
@@ -299,7 +318,9 @@
       alignServiceTab(activeTabEl);
     }
 
-    if (isInitialServiceRender) isInitialServiceRender = false;
+    if (isInitialServiceRender) {
+      isInitialServiceRender = false;
+    }
   }
 
   function alignServiceTab(tab) {
@@ -317,6 +338,7 @@
 
   function initServiceTabDrag() {
     if (!serviceTabsWrap) return;
+
     const getTabIndex = (tab) => serviceTabs.findIndex((t) => t === tab);
 
     let isDraggingTabs = false;
@@ -345,11 +367,15 @@
     const pointerUp = (e) => {
       if (!isDraggingTabs) return;
       serviceTabsWrap.classList.remove('is-dragging');
-      try { serviceTabsWrap.releasePointerCapture(e.pointerId); } catch {}
+      try { serviceTabsWrap.releasePointerCapture(e.pointerId); } catch (err) { /* noop if not captured */ }
 
       const dx = e.clientX - dragStartX;
-      if (Math.abs(dx) > 8) {
-        const blockClick = (evt) => { evt.preventDefault(); evt.stopImmediatePropagation(); serviceTabsWrap.removeEventListener('click', blockClick, true); };
+      if (Math.abs(e.clientX - dragStartX) > 8) {
+        const blockClick = (evt) => {
+          evt.preventDefault();
+          evt.stopImmediatePropagation();
+          serviceTabsWrap.removeEventListener('click', blockClick, true);
+        };
         serviceTabsWrap.addEventListener('click', blockClick, true);
 
         const threshold = 48;
@@ -357,7 +383,10 @@
           const direction = dx > 0 ? -1 : 1;
           const nextIndex = Math.min(Math.max(dragIndex + direction, 0), serviceTabs.length - 1);
           const targetTab = serviceTabs[nextIndex];
-          if (targetTab) { renderService(targetTab.dataset.service); alignServiceTab(targetTab); }
+          if (targetTab) {
+            renderService(targetTab.dataset.service);
+            alignServiceTab(targetTab);
+          }
         } else {
           const currentTab = serviceTabs[dragIndex];
           if (currentTab) alignServiceTab(currentTab);
@@ -383,24 +412,33 @@
       const delay = options.delay || 0;
       const performScroll = () => {
         const rect = servicesSection.getBoundingClientRect();
-        const navVar = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 96;
+        const navVar = parseInt(
+          getComputedStyle(document.documentElement).getPropertyValue('--nav-h')
+        ) || 96;
         const additionalOffset = window.innerWidth <= 560 ? 24 : 12;
         const offset = rect.top + window.scrollY - navVar - additionalOffset;
         window.scrollTo({ top: Math.max(0, offset), behavior: scrollBehavior });
       };
-      if (delay > 0) setTimeout(performScroll, delay); else performScroll();
+
+      if (delay > 0) {
+        setTimeout(performScroll, delay);
+      } else {
+        performScroll();
+      }
     }
   }
 
   if (serviceDetail) {
     renderService(currentService);
     initServiceTabDrag();
-    document.querySelectorAll('.service-tab').forEach((tab) => {
+
+    serviceTabs.forEach((tab) => {
       tab.addEventListener('click', () => {
         const shouldScroll = window.innerWidth <= 900;
         focusService(tab.dataset.service, { scroll: shouldScroll });
       });
     });
+
   }
 
   /* ---------- Stat counters ---------- */
@@ -446,6 +484,7 @@
   const initCounters = () => {
     if (countersInitialized || counters.length === 0) return;
     countersInitialized = true;
+
     counters.forEach((el) => {
       const startValue = parseFloat(el.dataset.start || '0');
       updateCounterText(el, startValue);
@@ -512,9 +551,16 @@
     function prev(){ goTo(index - 1); }
     function next(){ goTo(index + 1); }
 
-    function startAuto() { if (!autoInterval || autoTimer || slides.length <= 1) return; autoTimer = setInterval(next, autoInterval); }
-    function stopAuto()  { if (!autoTimer) return; clearInterval(autoTimer); autoTimer = null; }
-    function restartAuto(){ stopAuto(); startAuto(); }
+    function startAuto() {
+      if (!autoInterval || autoTimer || slides.length <= 1) return;
+      autoTimer = setInterval(next, autoInterval);
+    }
+    function stopAuto() {
+      if (!autoTimer) return;
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+    function restartAuto() { stopAuto(); startAuto(); }
 
     renderDots();
     goTo(0, { skipAuto: true });
@@ -527,16 +573,25 @@
       root.addEventListener('mouseenter', stopAuto);
       root.addEventListener('mouseleave', startAuto);
       root.addEventListener('focusin', stopAuto);
-      root.addEventListener('focusout', (e) => { if (!root.contains(e.relatedTarget)) startAuto(); });
+      root.addEventListener('focusout', (e) => {
+        if (!root.contains(e.relatedTarget)) startAuto();
+      });
     }
 
     window.addEventListener('resize', applyTrackTransform);
 
     // simple swipe
     let sx = 0, dx = 0;
-    track.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; dx = 0; if (autoInterval) stopAuto(); }, {passive:true});
-    track.addEventListener('touchmove',  (e) => { dx = e.touches[0].clientX - sx; }, {passive:true});
-    track.addEventListener('touchend',   () => { if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); } dx = 0; if (autoInterval) startAuto(); });
+    track.addEventListener('touchstart', (e) => {
+      sx = e.touches[0].clientX; dx = 0;
+      if (autoInterval) stopAuto();
+    }, {passive:true});
+    track.addEventListener('touchmove', (e) => { dx = e.touches[0].clientX - sx; }, {passive:true});
+    track.addEventListener('touchend', () => {
+      if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); }
+      dx = 0;
+      if (autoInterval) startAuto();
+    });
   }
 
   initSlider({
@@ -633,17 +688,4 @@
 
   lbClose && lbClose.addEventListener('click', closeLightbox);
   lbBackdrop && lbBackdrop.addEventListener('click', closeLightbox);
-
-  /* ---------- Remove any "Blog" link (defensive) ---------- */
-  (function () {
-    const killers = [
-      '.menu a[href="blog.html"]',
-      '.menu .menu-link[href="blog.html"]',
-      '.menu a[href$="/blog.html"]',
-      '.menu .menu-link[href$="/blog.html"]'
-    ];
-    document.querySelectorAll(killers.join(',')).forEach((el) => {
-      el.parentElement ? el.parentElement.removeChild(el) : el.remove();
-    });
-  })();
 })();
