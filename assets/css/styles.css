@@ -66,7 +66,7 @@ a{color:var(--brand); text-decoration:none}
   mix-blend-mode: multiply;               /* looks good on white */
   pointer-events:none;
   transform: translate3d(0, calc(var(--bg-logo-base, -140px) + var(--bg-logo-scroll, 0px)), 0);
-  z-index:10;                             /* above content, below nav */
+  z-index:0;                              /* behind page content */
 }
 
 /* NAV */
@@ -592,7 +592,9 @@ section{padding:48px 0}
 .work-dots button.active{ background:var(--brand) }
 
 /* Blog */
-.blog{background:linear-gradient(180deg, rgba(6,139,216,.04), rgba(248,250,252,1));}
+.blog{
+  background:linear-gradient(180deg, rgba(6,139,216,.04), rgba(248,250,252,1));
+}
 .blog-header{display:flex; flex-direction:column; gap:10px; max-width:620px;}
 .blog-layout{
   display:grid;
@@ -600,18 +602,34 @@ section{padding:48px 0}
   gap:32px;
   align-items:flex-start;
   margin-top:32px;
+  position:relative;
+  z-index:1; /* keep above watermark */
 }
-.blog-grid{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:24px;}
-.post-card{display:flex; flex-direction:column; border-radius:22px; overflow:hidden; border:1px solid rgba(15,23,42,.08); box-shadow:0 18px 32px rgba(15,23,42,.08); background:#fff;}
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:24px;
+}
+.post-card{
+  display:flex; flex-direction:column;
+  border-radius:22px; overflow:hidden;
+  border:1px solid rgba(15,23,42,.08);
+  box-shadow:0 18px 32px rgba(15,23,42,.08); background:#fff;
+}
 .post-cover{
   display:block;
+  position:relative;
+  aspect-ratio:16/9;            /* keeps covers consistent on mobile */
   padding:32px 28px 80px;
   color:#fff;
   background:linear-gradient(135deg, rgba(6,139,216,.85), rgba(249,115,22,.75));
-  position:relative;
 }
 .post-cover h3{margin:12px 0 0; font-size:1.35rem; line-height:1.2;}
-.post-tag{display:inline-block; padding:6px 10px; border-radius:12px; background:rgba(255,255,255,.2); font-weight:700; letter-spacing:.18em; font-size:.72rem; text-transform:uppercase;}
+.post-tag{
+  display:inline-block; padding:6px 10px; border-radius:12px;
+  background:rgba(255,255,255,.2); font-weight:700; letter-spacing:.18em;
+  font-size:.72rem; text-transform:uppercase;
+}
 .post-cover::after{
   content:"";
   position:absolute; inset:auto 0 0; height:4px;
@@ -841,7 +859,6 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .hero-proof{flex-direction:column; align-items:flex-start; gap:12px;}
   .hero-proof ul{gap:10px;}
   .hero-trust{flex-direction:column; align-items:flex-start; gap:10px;}
-  .trust-logos{gap:10px;}
   .grid{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr 1fr}
   .grid2{grid-template-columns:1fr}
@@ -864,6 +881,8 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .careers-inner{grid-template-columns:1fr;}
   .careers-highlight{order:2;}
   .careers-grid{grid-template-columns:1fr;}
+
+  /* BLOG: stack and 2-up grid on tablets */
   .blog-layout{grid-template-columns:1fr; gap:28px;}
   .blog-grid{grid-template-columns:repeat(2, minmax(0,1fr));}
   .blog-testimonials{padding:22px;}
@@ -889,7 +908,7 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
 
   .services-panel{grid-template-columns:1fr; gap:20px;}
   .services-tabs{position:relative; top:auto; flex-direction:row; overflow-x:auto; padding:12px;}
-.service-tab{flex:0 0 auto; white-space:nowrap;}
+  .service-tab{flex:0 0 auto; white-space:nowrap;}
 
   .work-slide{
     padding:18px 18px 32px;
@@ -976,13 +995,19 @@ label{display:block; font-size:12px; color:var(--brand); margin:0 0 6px}
   .career-tags{gap:8px;}
   .careers-grid{gap:18px;}
   .role-card{padding:22px;}
+
+  /* BLOG: phone single-column + tighter paddings */
   .blog-grid{grid-template-columns:1fr;}
   .home-insights{padding:48px 0;}
   .insights-grid{gap:24px;}
   .insight-cards{grid-template-columns:1fr; gap:16px;}
   .insight-card{padding:20px;}
   .insight-card h3{font-size:1.05rem;}
-  .post-cover{padding:26px 22px 64px;}
+  .post-cover{
+    aspect-ratio:16/9;
+    padding:26px 22px 64px;
+  }
+  .post-body{padding:16px;}
   .blog-testimonials{padding:20px;}
 
   .service-hero{padding:44px 0 26px;}
